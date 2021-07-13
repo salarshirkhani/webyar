@@ -11,8 +11,5 @@ class Employee extends Model
     protected $table='employees';
     protected $fillable=['first_name','last_name','ssn','birthdate','phone','rate','role'];
 
-    public function projects(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
-    {
-        return $this->belongsToMany(Project::class);
-    }
+
 }

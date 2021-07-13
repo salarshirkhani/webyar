@@ -9,5 +9,10 @@ class Absence extends Model
 {
     use HasFactory;
     protected $table='absences';
-    protected $fillable=['employee_id','enter','exit','date','hours'];
+    protected $fillable=['enter','exit','date','hours'];
+
+    public function for() {
+        return $this->belongsTo('App\User', 'employee_id');
+    }
 }
+    

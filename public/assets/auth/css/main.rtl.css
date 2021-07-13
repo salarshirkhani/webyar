@@ -1,0 +1,67 @@
+/* 13 of 212 CSS properties converted by rtl.daskhat.ir
+ These properties should be override originals.
+ just load rtl css file after original css file.*/
+
+body {
+    direction: rtl;
+    text-align: right;
+}
+
+*:not(.fa):not(.fas) {
+    font-family: Shabnam, sans-serif !important;
+}
+
+.wrap-login100 {
+    padding: 177px 95px 33px 130px;
+}
+
+.input100 {
+    padding: 0 68px 0 30px;
+}
+
+.focus-input100 {
+    right: 0;
+}
+
+.symbol-input100 {
+    right: 0;
+    padding-right: 35px;
+}
+
+.input100:focus + .focus-input100 + .symbol-input100 {
+    padding-right: 28px;
+}
+
+@media (max-width: 992px) {
+    .wrap-login100 {
+        padding: 177px 85px 33px 90px;
+    }
+
+}
+
+@media (max-width: 768px) {
+    .wrap-login100 {
+        padding: 100px 80px 33px 80px;
+    }
+
+}
+
+@media (max-width: 576px) {
+    .wrap-login100 {
+        padding: 100px 15px 33px 15px;
+    }
+
+}
+
+.alert-validate::before {
+    padding: 4px 10px 4px 25px;
+    left: 8px;
+    right: unset;
+    text-align: right;
+    font-family: Shabnam, sans-serif !important;
+}
+
+.alert-validate::after {
+    left: 13px;
+    right: unset;
+}

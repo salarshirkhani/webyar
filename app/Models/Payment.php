@@ -10,4 +10,8 @@ class Payment extends Model
     use HasFactory;
     protected $table='payments';
     protected $fillable=['employee_id','cost','payment_status','payment_date','confirm_code'];
+
+    public function for() {
+        return $this->belongsTo('App\User', 'employee_id');
+    }
 }
