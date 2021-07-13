@@ -31,7 +31,8 @@ class CreateUsersTable extends Migration
             $table->string('profile', 191)->nullable();
             $table->string('situation', 191)->nullable();
             $table->string('files', 191)->nullable();
-            $table->string('type', 191);
+            $table->enum('type', ['employee', 'admin', 'customer', 'operator']);
+            $table->string('role', 191);
             $table->unsignedTinyInteger('rate')->default(0);
             $table->rememberToken();
             $table->timestamps();

@@ -76,11 +76,11 @@
         </div>
 
         <div class="container-login100-form-btn">
-            <button class="login100-form-btn" name="type" value="seller">
-                ثبت‌نام به عنوان فروشنده
+            <button class="login100-form-btn" name="type" value="employee">
+                ثبت‌نام به عنوان همکار
             </button>
-            <button class="login100-form-btn" name="type" value="buyer" style="margin-top: 8px">
-                ثبت‌نام به عنوان خریدار
+            <button class="login100-form-btn" name="type" value="customer" style="margin-top: 8px">
+                ثبت‌نام به عنوان مشتری
             </button>
         </div>
 
