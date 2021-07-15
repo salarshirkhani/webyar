@@ -18,11 +18,11 @@ class CreateUsersTable extends Migration
             $table->string('name', 191);
             $table->string('first_name', 191);
             $table->string('last_name', 191);
-            $table->string('company_name', 191);
+            $table->string('company_name', 191)->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('birthdate', 191);
+            $table->string('birthdate', 191)->nullable();
             $table->string('phone', 191)->nullable();
             $table->string('mobile', 191)->nullable();
             $table->string('instagram', 191)->nullable();
@@ -32,7 +32,7 @@ class CreateUsersTable extends Migration
             $table->string('situation', 191)->nullable();
             $table->string('files', 191)->nullable();
             $table->enum('type', ['employee', 'admin', 'customer', 'operator']);
-            $table->string('role', 191);
+            $table->string('role', 191)->nullable();
             $table->unsignedTinyInteger('rate')->default(0);
             $table->rememberToken();
             $table->timestamps();
