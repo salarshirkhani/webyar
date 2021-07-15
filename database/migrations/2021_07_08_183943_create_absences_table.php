@@ -18,8 +18,8 @@ class CreateAbsencesTable extends Migration
             $table->unsignedBigInteger('employee_id');
             $table->foreign('employee_id')->references('id')->on('users');
             $table->date('date');
-            $table->time('enter');
-            $table->time('exit');
+            $table->time('start');
+            $table->time('finish');
             $table->unsignedInteger('hours')->default(0);
             $table->timestamps();
         });

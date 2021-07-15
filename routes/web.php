@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\dashboard\employee\AbsenceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +32,7 @@ Route::prefix('dashboard')
             ->namespace('Admin')
             ->group(function() {
                 Route::get('', 'IndexController@get')->name('index');
-           
+
             });
 
         Route::prefix('customer')
@@ -52,3 +53,5 @@ Route::prefix('dashboard')
 
      });
     });
+Route::post('start-work/{id}',[AbsenceController::class,'start_work']);
+Route::post('finish-work/{id}',[AbsenceController::class,'finish_work']);
