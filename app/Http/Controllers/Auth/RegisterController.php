@@ -1,10 +1,11 @@
-﻿<?php
+<?php
+
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Notifications\SignedUp;
 use App\Providers\RouteServiceProvider;
-use App\User;
+use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -53,11 +54,9 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
-	    'role' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'mobile' => ['required', 'regex:/^(09[0-9]{9})|(۰۹[۰-۹]{9})$/', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'type' => ['required', 'in:customer,employee'],
         ]);
 
     }
@@ -80,4 +79,10 @@ class RegisterController extends Controller
             'type' => $data['type']
         ]);
     }
+
+    protected function registered(Request $request, $user)
+    {
+        $user->notify(new SignedUp($user, $request->post('password')));
+    }
+
 }

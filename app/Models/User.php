@@ -1,12 +1,13 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Awobaz\Compoships\Compoships;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Rinvex\Subscriptions\Traits\HasSubscriptions;
-
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 /**
  * App\User
  *

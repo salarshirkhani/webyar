@@ -1,8 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\dashboard\employee\AbsenceController;
-
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,33 +24,31 @@ Route::prefix('dashboard')
     ->middleware('auth')
     ->namespace('Dashboard')
     ->group(function() {
-        Route::get('', 'IndexController@get')->name('index');
+        Route::get('',  [IndexController::class , 'get'])->name('index');
         Route::prefix('admin')
             ->name('admin.')
-            ->middleware('user_type:admin')
+            ->middleware(['user_type:admin'])
             ->namespace('Admin')
             ->group(function() {
-                Route::get('', 'IndexController@get')->name('index');
+                Route::get('',  [IndexController::class , 'get'])->name('index');
 
             });
 
         Route::prefix('customer')
             ->name('customer.')
-            ->middleware('user_type:customer')
+            ->middleware(['user_type:customer'])
             ->namespace('Customer')
             ->group(function() {
-                Route::get('', 'IndexController@get')->name('index');
+                Route::get('',  [IndexController::class , 'get'])->name('index');
 
             });
 
         Route::prefix('employee')
             ->name('employee.')
-            ->middleware('user_type:employee')
+            ->middleware(['user_type:employee'])
             ->namespace('Employee')
             ->group(function() {
-                Route::get('', 'IndexController@get')->name('index');
+                Route::get('',  'IndexController@get')->name('index');
 
      });
     });
-Route::post('start-work/{id}',[AbsenceController::class,'start_work']);
-Route::post('finish-work/{id}',[AbsenceController::class,'finish_work']);

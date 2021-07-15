@@ -4,8 +4,8 @@ namespace App\Notifications;
 
 use App\Channels\Messages\TextMessage;
 use App\Channels\SmsChannel;
-use App\Enquiry;
-use App\User;
+use App\Models\Enquiry;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
