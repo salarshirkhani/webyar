@@ -12,6 +12,7 @@
         "laravel/framework": "^8.40",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.3",
+        "morilog/jalali": "3.*",
         "rinvex/laravel-subscriptions": "^5.0"
     },
     "require-dev": {

@@ -31,7 +31,7 @@ Route::prefix('dashboard')
             ->namespace('Admin')
             ->group(function() {
                 Route::get('',  'IndexController@get')->name('index');
-           
+
             });
 
         Route::prefix('customer')
@@ -49,6 +49,8 @@ Route::prefix('dashboard')
             ->namespace('Employee')
             ->group(function() {
                 Route::get('',  'IndexController@get')->name('index');
+                Route::get('start-work','AbsenceController@start_work');
+                Route::get('finish-work','AbsenceController@finish_work');
 
      });
     });

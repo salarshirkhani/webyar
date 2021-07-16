@@ -21,13 +21,13 @@ class Absence extends Model
 
     public function getDateAttribute($value){
 
-        return jalalian::forge($value)->format('Y-m-d');
+        return Jalalian::forge($value)->format('Y-m-d');
     }
 
-    public function setDateAttribute($value)
-    {
-        $this->attributes['date']=DateTrait::convert_to_georgian($value);
-    }
+//    public function setDateAttribute($value)
+//    {
+//        $this->attributes['date']=DateTrait::convert_to_georgian($value);
+//    }
 
     public function scopeSetFinish($query,$id,$date)
     {

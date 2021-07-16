@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateAbsencesTable extends Migration
 {
@@ -19,8 +19,8 @@ class CreateAbsencesTable extends Migration
             $table->foreign('employee_id')->references('id')->on('users');
             $table->date('date');
             $table->time('start');
-            $table->time('finish');
-            $table->unsignedInteger('hours')->default(0);
+            $table->time('finish')->nullable();
+            $table->time('hours')->default(0);
             $table->timestamps();
         });
     }
