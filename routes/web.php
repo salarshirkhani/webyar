@@ -24,13 +24,13 @@ Route::prefix('dashboard')
     ->middleware('auth')
     ->namespace('Dashboard')
     ->group(function() {
-        Route::get('',  [IndexController::class , 'get'])->name('index');
+        Route::get('',  'IndexController@get')->name('index');
         Route::prefix('admin')
             ->name('admin.')
             ->middleware(['user_type:admin'])
             ->namespace('Admin')
             ->group(function() {
-                Route::get('',  [IndexController::class , 'get'])->name('index');
+                Route::get('',  'IndexController@get')->name('index');
            
             });
 
@@ -39,7 +39,7 @@ Route::prefix('dashboard')
             ->middleware(['user_type:customer'])
             ->namespace('Customer')
             ->group(function() {
-                Route::get('',  [IndexController::class , 'get'])->name('index');
+                Route::get('',  'IndexController@get')->name('index');
 
             });
 
