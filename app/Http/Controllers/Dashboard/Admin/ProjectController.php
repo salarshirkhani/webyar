@@ -28,7 +28,7 @@ class ProjectController extends Controller
             'finish_date' => $request->input('finish_date'),
         ]);
         $post->save();
-        return redirect()->route('dashboard.admin.project.create')->with('info', '  پروژه جدید ذخیره شد و نام آن' . $request->input('title'));
+        return redirect()->route('dashboard.admin.project.create')->with('info', '  پروژه جدید ذخیره شد و نام آن' .' ' . $request->input('title'));
     }
     public function GetManagePost(Request $request)
     {
@@ -39,7 +39,7 @@ class ProjectController extends Controller
     public function DeletePost($id){
         $post = Project::find($id);
         $post->delete();
-        return redirect()->route('dashboard.admin.project.manage')->with('info', 'پست پاک شد');
+        return redirect()->route('dashboard.admin.project.manage')->with('info', 'پروژه پاک شد');
     }
 
     public function GetEditPost($id)
@@ -57,7 +57,7 @@ class ProjectController extends Controller
             $post->finish_date = $request->input('finish_date');
             $post->save();
         }
-        return redirect()->route('dashboard.admin.project.updatepost',$post->id)->with('info', 'پست ویرایش شد');
+        return redirect()->route('dashboard.admin.project.updatepost',$post->id)->with('info', 'پروژه ویرایش شد');
     }
 
 }
