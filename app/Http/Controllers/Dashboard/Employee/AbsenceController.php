@@ -27,9 +27,6 @@ class AbsenceController extends Controller
         $absence->update([
             'finish'=>Carbon::now()->format('h:m:s'),
         ]);
-//        $absence->update([
-//            'hours'=>Carbon::parse($absence->hours)+(Carbon::parse($absence->finish)->diff(Carbon::parse($absence->start)))
-//        ]);
         return redirect(route('dashboard.employee.index'));
     }
 }
