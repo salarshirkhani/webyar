@@ -3,7 +3,7 @@
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
-<html lang="fa">
+<html lang="fa_IR">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -146,6 +146,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
             $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
         });
     });
+    //Timepicker
+    $('#timepicker').datetimepicker({
+      format: 'LT'
+    })
 </script>
 @yield('scripts', '')
 </body>

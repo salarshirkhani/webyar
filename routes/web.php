@@ -32,6 +32,14 @@ Route::prefix('dashboard')
             ->group(function() {
                 Route::get('',  'IndexController@get')->name('index');
 
+                //COMMENT PAGE BUILDER
+                Route::post('project/create', ['uses' => 'ProjectController@CreatePost','as' => 'project.create']);
+                Route::get('project/create', ['uses' => 'ProjectController@GetCreatePost','as' => 'project.create']);  
+                Route::get('project/manage', 'ProjectController@GetManagePost')->name('project.manage');
+                Route::get('deletepost/{id}','ProjectController@DeletePost')->name('project.deletepost');  
+                Route::get('updatepost/{id}','ProjectController@GetEditPost')->name('project.updatepost');
+                Route::post('updatepost/{id}','ProjectController@UpdatePost')->name('project.updatepost');               
+           
             });
 
         Route::prefix('customer')
@@ -49,8 +57,6 @@ Route::prefix('dashboard')
             ->namespace('Employee')
             ->group(function() {
                 Route::get('',  'IndexController@get')->name('index');
-                Route::get('start-work','AbsenceController@start_work');
-                Route::get('finish-work','AbsenceController@finish_work');
 
      });
     });

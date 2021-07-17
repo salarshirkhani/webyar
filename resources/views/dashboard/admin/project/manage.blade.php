@@ -4,7 +4,7 @@
 @endsection
 @section('hierarchy')
     <x-breadcrumb-item title="داشبورد" route="dashboard.admin.index" />
-    <x-breadcrumb-item title="مدیریت پست ها" route="dashboard.admin.news.manage" />
+    <x-breadcrumb-item title="مدیریت پروژه ها" route="dashboard.admin.project.manage" />
 @endsection
 @section('content')
     @if(Session::has('info'))
@@ -16,15 +16,15 @@
 @endif
     <div class="col-md-12">
         <x-card type="info">
-            <x-card-header>مدیریت پست ها</x-card-header>
+            <x-card-header>مدیریت پروژه ها</x-card-header>
                 <x-card-body>
                     <div class="box-body">
                         <table id="example2" class="table table-bordered table-hover">
                             <thead>
                             <tr>
                                 <th>عنوان</th>
-                                <th>توضیح کوتاه</th>
-                                <th>نام نویسنده</th>
+                                <th>تاریخ شروع</th>
+                                <th>تاریخ پایان</th>
                                 <th>حذف</th>                               
                                 <th>ویرایش</th>
                             </tr>
@@ -33,13 +33,13 @@
                              @foreach($posts as $item)
                                 <tr>
                                     <td>{{ $item->title }}</td>
-                                    <td>{{ $item->explain }}</td>
-                                    <td>{{ $item->writer }}</td>
+                                    <td>{{ $item->start_date }}</td>
+                                    <td>{{ $item->finish_date }}</td>
                                     <td>
-                                    <a href="{{route('dashboard.admin.news.deletepost',['id'=>$item->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>                 
+                                    <a href="{{route('dashboard.admin.project.deletepost',['id'=>$item->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>                 
                                     </td>
                                     <td>
-                                    <a href="{{route('dashboard.admin.news.updatepost',['id'=>$item->id])}}" class="edit_post" target="_blank"><i class="fas fa-edit"></i></a>
+                                    <a href="{{route('dashboard.admin.project.updatepost',['id'=>$item->id])}}" class="edit_post" target="_blank"><i class="fas fa-edit"></i></a>
                                     </td>
                                 </tr>
                              @endforeach
@@ -47,8 +47,8 @@
                                 <tfoot>
                                 <tr>
                                     <th>عنوان</th>
-                                    <th>توضیح کوتاه</th>
-                                    <th>نام نویسنده</th>
+                                    <th>تاریخ شروع</th>
+                                    <th>تاریخ پایان</th>
                                     <th>حذف</th>                               
                                     <th>ویرایش</th>
                                 </tr>
@@ -57,7 +57,7 @@
                     </div>
                     </x-card-body>
                 <x-card-footer>
-                    <a href="{{route('dashboard.admin.news.create')}}" class="btn btn-success">ثبت پست جدید</a>
+                    <a href="{{route('dashboard.admin.project.create')}}" class="btn btn-success">ثبت پروژه جدید</a>
                 </x-card-footer>      
         </x-card>
     </div>

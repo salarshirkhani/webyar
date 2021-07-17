@@ -9,7 +9,7 @@ class IndexController extends Controller
     public function get() {
         switch (\Auth::user()->type) {
             case 'admin':
-                return redirect()->route('dashboard.Admin.index');
+                return redirect()->route('dashboard.admin.index');
             case 'employee':
                 return redirect()->route('dashboard.employee.index');
             case 'customer':
