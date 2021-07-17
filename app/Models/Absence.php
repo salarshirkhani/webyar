@@ -12,7 +12,7 @@ class Absence extends Model
     protected $fillable=['enter','exit','date','hours'];
 
     public function for() {
-        return $this->belongsTo('App\User', 'employee_id');
+        return $this->belongsTo('App\Models\User', 'employee_id');
     }
 }
     

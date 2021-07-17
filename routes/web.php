@@ -32,13 +32,21 @@ Route::prefix('dashboard')
             ->group(function() {
                 Route::get('',  'IndexController@get')->name('index');
 
-                //COMMENT PAGE BUILDER
+                //Project PAGE 
                 Route::post('project/create', ['uses' => 'ProjectController@CreatePost','as' => 'project.create']);
                 Route::get('project/create', ['uses' => 'ProjectController@GetCreatePost','as' => 'project.create']);  
                 Route::get('project/manage', 'ProjectController@GetManagePost')->name('project.manage');
                 Route::get('deletepost/{id}','ProjectController@DeletePost')->name('project.deletepost');  
                 Route::get('updatepost/{id}','ProjectController@GetEditPost')->name('project.updatepost');
                 Route::post('updatepost/{id}','ProjectController@UpdatePost')->name('project.updatepost');               
+ 
+               //PHASE PAGE 
+                Route::post('phase/create/{id}', ['uses' => 'PhaseController@CreatePost','as' => 'phase.create']);
+                Route::get('phase/create/{id}', ['uses' => 'PhaseController@GetCreatePost','as' => 'phase.create']);  
+                Route::get('phase/manage/{id}', 'PhaseController@GetManagePost')->name('phase.manage');
+                Route::get('deletephase/{id}','PhaseController@DeletePost')->name('phase.deletepost');  
+                Route::get('updatephase/{id}','PhaseController@GetEditPost')->name('phase.updatepost');
+                Route::post('updatephase/{id}','PhaseController@UpdatePost')->name('phase.updatepost');               
            
             });
 

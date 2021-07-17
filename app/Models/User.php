@@ -79,11 +79,11 @@ class User extends Authenticatable
     }
 
     public function Absence() {
-        return $this->hasOne('App\Absence', 'employee_id');
+        return $this->hasOne('App\Models\Absence', 'employee_id');
     }
 
     public function Payment() {
-        return $this->hasOne('App\Payment', 'employee_id');
+        return $this->hasOne('App\Models\Payment', 'employee_id');
     }
 
     public function conversations() {

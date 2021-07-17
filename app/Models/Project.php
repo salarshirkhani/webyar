@@ -11,6 +11,10 @@ class Project extends Model
     protected $table='projects';
     protected $fillable=['title','start_date','finish_date'];
 
+    public function Phase() {
+        return $this->hasOne('App\Models\Phase', 'project_id');
+    }
+
     public function employees(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Employee::class);
