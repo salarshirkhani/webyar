@@ -33,8 +33,8 @@
                              @foreach($posts as $item)
                                 <tr>
                                     <td>{{ $item->title }}</td>
-                                    <td>{{ $item->explain }}</td>
-                                    <td>{{ $item->writer }}</td>
+                                    <td>{{ $item->start_date }}</td>
+                                    <td>{{ $item->finish_date }}</td>
                                     <td>
                                     <a href="{{route('dashboard.admin.project.deletepost',['id'=>$item->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>                 
                                     </td>

@@ -53,9 +53,8 @@ class ProjectController extends Controller
         $post = Project::find($request->input('id'));
         if (!is_null($post)) {
             $post->title = $request->input('title');
-            $post->explain = $request->input('explain');
-            $post->writer = $request->input('writer');
-            $post->content = $request->input('content');
+            $post->start_date = $request->input('start_date');
+            $post->finish_date = $request->input('finish_date');
             $post->save();
         }
         return redirect()->route('dashboard.admin.project.updatepost',$post->id)->with('info', 'پست ویرایش شد');
