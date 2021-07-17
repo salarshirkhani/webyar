@@ -4,7 +4,7 @@
 @endsection
 @section('hierarchy')
     <x-breadcrumb-item title="داشبورد" route="dashboard.admin.index" />
-    <x-breadcrumb-item title="افزودن اخبار" route="dashboard.admin.news.create" />
+    <x-breadcrumb-item title="افزودن پروژه" route="dashboard.admin.project.create" />
 @endsection
 @section('content')
     @if(Session::has('info'))
@@ -17,7 +17,7 @@
     <div class="col-md-12">
         <x-card type="info">
             <x-card-header>بلاگ</x-card-header>
-        <form style="padding:10px;" action="{{ route('dashboard.admin.news.create') }}" method="post" role="form" class="form-horizontal " enctype="multipart/form-data">
+        <form style="padding:10px;" action="{{ route('dashboard.admin.project.create') }}" method="post" role="form" class="form-horizontal " enctype="multipart/form-data">
             <input type="text" style="padding:10px; margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control" required  name="title"  placeholder="عنوان">            
             <input type="text" style="padding:10px; margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control" required name="explain"  placeholder="توضیح کوتاه">
             <textarea type="text" style="padding:10px; margin: 10px 0px 16px 0px; height: 140px; border-radius: 7px; font-size: 16px;"class="form-control" required name="content"  placeholder="محتوا"></textarea>

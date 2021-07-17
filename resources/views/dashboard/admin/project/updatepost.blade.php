@@ -4,7 +4,7 @@
 @endsection
 @section('hierarchy')
     <x-breadcrumb-item title="داشبورد" route="dashboard.admin.index" />
-    <x-breadcrumb-item title="ویرایش پست" route="dashboard.admin.news.updatepost" />
+    <x-breadcrumb-item title="ویرایش پروژه" route="dashboard.admin.project.updatepost" />
 @endsection
 @section('content')
     @if(Session::has('info'))
@@ -16,8 +16,8 @@
 @endif
     <div class="col-md-12">
         <x-card type="info">
-            <x-card-header>ویرایش پست ها</x-card-header>
-        <form action="{{ route('dashboard.admin.news.updatepost', $post->id) }}" method="post" role="form" class="form-horizontal " enctype="multipart/form-data">
+            <x-card-header>ویرایش پروژه ها</x-card-header>
+        <form action="{{ route('dashboard.admin.project.updatepost', $post->id) }}" method="post" role="form" class="form-horizontal " enctype="multipart/form-data">
             <input type="hidden" style="margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control"  name="id" value="{{ $post->id }}" >
             <input type="text" style="padding:10px; margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control"  value="{{ $post->title }}"  name="title"  placeholder="عنوان">            
             <input type="text" style="padding:10px; margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control" value="{{ $post->explain }}" name="explain"  placeholder="توضیح کوتاه">
