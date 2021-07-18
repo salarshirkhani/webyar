@@ -30,7 +30,7 @@ class PhaseController extends Controller
             'finish_date' => $request->input('finish_date'),
         ]);
         $post->save();
-        return redirect()->route('dashboard.admin.phase.create', ['id' => $id])->with('info', '  فاز جدید ذخیره شد و نام آن' .' ' . $request->input('title'));
+        return redirect()->route('dashboard.admin.phase.manage', ['id' => $id])->with('info', '  فاز جدید ذخیره شد و نام آن' .' ' . $request->input('title'));
     }
     public function GetManagePost($id,Request $request)
     {
@@ -41,7 +41,7 @@ class PhaseController extends Controller
     public function DeletePost($id){
         $post = Phase::find($id);
         $post->delete();
-        return redirect()->route('dashboard.admin.phase.manage')->with('info', 'فاز پاک شد');
+        return redirect()->route('dashboard.admin.phase.manage', ['id' => $id])->with('info', 'فاز پاک شد');
     }
 
     public function GetEditPost($id)

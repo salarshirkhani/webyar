@@ -37,7 +37,7 @@
                                     <td>{{ $item->start_date }}</td>
                                     <td>{{ $item->finish_date }}</td>
                                     <td>
-                                    <a href="{{route('dashboard.admin.phase.manage',['id'=>$item->id])}}" class="edit_post" ><i class="fa fa-fw fa-eraser"></i></a>                 
+                                    <a href="{{route('dashboard.admin.phase.manage',['id'=>$item->id])}}" class="edit_post" ><i class="fas fa-project-diagram"></i></a>                 
                                     </td>
                                     <td>
                                     <a href="{{route('dashboard.admin.project.deletepost',['id'=>$item->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>                 

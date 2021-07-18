@@ -44,9 +44,9 @@ Route::prefix('dashboard')
                 Route::post('phase/create/{id}', ['uses' => 'PhaseController@CreatePost','as' => 'phase.create']);
                 Route::get('phase/create/{id}', ['uses' => 'PhaseController@GetCreatePost','as' => 'phase.create']);  
                 Route::get('phase/manage/{id}', 'PhaseController@GetManagePost')->name('phase.manage');
-                Route::get('deletephase/{id}','PhaseController@DeletePost')->name('phase.deletepost');  
-                Route::get('updatephase/{id}','PhaseController@GetEditPost')->name('phase.updatepost');
-                Route::post('updatephase/{id}','PhaseController@UpdatePost')->name('phase.updatepost');               
+                Route::get('deletephase/{id}','PhaseController@DeletePost')->name('phase.deletephase');  
+                Route::get('updatephase/{id}','PhaseController@GetEditPost')->name('phase.updatephase');
+                Route::post('updatephase/{id}','PhaseController@UpdatePost')->name('phase.updatephase');               
            
             });
 
