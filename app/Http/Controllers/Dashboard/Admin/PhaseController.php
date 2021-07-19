@@ -34,14 +34,14 @@ class PhaseController extends Controller
     }
     public function GetManagePost($id,Request $request)
     {
-        $posts = Phase::orderBy('created_at', 'desc')->get();
+        $posts = Phase::where('project_id',$id)->orderBy('created_at', 'desc')->get();
         return view('dashboard.admin.phase.manage', ['posts' => $posts,'id' => $id]);
     }
 
-    public function DeletePost($id){
+    public function DeletePost($id,$project_id){
         $post = Phase::find($id);
         $post->delete();
-        return redirect()->route('dashboard.admin.phase.manage', ['id' => $id])->with('info', 'فاز پاک شد');
+        return redirect()->route('dashboard.admin.phase.manage', ['id' => $project_id])->with('info', 'فاز پاک شد');
     }
 
     public function GetEditPost($id)
@@ -60,7 +60,7 @@ class PhaseController extends Controller
             $post->finish_date = $request->input('finish_date');
             $post->save();
         }
-        return redirect()->route('dashboard.admin.phase.updatepost',$post->id)->with('info', 'فاز ویرایش شد');
+        return redirect()->route('dashboard.admin.phase.manage',$post->project_id)->with('info', 'فاز ویرایش شد');
     }
 
 }

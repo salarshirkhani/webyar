@@ -40,7 +40,7 @@
                                     <td>{!! Facades\Verta::instance($item->finish_date)->formatDate() !!}</td>
                                     <td><button type="button" class="btn btn-block bg-gradient-warning btn-sm">مدیرت تسک ها</button></td>
                                     <td>
-                                    <a href="{{route('dashboard.admin.phase.deletephase',['id'=>$item->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>                 
+                                    <a href="{{route('dashboard.admin.phase.deletephase',['id'=>$item->id,'project_id'=>$item->for->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>                 
                                     </td>
                                     <td>
                                     <a href="{{route('dashboard.admin.phase.updatephase',['id'=>$item->id])}}" class="edit_post" target="_blank"><i class="fas fa-edit"></i></a>

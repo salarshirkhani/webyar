@@ -45,17 +45,17 @@ Route::prefix('dashboard')
                 Route::post('phase/create/{id}', ['uses' => 'PhaseController@CreatePost','as' => 'phase.create']);
                 Route::get('phase/create/{id}', ['uses' => 'PhaseController@GetCreatePost','as' => 'phase.create']);  
                 Route::get('phase/manage/{id}', 'PhaseController@GetManagePost')->name('phase.manage');
-                Route::get('deletephase/{id}','PhaseController@DeletePost')->name('phase.deletephase');  
+                Route::get('deletephase/{id}/{project_id}','PhaseController@DeletePost')->name('phase.deletephase');  
                 Route::get('updatephase/{id}','PhaseController@GetEditPost')->name('phase.updatephase');
                 Route::post('updatephase/{id}','PhaseController@UpdatePost')->name('phase.updatephase');   
                 
                //EMPLOYEE PAGE 
-               Route::post('employee/create', ['uses' => 'EmployeeController@CreatePost','as' => 'employee.create']);
-               Route::get('employee/create', ['uses' => 'EmployeeController@GetCreatePost','as' => 'employee.create']);  
-               Route::get('employee/manage', 'EmployeeController@GetManagePost')->name('employee.manage');
-               Route::get('deleteemployee/{id}','EmployeeController@DeletePost')->name('employee.deletephase');  
-               Route::get('updateemployee/{id}','EmployeeController@GetEditPost')->name('employee.updatephase');
-               Route::post('updateemployee/{id}','EmployeeController@UpdatePost')->name('employee.updatephase');                   
+               Route::post('employee/create/{id}', ['uses' => 'EmployeeController@CreatePost','as' => 'employee.create']);
+               Route::get('employee/create/{id}', ['uses' => 'EmployeeController@GetCreatePost','as' => 'employee.create']);  
+               Route::get('employee/manage/{id}', 'EmployeeController@GetManagePost')->name('employee.manage');
+               Route::get('deleteemployee/{id}/{project_id}','EmployeeController@DeletePost')->name('employee.deleteemployee');  
+               Route::get('updateemployee/{id}','EmployeeController@GetEditPost')->name('employee.updateemployee');
+               Route::post('updateemployee/{id}','EmployeeController@UpdatePost')->name('employee.updateemployee');                   
            
             });
 

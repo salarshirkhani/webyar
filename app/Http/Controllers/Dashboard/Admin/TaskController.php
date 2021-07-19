@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Session\Store;
 use App\Models\User;
+use App\Models\Task;
 use App\Models\Project;
 use App\Models\Phase;
 use App\Models\EmployeeProject;

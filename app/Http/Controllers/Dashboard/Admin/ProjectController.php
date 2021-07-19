@@ -9,6 +9,7 @@ use Illuminate\Session\Store;
 use App\Models\User;
 use App\Models\Project;
 use App\Models\Phase;
+use App\Models\EmployeeProject;
 use Illuminate\Auth\Access\Gate; 
 use Illuminate\Support\Facades\Auth;
 use phpDocumentor\Reflection\Types\Null_;
@@ -25,7 +26,8 @@ class ProjectController extends Controller
     { 
         $post = Project::find($id);
         $phase= Phase::where('project_id',$id)->orderBy('created_at', 'desc')->get();
-        return view('dashboard.admin.project.index', ['post' => $post, 'id' => $id ,'phase' => $phase ]);
+        $users = EmployeeProject::where('project_id',$id)->orderBy('created_at', 'desc')->get();
+        return view('dashboard.admin.project.index', ['post' => $post, 'id' => $id ,'phase' => $phase,'users' => $users ]);
     }
 
     public function CreatePost(Request $request)

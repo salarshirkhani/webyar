@@ -47,7 +47,7 @@
                                     <td>{!! Facades\Verta::instance($item->finish_date)->formatDate() !!}</td>
                                     <td><button type="button" class="btn btn-block bg-gradient-warning btn-sm">مدیرت تسک ها</button></td>
                                     <td>
-                                    <a href="{{route('dashboard.admin.phase.deletephase',['id'=>$item->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>                 
+                                    <a href="{{route('dashboard.admin.phase.deletephase',['id'=>$item->id,'project_id'=>$item->for->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>                 
                                     </td>
                                     <td>
                                     <a href="{{route('dashboard.admin.phase.updatephase',['id'=>$item->id])}}" class="edit_post" target="_blank"><i class="fas fa-edit"></i></a>
@@ -77,45 +77,51 @@
                        <div class="card-body p-0">
                         <table id="example2" class="table table-bordered table-hover">
                             <thead>
-                            <tr>
-                                <th>عنوان</th>
-                                <th>تاریخ شروع</th>
-                                <th>تاریخ پایان</th>
-                                <th>تسک ها</th>
-                                <th>حذف</th>                               
-                                <th>ویرایش</th>
-                            </tr>
-                            </thead>
-                                <tbody>
-                             @foreach($phase as $item)
-                             <?php $ids=$item->id ; ?> 
                                 <tr>
-                                    <td>{{ $item->title }}</td>
-                                    <td>{!! Facades\Verta::instance($item->start_date)->formatDate() !!}</td>
-                                    <td>{!! Facades\Verta::instance($item->finish_date)->formatDate() !!}</td>
-                                    <td><button type="button" class="btn btn-block bg-gradient-warning btn-sm">مدیرت تسک ها</button></td>
-                                    <td>
-                                    <a href="{{route('dashboard.admin.phase.deletephase',['id'=>$item->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>                 
-                                    </td>
-                                    <td>
-                                    <a href="{{route('dashboard.admin.phase.updatephase',['id'=>$item->id])}}" class="edit_post" target="_blank"><i class="fas fa-edit"></i></a>
-                                    </td>
-                                </tr>
-                             @endforeach
-                                </tbody>
-                                <tfoot>
-                                <tr>
-                                    <th>عنوان</th>
+                                    <th>نام و نام خانوادگی </th>
+                                    <th>ایمیل</th>
+                                    <th>شماره تماس</th>
                                     <th>تاریخ شروع</th>
                                     <th>تاریخ پایان</th>
-                                    <th>تسک ها</th>
-                                    <th>حذف</th>                               
+                                    <th>هزینه</th>
+                                    <th>پروفایل</th>
                                     <th>ویرایش</th>
+                                    <th>حذف</th>                               
                                 </tr>
-                                </tfoot>
+                                </thead>
+                                    <tbody>
+                                 @foreach($users as $item)
+                                    <tr>
+                                        <td>{{ $item->for->first_name }} {{ $item->for->last_name }}</td>
+                                        <td>{{ $item->for->email }}</td>
+                                        <td>{{ $item->for->mobile }}</td>
+                                        <td>{!! Facades\Verta::instance($item->start_date)->formatDate() !!}</td>
+                                        <td>{!! Facades\Verta::instance($item->finish_date)->formatDate() !!}</td>
+                                        <td>{{ $item->cost }}</td>
+                                        <td><button type="button" class="btn btn-block btn-outline-primary btn-sm"> پروفایل</button></td>
+                                        <td><a href="{{route('dashboard.admin.employee.updateemployee',['id'=>$item->id])}}"  class="btn btn-block bg-gradient-warning btn-sm">ویرایش</a></td>
+                                        <td>
+                                        <a href="{{route('dashboard.admin.employee.deleteemployee',['id'=>$item->id,'project_id'=>$item->project->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>                 
+                                        </td>
+                                    </tr>
+                                 @endforeach
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <th>نام و نام خانوادگی </th>
+                                        <th>ایمیل</th>
+                                        <th>شماره تماس</th>
+                                        <th>تاریخ شروع</th>
+                                        <th>تاریخ پایان</th>
+                                        <th>هزینه</th>
+                                        <th>پروفایل</th>
+                                        <th>ویرایش</th>
+                                        <th>حذف</th>           
+                                    </tr>
+                                    </tfoot>
                         </table>
                         </div>
-                        <a href="{{route('dashboard.admin.phase.create',['id'=>$id])}}" class="btn btn-success">ثبت کاربر جدید برای پروژه</a>
+                        <a href="{{route('dashboard.admin.employee.manage',['id'=>$id])}}" class="btn btn-success">مدیریت کاربران </a>
                        
                         <!-- /.card-body -->
                         </div>

@@ -4,7 +4,7 @@
 @endsection
 @section('hierarchy')
     <x-breadcrumb-item title="داشبورد" route="dashboard.admin.index" />
-    <x-breadcrumb-item title="ویرایش پروژه" route="dashboard.admin.project.updatepost" />
+    <x-breadcrumb-item title="{{ $post->project->title }}ویرایش کاربر پروژه " route="dashboard.admin.employee.updateemployee" />
 @endsection
 @section('content')
     @if(Session::has('info'))
@@ -16,10 +16,12 @@
 @endif
     <div class="col-md-12">
         <x-card type="info">
-            <x-card-header>ویرایش پروژه ها</x-card-header>
-        <form style="padding:10px;" action="{{ route('dashboard.admin.project.updatepost', $post->id) }}" method="post" role="form" class="form-horizontal " enctype="multipart/form-data">
+            <x-card-header>ویرایش کاربر پروژه {{ $post->project->title }}</x-card-header>
+        <form style="padding:10px;" action="{{ route('dashboard.admin.employee.updateemployee', $post->id) }}" method="post" role="form" class="form-horizontal " enctype="multipart/form-data">
             <input type="hidden" style="margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control"  name="id" value="{{ $post->id }}" >
-            <input type="text" style="padding:10px; margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control" required  name="title" value="{{ $post->title }}" placeholder="عنوان">            
+            <input type="hidden" style="margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control"  name="project_id" value="{{ $post->project->id }}" >    
+            <input type="hidden" style="margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control"  name="employee_id" value="{{ $post->for->id }}" > 
+            <input type="text" style="padding:10px; margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control" required  name="cost" value="{{ $post->cost }}" placeholder="هزینه">            
             <div class="form-group">
                 <label>تاریخ شروع:</label>
                 <div class="input-group">
