@@ -55,7 +55,15 @@ Route::prefix('dashboard')
                Route::get('employee/manage/{id}', 'EmployeeController@GetManagePost')->name('employee.manage');
                Route::get('deleteemployee/{id}/{project_id}','EmployeeController@DeletePost')->name('employee.deleteemployee');  
                Route::get('updateemployee/{id}','EmployeeController@GetEditPost')->name('employee.updateemployee');
-               Route::post('updateemployee/{id}','EmployeeController@UpdatePost')->name('employee.updateemployee');                   
+               Route::post('updateemployee/{id}','EmployeeController@UpdatePost')->name('employee.updateemployee');
+               
+               //TASK PAGE 
+               Route::post('task/create/{id}', ['uses' => 'TaskController@CreatePost','as' => 'task.create']);
+               Route::get('task/create/{id}', ['uses' => 'TaskController@GetCreatePost','as' => 'task.create']);  
+               Route::get('task/manage/{id}', 'TaskController@GetManagePost')->name('task.manage');
+               Route::get('deletetask/{id}/{project_id}','TaskController@DeletePost')->name('task.deletetask');  
+               Route::get('updatetask/{id}','TaskController@GetEditPost')->name('task.updatetask');
+               Route::post('updatetask/{id}','TaskController@UpdatePost')->name('task.updatetask'); 
            
             });
 

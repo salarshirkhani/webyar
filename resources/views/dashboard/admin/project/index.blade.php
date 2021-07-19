@@ -27,7 +27,7 @@
                               <h3 class="card-title">فاز بندی پروژه</h3>
                             </div>
                         <div class="card-body p-0">
-                        <table id="example2" class="table table-bordered table-hover">
+                        <table id="example1" class="table table-bordered table-hover">
                             <thead>
                             <tr>
                                 <th>عنوان</th>
@@ -75,7 +75,7 @@
                              <h3 class="card-title">کاربران این پروژه</h3>
                            </div>
                        <div class="card-body p-0">
-                        <table id="example2" class="table table-bordered table-hover">
+                        <table id="example" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th>نام و نام خانوادگی </th>
@@ -125,6 +125,62 @@
                        
                         <!-- /.card-body -->
                         </div>
+
+                        <div style="margin-bottom: 50px;"></div>
+                        <div class="card">
+                            <div class="card-header">
+                              <h3 class="card-title">تسک های این پروژه</h3>
+                            </div>
+                        <div class="card-body p-0">
+                         <table id="example2" class="table table-bordered table-hover">
+                             <thead>
+                                <tr>
+                                    <th>عنوان</th>
+                                    <th>تاریخ شروع</th>
+                                    <th>تاریخ پایان</th>
+                                    <th>فاز</th>
+                                    <th>کاربر</th>
+                                    <th>وضعیت</th>
+                                    <th>حذف</th>                               
+                                    <th>ویرایش</th>
+                                </tr>
+                                </thead>
+                                    <tbody>
+                                 @foreach($tasks as $item)
+                                    <tr>
+                                        <td>{{ $item->title }}</td>
+                                        <td>{!! Facades\Verta::instance($item->start_date)->formatDate() !!}</td>
+                                        <td>{!! Facades\Verta::instance($item->finish_date)->formatDate() !!}</td>
+                                        <td>{{ $item->phase->title }}</td>
+                                        <td>{{ $item->for->first_name }} {{ $item->for->last_name }}</td>
+                                        <td>{{ $item->status }}</td> 
+                                        <td>
+                                        <a href="{{route('dashboard.admin.task.deletetask',['id'=>$item->id,'project_id'=>$item->for->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>                 
+                                        </td>
+                                        <td>
+                                        <a href="{{route('dashboard.admin.task.updatetask',['id'=>$item->id])}}" class="edit_post" target="_blank"><i class="fas fa-edit"></i></a>
+                                        </td>
+                                    </tr>
+                                 @endforeach
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <th>عنوان</th>
+                                        <th>تاریخ شروع</th>
+                                        <th>تاریخ پایان</th>
+                                        <th>فاز</th>
+                                        <th>کاربر</th>
+                                        <th>وضعیت</th>
+                                        <th>حذف</th>                               
+                                        <th>ویرایش</th>
+                                    </tr>    
+                                     </tfoot>
+                         </table>
+                         </div>
+                         <a href="{{route('dashboard.admin.task.manage',['id'=>$id])}}" class="btn btn-success">مدیریت تسک ها </a>
+                        
+                         <!-- /.card-body -->
+                         </div>
                     </div>
                     </x-card-body>
                 <x-card-footer>

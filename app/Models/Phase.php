@@ -15,4 +15,9 @@ class Phase extends Model
         return $this->belongsTo('App\Models\Project', 'project_id');
     }
     
+    public function Phases() {
+        return $this->hasMany('App\Models\Task', 'phase_id');
+    }
+
+
 }

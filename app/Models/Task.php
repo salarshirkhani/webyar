@@ -9,11 +9,15 @@ class Task extends Model
 {
     use HasFactory;
     protected $table='tasks';
-    protected $fillable=['project_id','employee_id','title','description','required_time','start_date','finish_date'];
+    protected $fillable=['project_id','employee_id','phase_id','title','description','status','start_date','finish_date'];
 
 
 public function for() {
     return $this->belongsTo('App\Models\User', 'employee_id');
+}
+
+public function phase() {
+    return $this->belongsTo('App\Models\Phase', 'phase_id');
 }
 
 public function project() {
