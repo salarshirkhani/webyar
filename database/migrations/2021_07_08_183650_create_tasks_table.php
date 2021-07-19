@@ -20,10 +20,10 @@ class CreateTasksTable extends Migration
             $table->unsignedBigInteger('employee_id');
             $table->foreign('employee_id')->references('id')->on('users');
             $table->string('title');
-            $table->text('description');
-            $table->time('required_time');
+            $table->text('description')->nullable();
             $table->date('start_date');
             $table->date('finish_date');
+            $table->string('status');
             $table->timestamps();
         });
     }

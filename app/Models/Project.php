@@ -9,7 +9,7 @@ class Project extends Model
 {
     use HasFactory;
     protected $table='projects';
-    protected $fillable=['title','start_date','finish_date'];
+    protected $fillable=['title','description','start_date','finish_date'];
 
     public function Phase() {
         return $this->hasOne('App\Models\Phase', 'project_id');

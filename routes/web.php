@@ -33,6 +33,7 @@ Route::prefix('dashboard')
                 Route::get('',  'IndexController@get')->name('index');
 
                 //Project PAGE 
+                Route::get('project/index/{id}', 'ProjectController@GetProject')->name('project.index');
                 Route::post('project/create', ['uses' => 'ProjectController@CreatePost','as' => 'project.create']);
                 Route::get('project/create', ['uses' => 'ProjectController@GetCreatePost','as' => 'project.create']);  
                 Route::get('project/manage', 'ProjectController@GetManagePost')->name('project.manage');
@@ -46,7 +47,15 @@ Route::prefix('dashboard')
                 Route::get('phase/manage/{id}', 'PhaseController@GetManagePost')->name('phase.manage');
                 Route::get('deletephase/{id}','PhaseController@DeletePost')->name('phase.deletephase');  
                 Route::get('updatephase/{id}','PhaseController@GetEditPost')->name('phase.updatephase');
-                Route::post('updatephase/{id}','PhaseController@UpdatePost')->name('phase.updatephase');               
+                Route::post('updatephase/{id}','PhaseController@UpdatePost')->name('phase.updatephase');   
+                
+               //EMPLOYEE PAGE 
+               Route::post('employee/create', ['uses' => 'EmployeeController@CreatePost','as' => 'employee.create']);
+               Route::get('employee/create', ['uses' => 'EmployeeController@GetCreatePost','as' => 'employee.create']);  
+               Route::get('employee/manage', 'EmployeeController@GetManagePost')->name('employee.manage');
+               Route::get('deleteemployee/{id}','EmployeeController@DeletePost')->name('employee.deletephase');  
+               Route::get('updateemployee/{id}','EmployeeController@GetEditPost')->name('employee.updatephase');
+               Route::post('updateemployee/{id}','EmployeeController@UpdatePost')->name('employee.updatephase');                   
            
             });
 

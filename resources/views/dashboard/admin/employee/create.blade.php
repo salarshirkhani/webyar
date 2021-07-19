@@ -4,7 +4,7 @@
 @endsection
 @section('hierarchy')
     <x-breadcrumb-item title="داشبورد" route="dashboard.admin.index" />
-    <x-breadcrumb-item title="افزودن پروژه" route="dashboard.admin.project.create" />
+    <x-breadcrumb-item title="افزودن فاز جدید" route="dashboard.admin.project.create" />
 @endsection
 @section('content')
     @if(Session::has('info'))
@@ -16,10 +16,9 @@
 @endif
     <div class="col-md-12">
         <x-card type="info">
-            <x-card-header>ساخت پروژه جدید</x-card-header>
-        <form style="padding:10px;" action="{{ route('dashboard.admin.project.create') }}" method="post" role="form" class="form-horizontal " enctype="multipart/form-data">
+            <x-card-header>ساخت فاز جدید</x-card-header>
+        <form style="padding:10px;" action="{{ route('dashboard.admin.phase.create',['id'=>$id]) }}" method="post" role="form" class="form-horizontal " enctype="multipart/form-data">
             <input type="text" style="padding:10px; margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control" required  name="title"  placeholder="عنوان">            
-            <textarea type="text" style="padding:10px; margin: 10px 0px 16px 0px; height: 140px; border-radius: 7px; font-size: 16px;"class="form-control" required name="content"  placeholder="توضیحات پروژه"></textarea>
             <div class="form-group">
                 <label>تاریخ شروع:</label>
                 <div class="input-group">

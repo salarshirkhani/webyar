@@ -20,6 +20,7 @@
         <form style="padding:10px;" action="{{ route('dashboard.admin.project.updatepost', $post->id) }}" method="post" role="form" class="form-horizontal " enctype="multipart/form-data">
             <input type="hidden" style="margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control"  name="id" value="{{ $post->id }}" >
             <input type="text" style="padding:10px; margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control" required  name="title" value="{{ $post->title }}" placeholder="عنوان">            
+            <textarea type="text" style="padding:10px; margin: 10px 0px 16px 0px; height: 140px; border-radius: 7px; font-size: 16px;"class="form-control" value="" name="description"  placeholder="توضیحات">{{ $post->description }}</textarea>
             <div class="form-group">
                 <label>تاریخ شروع:</label>
                 <div class="input-group">
