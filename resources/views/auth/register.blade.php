@@ -10,7 +10,7 @@
     @endif
 
     <div class="login100-pic js-tilt" data-tilt="">
-        <img src="{{ asset("assets/auth/images/auth.webp") }}" alt="IMG">
+        <img style="display:block ; margin-right:auto; margin-left:auto;" src="{{ asset("assets/images/logo.png") }}" alt="IMG">
     </div>
 
 
