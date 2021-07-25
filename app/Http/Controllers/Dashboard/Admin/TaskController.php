@@ -29,6 +29,7 @@ class TaskController extends Controller
             'title' => $request->input('title'),
             'employee_id' => $request->input('employee_id'),
             'project_id' => $id,
+            'description' => $request->input('description'),
             'phase_id' => $request->input('phase_id'),
             'start_date' => $request->input('start_date'),
             'finish_date' => $request->input('finish_date'),
@@ -55,7 +56,10 @@ class TaskController extends Controller
     public function GetEditPost($id)
     { 
         $post = Task::find($id);
-        return view('dashboard.admin.task.updatetask', ['post' => $post, 'id' => $id]);
+        $project=Project::find($id);
+        $phase= Phase::where('project_id',$id)->orderBy('created_at', 'desc')->get();
+        $posts = EmployeeProject::where('project_id',$id)->orderBy('created_at', 'desc')->get();
+        return view('dashboard.admin.task.updatetask', ['posts' => $posts,'id' => $id,'phase' => $phase,'project' => $project,'post' => $post]);
     }
 
     public function UpdatePost($id,Request $request)
@@ -66,6 +70,7 @@ class TaskController extends Controller
             $post->project_id = $request->input('project_id');
             $post->employee_id = $request->input('employee_id');
             $post->phase_id = $request->input('phase_id');
+            $post->description = $request->input('description');
             $post->start_date = $request->input('start_date');
             $post->finish_date = $request->input('finish_date');
             $post->status = $request->input('status');

@@ -29,7 +29,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
               </div>
-              <input name="start_date" type="date" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy-mm-dd" data-mask="">
+              <input id="date" name="start_date" type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy-mm-dd" data-mask="">
             </div>
             <!-- /.input group -->
         </div> 
@@ -39,7 +39,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
               </div>
-              <input name="finish_date" type="date" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy-mm-dd" data-mask="">
+              <input name="finish_date" type="text" id="date1" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy-mm-dd" data-mask="">
             </div>
             <!-- /.input group -->
         </div>   
@@ -82,7 +82,7 @@
                              @foreach($task as $item)
                                 <tr>
                                     <td>{{ $item->title }}</td>
-                                    <td>{!! Facades\Verta::instance($item->start_date)->formatDate() !!}</td>
+                                    <td>{{ $item->start_date }}</td>
                                     <td>{!! Facades\Verta::instance($item->finish_date)->formatDate() !!}</td>
                                     <td>{{ $item->phase->title }}</td>
                                     <td>{{ $item->for->first_name }} {{ $item->for->last_name }}</td>

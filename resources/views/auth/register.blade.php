@@ -38,6 +38,24 @@
 						</span>
         </div>
 
+        <div class="wrap-input100 validate-input" data-validate="تاریخ تولد اجباری است!">
+            <input type="text" name="birthdate" maxlength="100" class=" input100" placeholder="تاریخ تولد" 
+                   id="id_birthdate" value="{{ old('birthdate') ?? '' }}">
+            <span class="focus-input100"></span>
+            <span class="symbol-input100">
+							<i class="fa fa-user" aria-hidden="true"></i>
+						</span>
+        </div>
+
+        <div class="wrap-input100 validate-input" data-validate="سمت را وارد کنید">
+            <input type="text" name="situation" maxlength="100" class=" input100" placeholder="سمت" 
+                   id="id_situation" value="{{ old('situation') ?? '' }}">
+            <span class="focus-input100"></span>
+            <span class="symbol-input100">
+							<i class="fa fa-user" aria-hidden="true"></i>
+						</span>
+        </div>
+
         <div class="wrap-input100 validate-input" data-validate="موبایل صحیح نیست!">
             <input type="tel" name="mobile" class=" input100" placeholder="موبایل" required=""
                    id="id_mobile" value="{{ old('mobile') ?? '' }}">

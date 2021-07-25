@@ -10,13 +10,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
     <title>کنترل پنل | @yield('title', __('داشبورد'))</title>
-
+    <link rel="stylesheet" href="{{ asset('assets/dashboard/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ asset('assets/css/persianDatepicker.css') }}" />
     <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="{{ asset('assets/dashboard/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
           integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
     <!-- Theme style -->
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/shabnam-font@v5.0.1/dist/font-face.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="{{ asset('assets/dashboard/css/adminlte.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/dashboard/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
+
     @yield('styles', '')
     <link rel="stylesheet" href="{{ asset('assets/dashboard/css/adminlte.rtl.css') }}">
     <!-- Google Font: Source Sans Pro -->
@@ -29,7 +33,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini dark-mode">
 <div class="wrapper">
 
     <!-- Navbar -->
@@ -163,6 +167,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{ asset('assets/dashboard/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
 <script src="{{ asset('assets/dashboard/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
 <script src="{{ asset('assets/dashboard/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
+<script src="{{ asset('assets/dashboard/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('assets/js/persianDatepicker.js') }}"></script>
+<script type="text/javascript">
+    $(function() {
+        $("#date, #date1").persianDatepicker();       
+    });
+</script>
  <script>
   $(function () {
     $("#example1").DataTable({

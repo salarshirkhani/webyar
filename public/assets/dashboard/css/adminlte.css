@@ -17765,6 +17765,7 @@ html.maximized-card {
     display: inline-block;
     font-weight: 600;
     margin-left: 5px;
+    font-size: 13px;
 }
 
 .todo-list > li .badge {
