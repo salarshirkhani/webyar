@@ -83,7 +83,7 @@
                                 <tr>
                                     <td>{{ $item->title }}</td>
                                     <td>{{ $item->start_date }}</td>
-                                    <td>{!! Facades\Verta::instance($item->finish_date)->formatDate() !!}</td>
+                                    <td>{{$item->finish_date}}</td>
                                     <td>{{ $item->phase->title }}</td>
                                     <td>{{ $item->for->first_name }} {{ $item->for->last_name }}</td>
                                     <td>{{ $item->status }}</td> 

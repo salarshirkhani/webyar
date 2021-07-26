@@ -83,5 +83,9 @@ Route::prefix('dashboard')
             ->group(function() {
                 Route::get('',  'IndexController@get')->name('index');
 
+                //TASK MANAGMENT
+                Route::post('task/create', ['uses' => 'TaskController@CreatePost','as' => 'task.create']);
+                Route::get('task/create', ['uses' => 'TaskController@GetCreatePost','as' => 'task.create']);  
+                Route::get('task/manage', 'TaskController@GetManagePost')->name('task.manage');
      });
     });

@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 
 class IndexController extends Controller
 {
-    public function get() {
+    public function get() { 
         return view('dashboard.employee.index');
     }
 }
