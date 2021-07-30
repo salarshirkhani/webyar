@@ -40,7 +40,18 @@ class TaskController extends Controller
     }
     public function GetManagePost(Request $request)
     {
-        $task=Task::where('employee_id',Auth::user()->id)->orderBy('created_at', 'desc')->get();
+        $task=Task::where('status','notwork')->where('employee_id',Auth::user()->id)->orderBy('finish_date', 'ASC')->get();
         return view('dashboard.employee.task.manage', ['task' => $task]);
+    }
+
+    public function UpdatePost($id,Request $request)
+    {
+        $task=Task::where('employee_id',Auth::user()->id)->orderBy('finish_date', 'ASC')->get();
+        $post = Task::find($request->input('id'));
+        if (!is_null($post)) {
+            $post->status = $request->input('status');
+            $post->save();
+        }
+        return redirect()->route('dashboard.employee.task.manage')->with('info', 'تسک انجام شد');
     }
 }

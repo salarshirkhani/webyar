@@ -15,6 +15,7 @@ use Illuminate\Auth\Access\Gate;
 use Illuminate\Support\Facades\Auth;
 use phpDocumentor\Reflection\Types\Null_;
 use Illuminate\Support\Facades\Storage;
+use Hekmatinasser\Verta\Verta;
 
 class TaskController extends Controller
 {

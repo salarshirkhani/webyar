@@ -52,6 +52,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                    onclick="event.preventDefault(); document.getElementById('frm-logout').submit();" class="nav-link">{{ __('خروج') }}</a>
             </li>
         </ul>
+        <p style="position: absolute;left: 15px;top: 18px;color: #969696;">امروز:{{Facades\Verta::now()->format(' %d  %B، %Y')}}</p>
     </nav>
     <!-- /.navbar -->
 
@@ -59,9 +60,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <aside class="main-sidebar sidebar-dark-gray elevation-4">
         <!-- Brand Logo -->
         <a href="{{ route('dashboard.index') }}" class="brand-link">
-            <img src="" alt="{{ config('app.name') }}" style=" width: 95%;" class="brand-image "
+            <img src="{{ asset("assets/images/logo.png") }}" alt="{{ config('app.name') }}" style=" width: auto;" class="brand-image "
                  style="opacity: .8">
-            <span class="brand-text font-weight-light">{{ config('app.name') }}</span>
+            <span class="brand-text font-weight-light">پنل وبیار</span>
         </a>
 
         <!-- Sidebar -->

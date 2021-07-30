@@ -12215,7 +12215,7 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini) .main-header::bef
 
 .sidebar-dark-gray .nav-sidebar > .nav-item > .nav-link.active,
 .sidebar-light-gray .nav-sidebar > .nav-item > .nav-link.active {
-    background-color: #6c757d;
+    background-color: #ce8a07;
     color: #ffffff;
 }
 

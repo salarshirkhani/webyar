@@ -15,7 +15,7 @@
         </div>
     </div>
 @endif
-<div class="col-md-6">
+<div class="col-md-12">
     <x-card type="info">
         <x-card-header>ساخت تسک جدید</x-card-header>
     <form style="padding:10px;" action="{{ route('dashboard.admin.task.create',['id'=>$id]) }}" method="post" role="form" class="form-horizontal " enctype="multipart/form-data">
@@ -29,7 +29,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
               </div>
-              <input id="date" name="start_date" type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy-mm-dd" data-mask="">
+              <input id="date" name="start_date" type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy,mm,dd" data-mask="">
             </div>
             <!-- /.input group -->
         </div> 
@@ -39,7 +39,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
               </div>
-              <input name="finish_date" type="text" id="date1" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy-mm-dd" data-mask="">
+              <input name="finish_date" type="text" id="date1" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy,mm,dd" data-mask="">
             </div>
             <!-- /.input group -->
         </div>   
