@@ -44,6 +44,12 @@ class TaskController extends Controller
         return view('dashboard.employee.task.manage', ['task' => $task]);
     }
 
+    public function GetTask($id,Request $request)
+    {
+        $task=Task::find($id);
+        return view('dashboard.employee.task.show', ['task' => $task]);
+    }
+
     public function UpdatePost($id,Request $request)
     {
         $task=Task::where('employee_id',Auth::user()->id)->orderBy('finish_date', 'ASC')->get();

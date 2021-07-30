@@ -16,6 +16,7 @@
     </div>
 @endif
 @include('dashboard.employee.task.create')
+
 <div class="row">
     <!-- SIDE 1 -->
     <section class="col-lg-4 connectedSortable">
@@ -42,7 +43,7 @@
               @else
               <li>
               @endif
-              <form  action="{{ route('dashboard.employee.task.updatetask', $item->id) }}" method="post">
+              <form action="{{ route('dashboard.employee.task.updatetask', $item->id) }}" method="post">
               @csrf
               <input type="hidden" name="id" value="{{ $item->id }}" >
               <span class="handle">
@@ -53,7 +54,7 @@
                 <input type="checkbox" value="done" name="status" id="todoCheck2" onchange="this.form.submit();">
                 <label for="todoCheck2"></label>
               </div>              
-              <span class="text">{{ $item->title }}</span>  
+              <span class="text" style="cursor:pointer;" data-target="#modal-info{{ $item->id }}" data-toggle="modal">{{ $item->title }}</span>  
               <small class="badge badge-info"><i class="far fa-clock"></i>{{$item->finish_date}}</small>
               <div class="tools">
 
@@ -61,6 +62,28 @@
             </form>
             </li>    
             @endif
+            <div class="modal fade show" id="modal-info{{ $item->id }}" aria-modal="true" role="dialog">
+              <div class="modal-dialog modal-info">
+                <div class="modal-content bg-info">
+                  <div class="modal-header">
+                    <h4 class="modal-title">{{ $item->title }}</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                      {{ $item->description }}
+            
+                  </div>
+                  <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-outline-light" data-dismiss="modal">بستن</button>
+                  </form>
+                  </div>
+                </div>
+                <!-- /.modal-content -->
+              </div>
+              <!-- /.modal-dialog -->
+            </div>
             @endforeach
           </ul>
         </div>
@@ -102,7 +125,7 @@
                <input type="checkbox" value="done" name="status" id="todoCheck2" onchange="this.form.submit();">
             <label for="todoCheck2"></label>
           </div>
-          <span class="text">{{ $item->title }}</span>
+          <span class="text" style="cursor:pointer;" data-target="#modal-info{{ $item->id }}" data-toggle="modal">{{ $item->title }}</span>  
           <small class="badge badge-info"><i class="far fa-clock"></i>{{$item->finish_date}}</small>
           <div class="tools">
 
@@ -110,6 +133,28 @@
         </form>
         </li>     
         @endif
+        <div class="modal fade show" id="modal-info{{ $item->id }}" aria-modal="true" role="dialog">
+          <div class="modal-dialog modal-info">
+            <div class="modal-content bg-info">
+              <div class="modal-header">
+                <h4 class="modal-title">{{ $item->title }}</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                  {{ $item->description }}
+        
+              </div>
+              <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-outline-light" data-dismiss="modal">بستن</button>
+              </form>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
         @endforeach
       </ul>
     </div>
@@ -120,8 +165,8 @@
   </div>
 </section>
 
-         <!-- SIDE 2 -->
-<section class="col-lg-4 connectedSortable">
+     <!-- SIDE 3 -->
+      <section class="col-lg-4 connectedSortable">
             <!-- TO DO List -->
         <div class="card">
             <div class="card-header">
@@ -152,14 +197,35 @@
                        <input type="checkbox" value="done" name="status" id="todoCheck2" onchange="this.form.submit();">
                     <label for="todoCheck2"></label>
                   </div>
-                  <span class="text">{{ $item->title }}</span>
+                  <span class="text" style="cursor:pointer;" data-target="#modal-info{{ $item->id }}" data-toggle="modal">{{ $item->title }}</span>  
                   <small class="badge badge-info"><i class="far fa-clock"></i>{{$item->finish_date}}</small>
                   <div class="tools">
 
                   </div>
                 </form>
                 </li>                      
+                <div class="modal fade show" id="modal-info{{ $item->id }}" aria-modal="true" role="dialog">
+                  <div class="modal-dialog modal-info">
+                    <div class="modal-content bg-info">
+                      <div class="modal-header">
+                        <h4 class="modal-title">{{ $item->title }}</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">×</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                          {{ $item->description }}
                 
+                      </div>
+                      <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-outline-light" data-dismiss="modal">بستن</button>
+                      </form>
+                      </div>
+                    </div>
+                    <!-- /.modal-content -->
+                  </div>
+                  <!-- /.modal-dialog -->
+                </div>
                 @endforeach   
               </ul>
             </div>

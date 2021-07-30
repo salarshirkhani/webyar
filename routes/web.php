@@ -88,6 +88,8 @@ Route::prefix('dashboard')
                 Route::get('task/create', ['uses' => 'TaskController@GetCreatePost','as' => 'task.create']);  
                 Route::get('task/manage', 'TaskController@GetManagePost')->name('task.manage');
                 Route::get('updatetask/{id}','TaskController@GetEditPost')->name('task.updatetask');
+                Route::get('show/{id}','TaskController@GetTask')->name('task.show');
+                Route::get('updatetask/{id}','TaskController@GetEditPost')->name('task.updatetask');
                 Route::post('updatetask/{id}','TaskController@UpdatePost')->name('task.updatetask'); 
      });
     });
