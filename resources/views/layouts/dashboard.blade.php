@@ -122,7 +122,7 @@ BY WEBITO
             webyar
         </div>
         <!-- Default to the left -->
-        <strong>Copyright &copy; 2020 <a href="https://webitofa.ir">webito</a> & <a href="#">Salar Shirkhani</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; 2021 <a href="https://webitofa.ir">webito</a> & <a href="#">Salar Shirkhani</a>.</strong> All rights reserved.
     </footer>
 </div>
 <!-- ./wrapper -->
@@ -198,8 +198,11 @@ BY WEBITO
       "autoWidth": false,
       "responsive": true,
     });
-    $('.toastrDefaultError').click(function() {
-      toastr.error('شما حضوری خود را ثبت نکرده اید')
+    $('.toastrDefaultSuccess').click(function() {
+      toastr.error('شما حضوری خود را ثبت کرده اید')
+    });
+    $('.toastrDefaultInfo').click(function() {
+      toastr.info('درحال پردازش درخواست')
     });
   });
  

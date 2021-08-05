@@ -95,6 +95,7 @@ Route::prefix('dashboard')
 
                 //ABSENCE
                 Route::post('absence/create', ['uses' => 'TaskController@Absence','as' => 'absence.create']);
+                Route::post('absence/end/{id}','TaskController@AbsenceEnd')->name('absence.end'); 
 
 
      });

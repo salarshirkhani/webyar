@@ -16,9 +16,49 @@
     </div>
 @endif
 @include('dashboard.employee.task.create')
-<button type="button" class="btn btn-danger toastrDefaultError">
-  Launch Error Toast
-</button>
+@if($absence == NULL)
+    <div class="row">
+        <div class="col-md-12">
+          <div class="alert alert-danger" style="">
+            <p>لطفا حضوری خود را ثبت کنید</p>
+            <form method="post" action="{{ route('dashboard.employee.absence.create') }}">
+              @csrf
+            <button type="submit" class="btn btn-primary toastrDefaultInfo">
+              ثبت حضوری
+            </button>
+            </form>
+          </div>
+        </div>
+    </div>    
+@elseif($absence != NULL && $absence->exit==NULL)
+<div class="row">
+  <div class="col-md-12">
+      <div class="alert alert-info" style="background: #17a2b85e; width:100%;display:inline-flex;"> 
+        <div class="col-md-10 col-sm-12">
+          <p style="color:#464545; position: relative; top: 8px;">ساعت زدن حضوری شما : {{$absence->enter}}</p>
+        </div>
+        <div class="col-md-2 col-sm-12">
+          <form method="post" action="{{ route('dashboard.employee.absence.end', $absence->id) }}">
+            @csrf
+          <button style="" type="submit" class=" btn btn-block btn-outline-secondary toastrDefaultInfo">
+            ثبت پایان کار
+          </button>
+          </form> 
+        </div>
+    </div>
+  </div>
+</div>
+@elseif($absence != NULL && $absence->exit!=NULL)
+<div class="row">
+  <div class="col-md-12">
+      <div class="alert alert-info" style="background: #17a2b85e; width:100%;display:inline-flex;"> 
+        <div class="col-md-10 col-sm-12">
+          <p style="color:#464545; position: relative; top: 8px;">روز کاری شما به پایان رسید</p>
+        </div>
+    </div>
+  </div>
+</div>
+@endif
 <div class="row">
     <!-- SIDE 1 -->
     <section class="col-lg-4 connectedSortable">
@@ -74,13 +114,10 @@
                     </button>
                   </div>
                   <div class="modal-body">
-                      {{ $item->description }}
-            
+                      {{ $item->description }}  
                   </div>
                   <div class="modal-footer justify-content-between">
-                    <form method="post" action="">
-                       <button type="submit" class="btn btn-outline-light" data-dismiss="modal">بستن</button>
-                    </form>
+                       <button type="button" class="btn btn-outline-light" data-dismiss="modal">بستن</button>
                   </form>
                   </div>
                 </div>
@@ -126,7 +163,7 @@
             <i class="fas fa-ellipsis-v"></i>
           </span>
           <div  class="icheck-primary d-inline ml-2">
-               <input type="checkbox" value="done" name="status" id="todoCheck2" onchange="this.form.submit();">
+               <input type="checkbox" class="toastrDefaultInfo" value="done"  name="status" id="todoCheck2" onchange="this.form.submit();">
             <label for="todoCheck2"></label>
           </div>
           <span class="text" style="cursor:pointer;" data-target="#modal-info{{ $item->id }}" data-toggle="modal">{{ $item->title }}</span>  

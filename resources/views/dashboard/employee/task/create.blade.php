@@ -44,7 +44,7 @@
         </div>
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-default" data-dismiss="modal">بستن</button>
-          <button type="submit" class="btn btn-primary">اضافه کردن تسک</button>
+          <button type="submit"  class="btn btn-primary toastrDefaultInfo">اضافه کردن تسک</button>
         </form>
         </div>
       </div>
