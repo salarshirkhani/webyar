@@ -16,7 +16,9 @@
     </div>
 @endif
 @include('dashboard.employee.task.create')
-
+<button type="button" class="btn btn-danger toastrDefaultError">
+  Launch Error Toast
+</button>
 <div class="row">
     <!-- SIDE 1 -->
     <section class="col-lg-4 connectedSortable">
@@ -76,7 +78,9 @@
             
                   </div>
                   <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-outline-light" data-dismiss="modal">بستن</button>
+                    <form method="post" action="">
+                       <button type="submit" class="btn btn-outline-light" data-dismiss="modal">بستن</button>
+                    </form>
                   </form>
                   </div>
                 </div>

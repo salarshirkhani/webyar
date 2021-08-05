@@ -82,6 +82,7 @@ Route::prefix('dashboard')
             ->namespace('Employee')
             ->group(function() {
                 Route::get('',  'IndexController@get')->name('index');
+                Route::get('profile',  'IndexController@profile')->name('profile');
 
                 //TASK MANAGMENT
                 Route::post('task/create', ['uses' => 'TaskController@CreatePost','as' => 'task.create']);
@@ -91,5 +92,10 @@ Route::prefix('dashboard')
                 Route::get('show/{id}','TaskController@GetTask')->name('task.show');
                 Route::get('updatetask/{id}','TaskController@GetEditPost')->name('task.updatetask');
                 Route::post('updatetask/{id}','TaskController@UpdatePost')->name('task.updatetask'); 
+
+                //ABSENCE
+                Route::post('absence/create', ['uses' => 'TaskController@Absence','as' => 'absence.create']);
+
+
      });
     });

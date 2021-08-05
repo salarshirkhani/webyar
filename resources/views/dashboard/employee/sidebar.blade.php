@@ -1,2 +1,2 @@
-﻿<x-sidebar-item title="داشبورد" icon="fas fa-tachometer-alt" route="dashboard.admin.index" />
+﻿<x-sidebar-item title="پروفایل" icon="fas fa-tachometer-alt" route="dashboard.employee.profile" />
 <x-sidebar-item title="مدیریت تسک ها" icon="fas fa-folder" route="dashboard.employee.task.manage" />

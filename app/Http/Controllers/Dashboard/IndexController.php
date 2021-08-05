@@ -11,7 +11,7 @@ class IndexController extends Controller
             case 'admin':
                 return redirect()->route('dashboard.admin.index');
             case 'employee':
-                return redirect()->route('dashboard.employee.index');
+                return redirect()->route('dashboard.employee.task.manage');
             case 'customer':
                 return redirect()->route('dashboard.customer.index');
         }

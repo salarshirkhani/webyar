@@ -19,6 +19,7 @@ BY WEBITO
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/shabnam-font@v5.0.1/dist/font-face.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="{{ asset('assets/dashboard/css/adminlte.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/dashboard/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/dashboard/plugins/toastr/toastr.min.css') }}">
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     @yield('styles', '')
     <link rel="stylesheet" href="{{ asset('assets/dashboard/css/adminlte.rtl.css') }}">
@@ -167,6 +168,7 @@ BY WEBITO
 <script src="{{ asset('assets/dashboard/plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
 <script src="{{ asset('assets/dashboard/plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
 <script src="{{ asset('assets/dashboard/plugins/datatables-buttons/js/buttons.colVis.min.js')}}"></script>
+<script src="{{ asset('assets/dashboard/plugins/toastr/toastr.min.js')}}"></script>
 <script src="{{ asset('assets/dashboard/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
 <script type="text/javascript" src="{{ asset('assets/js/persianDatepicker.js') }}"></script>
 <script src="{{ asset('assets/dashboard/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
@@ -196,7 +198,13 @@ BY WEBITO
       "autoWidth": false,
       "responsive": true,
     });
+    $('.toastrDefaultError').click(function() {
+      toastr.error('شما حضوری خود را ثبت نکرده اید')
+    });
   });
+ 
+
+  
  </script>
 @yield('scripts', '')
 </body>

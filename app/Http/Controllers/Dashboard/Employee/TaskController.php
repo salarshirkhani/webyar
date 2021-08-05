@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\Task;
 use App\Models\Project;
 use App\Models\Phase;
+use App\Models\Absence;
 use App\Models\EmployeeProject;
 use Illuminate\Auth\Access\Gate; 
 use Illuminate\Support\Facades\Auth;
@@ -60,4 +61,21 @@ class TaskController extends Controller
         }
         return redirect()->route('dashboard.employee.task.manage')->with('info', 'تسک انجام شد');
     }
+
+
+    //ABSENCCE CONTROLLER
+    public function Absence(Request $request)
+    {
+        $post = new Absence([
+            'title' => $request->input('title'),
+            'employee_id' => Auth::user()->id,
+            'description' => $request->input('description'),
+            'start_date' => $request->input('start_date'),
+            'finish_date' => $request->input('finish_date'),
+            'status' => $request->input('status'),
+        ]);
+        $post->save();
+        return redirect()->route('dashboard.employee.task.manage')->with('info', 'حضوری شما زده شد ' );
+    }
+
 }

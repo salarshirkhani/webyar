@@ -50,7 +50,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                   </div>
-                  <input id="date1" name="finish_date" value="{{ $post->finish_date }}" type="date" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy-mm-dd" data-mask="">
+                  <input id="date1" name="finish_date" value="{{ $post->finish_date }}" type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy-mm-dd" data-mask="">
                 </div>
                 <!-- /.input group -->
             </div>  
