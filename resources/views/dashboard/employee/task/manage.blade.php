@@ -53,7 +53,8 @@
   <div class="col-md-12">
       <div class="alert alert-info" style="background: #17a2b85e; width:100%;display:inline-flex;"> 
         <div class="col-md-10 col-sm-12">
-          <p style="color:#464545; position: relative; top: 8px;">روز کاری شما به پایان رسید</p>
+          <p style="color:#464545; position: relative; top: 8px;">شما امروز به مدت  {{$diff}} کار کرده اید</p>
+          
         </div>
     </div>
   </div>

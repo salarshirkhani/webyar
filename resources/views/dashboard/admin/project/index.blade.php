@@ -95,7 +95,7 @@
                                         <td>{!! Facades\Verta::instance($item->start_date)->formatDate() !!}</td>
                                         <td>{!! Facades\Verta::instance($item->finish_date)->formatDate() !!}</td>
                                         <td>{{ $item->cost }}</td>
-                                        <td><button type="button" class="btn btn-block btn-outline-primary btn-sm"> پروفایل</button></td>
+                                        <td><a href="{{route('dashboard.admin.users.profile')}}" class="btn btn-block btn-outline-primary btn-sm">مشاهده پروفایل</a></td>
                                         <td><a href="{{route('dashboard.admin.employee.updateemployee',['id'=>$item->id])}}"  class="btn btn-block bg-gradient-warning btn-sm">ویرایش</a></td>
                                         <td>
                                         <a href="{{route('dashboard.admin.employee.deleteemployee',['id'=>$item->id,'project_id'=>$item->project->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>                 
@@ -146,8 +146,8 @@
                                  @foreach($tasks as $item)
                                     <tr>
                                         <td>{{ $item->title }}</td>
-                                        <td>{!! Facades\Verta::instance($item->start_date)->formatDate() !!}</td>
-                                        <td>{!! Facades\Verta::instance($item->finish_date)->formatDate() !!}</td>
+                                        <td>{!! $item->start_date !!}</td>
+                                        <td>{!! $item->finish_date !!}</td>
                                         <td>{{ $item->phase->title }}</td>
                                         <td>{{ $item->for->first_name }} {{ $item->for->last_name }}</td>
                                         <td>{{ $item->status }}</td> 

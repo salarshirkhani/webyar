@@ -64,6 +64,10 @@ Route::prefix('dashboard')
                Route::get('deletetask/{id}/{project_id}','TaskController@DeletePost')->name('task.deletetask');  
                Route::get('updatetask/{id}','TaskController@GetEditPost')->name('task.updatetask');
                Route::post('updatetask/{id}','TaskController@UpdatePost')->name('task.updatetask'); 
+
+               //Users PAGE 
+               Route::get('users/employee', 'UserController@GetUsers')->name('users.employee');
+               Route::get('users/profile', 'UserController@GetProfile')->name('users.profile');
            
             });
 

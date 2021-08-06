@@ -41,9 +41,33 @@ class TaskController extends Controller
     }
     public function GetManagePost(Request $request)
     {
-        $absence=Absence::orderBy('created_at', 'desc')->where('employee_id',Auth::user()->id)->where('date',Carbon::now()->format('Y-m-d'))->FIRST();
+        $absence=Absence::orderBy('created_at', 'desc')
+        ->where('employee_id',Auth::user()->id)
+        ->where('date',Carbon::now()->format('Y-m-d'))->FIRST();
+        $diff=NULL;
+        if($absence != NULL){
+        if($absence->exit != NULL){
+            $diff = strtotime($absence->exit) - strtotime($absence->enter);   
+            if($diff < 60){
+                $diff= $diff.' ثانیه ';
+            }
+            elseif($diff < 3600){
+                $diff=  round($diff / 60,0,1).' دقیقه ';
+            }
+            elseif($diff >= 3660 && $diff < 86400){
+                $diff=  round($diff / 3600,0,1).' ساعت ';
+            }
+            elseif($diff > 86400){
+                $diff=  round($diff / 86400,0,1).' روز ';
+            }
+        }
+        }
         $task=Task::where('status','notwork')->where('employee_id',Auth::user()->id)->orderBy('finish_date', 'ASC')->get();
-        return view('dashboard.employee.task.manage', ['task' => $task,'absence' => $absence]);
+        return view('dashboard.employee.task.manage', [
+        'task' => $task,
+        'absence' => $absence, 
+        'diff' => $diff
+        ]);
     }
 
     public function GetTask($id,Request $request)
@@ -80,6 +104,7 @@ class TaskController extends Controller
         $post = Absence::find($id);
         if (!is_null($post)) {
             $post->exit = Carbon::now()->isoFormat('HH:mm:ss');
+            $post->hours = strtotime(Carbon::now()->isoFormat('HH:mm:ss')) - strtotime($post->enter);
             $post->save();
         }
         return redirect()->route('dashboard.employee.task.manage')->with('info', 'ساعت خروج شما ثبت شد ' );
