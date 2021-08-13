@@ -90,7 +90,7 @@
                                     <td>{{ $item->first_name }} {{ $item->last_name }}</td>
                                     <td>{{ $item->email }}</td>
                                     <td>{{ $item->mobile }}</td>
-                                    <td><a href="{{route('dashboard.admin.users.profile')}}" class="btn btn-block btn-outline-primary btn-sm">مشاهده پروفایل</a></td>
+                                    <td><a href="{{route('dashboard.admin.users.profile',['id'=>$item->id])}}" class="btn btn-block btn-outline-primary btn-sm">مشاهده پروفایل</a></td>
                                 </tr>
                              @endforeach
                                 </tbody>

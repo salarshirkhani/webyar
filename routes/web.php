@@ -67,7 +67,10 @@ Route::prefix('dashboard')
 
                //Users PAGE 
                Route::get('users/employee', 'UserController@GetUsers')->name('users.employee');
-               Route::get('users/profile', 'UserController@GetProfile')->name('users.profile');
+               Route::get('users/profile/{id}', 'UserController@GetProfile')->name('users.profile');
+
+               //ACCOUNTING PAGE
+               Route::get('money/employee', 'AccountingController@GetEmployee')->name('money.employee');
            
             });
 

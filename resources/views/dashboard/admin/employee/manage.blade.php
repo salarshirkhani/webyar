@@ -49,8 +49,14 @@
                                     <td>{{ $item->for->mobile }}</td>
                                     <td>{!! Facades\Verta::instance($item->start_date)->formatDate() !!}</td>
                                     <td>{!! Facades\Verta::instance($item->finish_date)->formatDate() !!}</td>
-                                    <td>{{ $item->cost }}</td>
-                                    <td><button type="button" class="btn btn-block btn-outline-primary btn-sm"> پروفایل</button></td>
+                                    <td>
+                                        @if ($item->cost == 0)
+                                        توافقی
+                                        @else
+                                        {{ $item->cost }}
+                                        @endif
+                                </td>
+                                    <td><a href="{{route('dashboard.admin.users.profile',['id'=>$item->id])}}" class="btn btn-block btn-outline-primary btn-sm">مشاهده پروفایل</a></td>
                                     <td><a href="{{route('dashboard.admin.employee.updateemployee',['id'=>$item->id])}}"  class="btn btn-block bg-gradient-warning btn-sm">ویرایش</a></td>
                                     <td>
                                     <a href="{{route('dashboard.admin.employee.deleteemployee',['id'=>$item->id,'project_id'=>$item->project->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>                 
@@ -104,7 +110,7 @@
                                          <input type="hidden" style="margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control"  name="employee_id" value="{{ $item->id }}" >    
                                          <input type="hidden" style="margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control"  name="start_date" value="{{ $project->start_date }}" >    
                                          <input type="hidden" style="margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control"  name="finish_date" value="{{ $project->finish_date  }}" >    
-                                         <input type="hidden" style="margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control"  name="cost" value="توافقی" >    
+                                         <input type="hidden" style="margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control"  name="cost" value="0" >    
                                          @csrf
                                          <button type="submit" class="btn btn-block bg-gradient-success btn-sm">افزودن به پروژه</button>
                                     </form>

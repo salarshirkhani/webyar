@@ -4,7 +4,7 @@
 @endsection
 @section('hierarchy')
     <x-breadcrumb-item title="داشبورد" route="dashboard.admin.index" />
-    <x-breadcrumb-item title="{{ $post->project->title }}ویرایش کاربر پروژه " route="dashboard.admin.employee.updateemployee" />
+    <x-breadcrumb-item title="{{ $post->project->title }} ویرایش کاربر پروژه " route="dashboard.admin.employee.updateemployee" />
 @endsection
 @section('content')
     @if(Session::has('info'))

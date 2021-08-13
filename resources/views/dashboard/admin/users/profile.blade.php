@@ -8,6 +8,18 @@
     <x-breadcrumb-item title="پروفایل" route="dashboard.admin.users.profile" />
 @endsection
 @section('content')
+<?php 
+$tasks=0;
+$income=0;
+foreach ($employee as $item) {
+  $income=$item->cost+$income;
+}
+foreach ($task as $item) {
+  if($item->status=='done')
+     $tasks++;
+}
+?>
+
     <div class="container">
       <div class="row">
         <div class="col-md-3">
@@ -16,22 +28,22 @@
             <div class="card card-primary card-outline">
               <div class="card-body box-profile">
                 <div class="text-center">
-                  <img class="profile-user-img img-fluid img-circle" src="../../dist/img/user4-128x128.jpg" alt="علی">
+                  <img class="profile-user-img img-fluid img-circle" src="../../dist/img/user4-128x128.jpg" alt="{{ $post->first_name }}">
                 </div>
 
-                <h3 class="profile-username text-center">علی مطهری</h3>
+                <h3 class="profile-username text-center">{{ $post->first_name }} {{ $post->last_name }}</h3>
 
-                <p class="text-muted text-center">مهندس نرم افزار</p>
+                <p class="text-muted text-center">{{ $post->situation }}</p>
 
                 <ul class="list-group list-group-unbordered mb-3">
                   <li class="list-group-item">
-                    <b>تسک های انجام شده</b> <a class="float-right">1,322</a>
+                    <b>تسک های انجام شده</b> <a class="float-right"><?php echo $tasks ;  ?></a>
                   </li>
                   <li class="list-group-item">
-                    <b>امتیاز</b> <a class="float-right">4.3</a>
+                    <b>امتیاز</b> <a class="float-right">{{ $post->rate }}</a>
                   </li>
                   <li class="list-group-item">
-                    <b>تاریخ تولد</b> <a class="float-right">1387</a>
+                    <b>تاریخ تولد</b> <a class="float-right">{{ $post->birthdate }}</a>
                   </li>
                 </ul>
                 <a href="#" class="btn btn-warning btn-block"><b>ارسال پیام</b></a>
@@ -46,30 +58,77 @@
                     <!-- small box -->
                     <div class="small-box bg-success">
                       <div class="inner">
-                        <h3>250000<sup style="font-size: 20px">هزارتومان</sup></h3>
+                        <h3><?php echo $income; ?><sup style="font-size: 20px">هزارتومان</sup></h3>
           
-                        <p>درامد این ماه</p>
+                        <p>درآمد </p>
                       </div>
                       <div class="icon">
                         <i class="ion ion-stats-bars"></i>
                       </div>
-                      <a href="#" class="small-box-footer">اطلاعات بیشتر<i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                   </div>
                   <div class="col-6">
                     <!-- small box -->
                     <div class="small-box bg-danger" style="background: #358e82 !important">
                       <div class="inner">
-                        <h3>65</h3>
+                        <h3><?php echo $tasks; ?></h3>
           
                         <p>تسک های انجام شده</p>
                       </div>
                       <div class="icon">
                         <i class="ion ion-pie-graph"></i>
                       </div>
-                      <a href="#" class="small-box-footer">اطلاعات بیشتر<i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                   </div>
+                  <div class="col-md-12">
+                    <x-card type="info">
+                        <x-card-header>مدیریت تسک ها</x-card-header>
+                            <x-card-body>
+                                <div class="box-body">
+                                    <table id="example2" class="table table-bordered table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th>عنوان</th>
+                                            <th>تاریخ شروع</th>
+                                            <th>تاریخ پایان</th>
+                                            <th>وضعیت</th>
+                                            <th>حذف</th>                               
+                                            <th>ویرایش</th>
+                                        </tr>
+                                        </thead>
+                                            <tbody>
+                                         @foreach($task as $item)
+                                            <tr>
+                                                <td>{{ $item->title }}</td>
+                                                <td>{{ $item->start_date }}</td>
+                                                <td>{{$item->finish_date}}</td>
+                                                <td>{{ $item->status }}</td> 
+                                                <td>
+                                                <a href="{{route('dashboard.admin.task.deletetask',['id'=>$item->id,'project_id'=>$item->for->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>                 
+                                                </td>
+                                                <td>
+                                                <a href="{{route('dashboard.admin.task.updatetask',['id'=>$item->id])}}" class="edit_post" target="_blank"><i class="fas fa-edit"></i></a>
+                                                </td>
+                                            </tr>
+                                         @endforeach
+                                            </tbody>
+                                            <tfoot>
+                                            <tr>
+                                                <th>عنوان</th>
+                                                <th>تاریخ شروع</th>
+                                                <th>تاریخ پایان</th>
+                                                <th>وضعیت</th>
+                                                <th>حذف</th>                               
+                                                <th>ویرایش</th>
+                                            </tr>
+                                            </tfoot>
+                                    </table>
+                                </div>
+                                </x-card-body>
+                            <x-card-footer>
+                            </x-card-footer>      
+                    </x-card>
+                </div>
               </div>
           </div>
       </div>
