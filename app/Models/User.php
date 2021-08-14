@@ -86,13 +86,12 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\Payment', 'employee_id');
     }
 
-    public function conversations() {
-        return $this->belongsToMany('App\Conversation')
-            ->orderBy('created_at', 'desc');
+    public function messages() {
+        return $this->hasMany('App\Models\messages', 'user_id');
     }
 
-    public function messages() {
-        return $this->hasMany('App\Message', 'from_id');
+    public function messagesend() {
+        return $this->hasMany('App\Models\messages', 'sender_id');
     }
 
     public function enquiries() {

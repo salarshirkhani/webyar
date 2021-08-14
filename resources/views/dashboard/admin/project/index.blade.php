@@ -15,6 +15,7 @@
         </div>
     </div>
 @endif
+
     <div class="col-md-12">
         <x-card type="info">
             <x-card-header>{{ $post->title }}</x-card-header>

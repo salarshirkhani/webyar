@@ -1,7 +1,8 @@
 <?php use Hekmatinasser\Verta\Verta; ?>
 @extends('layouts.dashboard')
 @section('sidebar')
-    @include('dashboard.employee.sidebar')
+@include('dashboard.employee.notification')
+@include('dashboard.employee.sidebar')
 @endsection
 @section('hierarchy')
     <x-breadcrumb-item title="داشبورد" route="dashboard.employee.index" />
@@ -51,10 +52,9 @@
 @elseif($absence != NULL && $absence->exit!=NULL)
 <div class="row">
   <div class="col-md-12">
-      <div class="alert alert-info" style="background: #17a2b85e; width:100%;display:inline-flex;"> 
+      <div class="alert alert-info " style="background: #17a2b85e; width:100%;display:inline-flex;"> 
         <div class="col-md-10 col-sm-12">
-          <p style="color:#464545; position: relative; top: 8px;">شما امروز به مدت  {{$diff}} کار کرده اید</p>
-          
+          <p style="color:#464545; position: relative; top: 8px;">شما امروز به مدت  {{$diff}} کار کرده اید</p> 
         </div>
     </div>
   </div>

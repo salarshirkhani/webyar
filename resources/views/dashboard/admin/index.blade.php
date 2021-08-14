@@ -7,6 +7,16 @@
     <x-breadcrumb-item title="داشبورد" route="dashboard.admin.index" />
 @endsection
 @section('content')
+<?php
+$projects=0;
+$employees=0;
+foreach ($posts as $key) {
+    $projects++;
+}
+foreach ($users as $key) {
+    $employees++;
+}
+?>
     <div class="container">
       <div class="row">
         <div class="col-lg-3 col-6">
@@ -43,14 +53,14 @@
           <!-- small box -->
           <div class="small-box bg-warning">
             <div class="inner">
-              <h3>44</h3>
+              <h3><?php echo $employees ; ?></h3>
 
               <p>همکاران جدید</p>
             </div>
             <div class="icon">
               <i class="ion ion-person-add"></i>
             </div>
-            <a href="#" class="small-box-footer">اطلاعات بیشتر<i class="fas fa-arrow-circle-right"></i></a>
+            <a href="{{route('dashboard.admin.users.employee')}}" class="small-box-footer">اطلاعات بیشتر<i class="fas fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -58,14 +68,14 @@
           <!-- small box -->
           <div class="small-box bg-danger" style="background: #358e82 !important">
             <div class="inner">
-              <h3>65</h3>
+              <h3><?php echo $projects ; ?></h3>
 
               <p>پروژه های انجام شده</p>
             </div>
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
             </div>
-            <a href="#" class="small-box-footer">اطلاعات بیشتر<i class="fas fa-arrow-circle-right"></i></a>
+            <a href="{{route('dashboard.admin.project.manage')}}" class="small-box-footer">اطلاعات بیشتر<i class="fas fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->

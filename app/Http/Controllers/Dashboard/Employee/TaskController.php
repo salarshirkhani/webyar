@@ -12,6 +12,7 @@ use App\Models\Task;
 use App\Models\Project;
 use App\Models\Phase;
 use App\Models\Absence;
+use App\Models\message;
 use App\Models\EmployeeProject;
 use Illuminate\Auth\Access\Gate; 
 use Illuminate\Support\Facades\Auth;
@@ -41,6 +42,7 @@ class TaskController extends Controller
     }
     public function GetManagePost(Request $request)
     {
+        $message=message::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
         $absence=Absence::orderBy('created_at', 'desc')
         ->where('employee_id',Auth::user()->id)
         ->where('date',Carbon::now()->format('Y-m-d'))->FIRST();
@@ -66,7 +68,8 @@ class TaskController extends Controller
         return view('dashboard.employee.task.manage', [
         'task' => $task,
         'absence' => $absence, 
-        'diff' => $diff
+        'diff' => $diff,
+        'message' => $message
         ]);
     }
 

@@ -1,11 +1,12 @@
 @extends('layouts.dashboard')
 @section('sidebar')
-    @include('dashboard.admin.sidebar')
+    @include('dashboard.employee.notification')
+    @include('dashboard.employee.sidebar')
 @endsection
-@section('title', __('پروفایل'))
+@section('title', __('مدیریت مالی'))
 @section('hierarchy')
-    <x-breadcrumb-item title="داشبورد" route="dashboard.admin.index" />
-    <x-breadcrumb-item title="پروفایل" route="dashboard.admin.users.profile" />
+    <x-breadcrumb-item title="داشبورد" route="dashboard.employee.index" />
+    <x-breadcrumb-item title="مدیریت مالی" route="dashboard.employee.money.index" />
 @endsection
 @section('content')
 <?php 
@@ -22,37 +23,8 @@ foreach ($task as $item) {
 
     <div class="container">
       <div class="row">
-        <div class="col-md-3">
 
-            <!-- Profile Image -->
-            <div class="card card-primary card-outline">
-              <div class="card-body box-profile">
-                <div class="text-center">
-                  <img class="profile-user-img img-fluid img-circle" src="../../dist/img/user4-128x128.jpg" alt="{{ $post->first_name }}">
-                </div>
-
-                <h3 class="profile-username text-center">{{ $post->first_name }} {{ $post->last_name }}</h3>
-
-                <p class="text-muted text-center">{{ $post->situation }}</p>
-
-                <ul class="list-group list-group-unbordered mb-3">
-                  <li class="list-group-item">
-                    <b>تسک های انجام شده</b> <a class="float-right"><?php echo $tasks ;  ?></a>
-                  </li>
-                  <li class="list-group-item">
-                    <b>امتیاز</b> <a class="float-right">{{ $post->rate }}</a>
-                  </li>
-                  <li class="list-group-item">
-                    <b>تاریخ تولد</b> <a class="float-right">{{ $post->birthdate }}</a>
-                  </li>
-                </ul>
-                <a href="{{route('dashboard.admin.message.create',['user_id'=>$post->id])}}" class="btn btn-warning btn-block"><b>ارسال پیام</b></a>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-          <div class="col-md-9">
+          <div class="col-md-12">
               <div class="row">
                 <div class="col-6">
                     <!-- small box -->
@@ -82,7 +54,45 @@ foreach ($task as $item) {
                   </div>
                   <div class="col-md-12">
                     <x-card type="info">
-                        <x-card-header>مدیریت تسک ها</x-card-header>
+                        <x-card-header>پروژه ها</x-card-header>
+                            <x-card-body>
+                                <div class="box-body">
+                                    <table id="example3" class="table table-bordered table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th>نام پروژه</th>
+                                            <th>تاریخ شروع</th>
+                                            <th>تاریخ پایان</th>
+                                            <th>درآمد</th>
+                                        </tr>
+                                        </thead>
+                                            <tbody>
+                                         @foreach($employee as $item)
+                                            <tr>
+                                                <td>{{ $item->project->title }}</td>
+                                                <td>{!! Facades\Verta::instance($item->project->start_date)->formatDate() !!}</td>
+                                                <td>{!! Facades\Verta::instance($item->project->finish_date)->formatDate() !!}</td>
+                                                <td>{{$item->cost}} تومان</td>       
+                                            </tr>
+                                         @endforeach
+                                            </tbody>
+                                            <tfoot>
+                                            <tr>
+                                                <th>نام پروژه</th>
+                                                <th>تاریخ شروع</th>
+                                                <th>تاریخ پایان</th>
+                                                <th>درآمد</th>
+                                            </tr>
+                                            </tfoot>
+                                    </table>
+                                </div>
+                                </x-card-body>
+                            <x-card-footer>
+                            </x-card-footer>      
+                    </x-card>
+                    <div style="margin-top:50px;"></div>
+                    <x-card type="info">
+                        <x-card-header>تسک ها</x-card-header>
                             <x-card-body>
                                 <div class="box-body">
                                     <table id="example2" class="table table-bordered table-hover">
@@ -92,7 +102,6 @@ foreach ($task as $item) {
                                             <th>تاریخ شروع</th>
                                             <th>تاریخ پایان</th>
                                             <th>وضعیت</th>
-                                            <th>حذف</th>                               
                                             <th>ویرایش</th>
                                         </tr>
                                         </thead>
@@ -102,10 +111,13 @@ foreach ($task as $item) {
                                                 <td>{{ $item->title }}</td>
                                                 <td>{{ $item->start_date }}</td>
                                                 <td>{{$item->finish_date}}</td>
-                                                <td>{{ $item->status }}</td> 
                                                 <td>
-                                                <a href="{{route('dashboard.admin.task.deletetask',['id'=>$item->id,'project_id'=>$item->for->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>                 
-                                                </td>
+                                                  @if ($item->status=='done')
+                                                    <p style="color:green;"> انجام شده </p>
+                                                  @else
+                                                    <p style="color:red;">انجام نشده</p>
+                                                  @endif
+                                                </td>       
                                                 <td>
                                                 <a href="{{route('dashboard.admin.task.updatetask',['id'=>$item->id])}}" class="edit_post" target="_blank"><i class="fas fa-edit"></i></a>
                                                 </td>
@@ -118,7 +130,6 @@ foreach ($task as $item) {
                                                 <th>تاریخ شروع</th>
                                                 <th>تاریخ پایان</th>
                                                 <th>وضعیت</th>
-                                                <th>حذف</th>                               
                                                 <th>ویرایش</th>
                                             </tr>
                                             </tfoot>

@@ -204,9 +204,12 @@ BY WEBITO
     $('.toastrDefaultInfo').click(function() {
       toastr.info('درحال پردازش درخواست')
     });
+    $('.toastrDefaultWarning').click(function() {
+      toastr.error('شما یک پیام خوانده نشده دارید')
+    });
   });
  
-
+  
   
  </script>
 @yield('scripts', '')

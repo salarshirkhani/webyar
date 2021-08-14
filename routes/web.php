@@ -71,7 +71,14 @@ Route::prefix('dashboard')
 
                //ACCOUNTING PAGE
                Route::get('money/employee', 'AccountingController@GetEmployee')->name('money.employee');
-           
+
+               //MESSAGE PAGE
+               Route::post('message/create', ['uses' => 'MessageController@CreatePost','as' => 'message.create']);
+               Route::get('message/create', ['uses' => 'MessageController@GetCreatePost','as' => 'message.create']);  
+               Route::get('message/manage', 'MessageController@GetMessage')->name('message.manage');
+               Route::get('deletemessage/{id}','MessageController@DeletePost')->name('message.deletemessage');  
+               Route::get('updatemessage/{id}','MessageController@GetEditPost')->name('message.updatemessage');
+               Route::get('message/show/{id}', 'MessageController@ShowMessage')->name('message.show');
             });
 
         Route::prefix('customer')
@@ -104,6 +111,12 @@ Route::prefix('dashboard')
                 Route::post('absence/create', ['uses' => 'TaskController@Absence','as' => 'absence.create']);
                 Route::post('absence/end/{id}','TaskController@AbsenceEnd')->name('absence.end'); 
 
-
+                //MESSAGE PAGE
+                Route::get('message/manage', 'MessageController@GetMessage')->name('message.manage');
+                Route::get('message/show/{id}', 'MessageController@ShowMessage')->name('message.show');    
+ 
+               //ACCOUNTING PAGE
+               Route::get('money', 'AccountingController@GetMoney')->name('money.index');               
+                
      });
     });
