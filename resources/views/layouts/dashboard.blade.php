@@ -208,9 +208,8 @@ BY WEBITO
       toastr.error('شما یک پیام خوانده نشده دارید')
     });
   });
- 
-  
-  
+
+
  </script>
 @yield('scripts', '')
 </body>
