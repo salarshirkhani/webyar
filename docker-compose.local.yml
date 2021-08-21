@@ -1,0 +1,49 @@
+# For more information: https://laravel.com/docs/sail
+version: '3'
+services:
+  laravel.test:
+    build:
+      context: ./docker/8.0
+      dockerfile: Dockerfile
+    image: sail-8.0/app
+    environment:
+      LARAVEL_SAIL: 1
+    volumes:
+      - '.:/var/www/html'
+    expose:
+      - 80
+    networks:
+      - sail
+      - traefik_proxy
+    depends_on:
+      - mysql
+    labels:
+      - "traefik.http.routers.webyar.rule=Host(`webyar.test`)"
+  mysql:
+    image: 'mysql:8.0'
+    ports:
+      - '${FORWARD_DB_PORT:-3306}:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_DATABASE: '${DB_DATABASE}'
+      MYSQL_USER: '${DB_USERNAME}'
+      MYSQL_PASSWORD: '${DB_PASSWORD}'
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    volumes:
+      - 'sailmysql:/var/lib/mysql'
+    networks:
+      - sail
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}"]
+      retries: 3
+      timeout: 5s
+networks:
+  sail:
+    driver: bridge
+    name: webyar_sail
+  traefik_proxy:
+    external: true
+
+volumes:
+  sailmysql:
+    driver: local
