@@ -31,11 +31,11 @@
             </form>
           </div>
         </div>
-    </div>    
+    </div>
 @elseif($absence != NULL && $absence->exit==NULL)
 <div class="row">
   <div class="col-md-12">
-      <div class="alert alert-info" style="background: #17a2b85e; width:100%;display:inline-flex;"> 
+      <div class="alert alert-info" style="background: #17a2b85e; width:100%;display:inline-flex;">
         <div class="col-md-10 col-sm-12">
           <p style="color:#464545; position: relative; top: 8px;">ساعت زدن حضوری شما : {{$absence->enter}}</p>
         </div>
@@ -45,7 +45,7 @@
           <button style="" type="submit" class=" btn btn-block btn-outline-secondary toastrDefaultInfo">
             ثبت پایان کار
           </button>
-          </form> 
+          </form>
         </div>
     </div>
   </div>
@@ -53,9 +53,9 @@
 @elseif($absence != NULL && $absence->exit!=NULL)
 <div class="row">
   <div class="col-md-12">
-      <div class="alert alert-info " style="background: #17a2b85e; width:100%;display:inline-flex;"> 
+      <div class="alert alert-info " style="background: #17a2b85e; width:100%;display:inline-flex;">
         <div class="col-md-10 col-sm-12">
-          <p style="color:#464545; position: relative; top: 8px;">شما امروز به مدت  {{$diff}} کار کرده اید</p> 
+          <p style="color:#464545; position: relative; top: 8px;">شما امروز به مدت  {{$diff}} کار کرده اید</p>
         </div>
     </div>
   </div>
@@ -80,9 +80,9 @@
         <div class="card-body">
           <ul class="todo-list" data-widget="todo-list">
             @foreach ($task as $item)
-            <?php $v1 = verta(); $v2=Facades\Verta::parse($item->finish_date); ?>
-            @if ( $v1->diffDays($v2)<='0')
-            @if ( $v1->diffDays($v2)<'0')
+            <?php $v1 = now()->startOfDay(); $v2=$item->finish_date; ?>
+            @if ( $v1->diffInDays($v2, false)<=0)
+            @if ( $v1->diffInDays($v2, false)<0)
               <li style="background:#ff7c7c">
               @else
               <li>
@@ -95,9 +95,9 @@
               <div  class="icheck-primary d-inline ml-2">
                 <input type="checkbox"  id="todoCheck2{{ $item->id }}"  data-toggle="modal" data-target="#modal-success{{ $item->id }}">
                 <label for="todoCheck2{{ $item->id }}"></label>
-              </div>              
-              <span class="text" style="cursor:pointer;" data-target="#modal-info{{ $item->id }}" data-toggle="modal">{{ $item->title }}</span>  
-              <small class="badge badge-info"><i class="far fa-clock"></i>{{$item->finish_date}}</small>
+              </div>
+              <span class="text" style="cursor:pointer;" data-target="#modal-info{{ $item->id }}" data-toggle="modal">{{ $item->title }}</span>
+              <small class="badge badge-info"><i class="far fa-clock"></i>{{$item->finish_date->formatJalali()}}</small>
               <div class="tools">
                 <script>
                   $(document).ready(function(){
@@ -108,13 +108,13 @@
                     $("#todoCheck2{{ $item->id }}").prop("checked", false);
                 });
                });
-            
+
               </script>
               </div>
             </form>
-            </li>    
+            </li>
             @endif
-            
+
             <div class="modal fade show" id="modal-info{{ $item->id }}" aria-modal="true" role="dialog">
               <div class="modal-dialog modal-info">
                 <div class="modal-content bg-info">
@@ -125,7 +125,7 @@
                     </button>
                   </div>
                   <div class="modal-body">
-                      {{ $item->description }}  
+                      {{ $item->description }}
                   </div>
                   <div class="modal-footer justify-content-between">
                        <button type="button" class="btn btn-outline-light" data-dismiss="modal">بستن</button>
@@ -149,7 +149,7 @@
                       </div>
                       <div class="modal-body">
                           آیا این تسک را با موفقیت به اتمام رساندید ؟
-                
+
                       </div>
                       <div class="modal-footer justify-content-between">
                         <button type="button" class="btn btn-outline-light uncheckd" data-dismiss="modal">بستن</button>
@@ -164,7 +164,7 @@
                     <!-- /.modal-content -->
                   </div>
                   <!-- /.modal-dialog -->
-                </div> 
+                </div>
 
             @endforeach
           </ul>
@@ -193,9 +193,9 @@
     <div class="card-body">
       <ul class="todo-list" data-widget="todo-list">
         @foreach ($task as $item)
-        <?php $v1 = verta(); $v2=Facades\Verta::parse($item->finish_date); ?>
-        @if ( $v1->diffDays($v2)<='1' && $v1->diffDays($v2)>'0')
-        <li> 
+        <?php $v1 = now()->startOfDay(); $v2=$item->finish_date; ?>
+        @if ( $v1->diffInDays($v2, false)<=1 && $v1->diffInDays($v2, false)>0)
+        <li>
               <form method="post">
               <span class="handle">
                 <i class="fas fa-ellipsis-v"></i>
@@ -204,9 +204,9 @@
               <div  class="icheck-primary d-inline ml-2">
                 <input type="checkbox"  id="todoCheck2{{ $item->id }}"  data-toggle="modal" data-target="#modal-success{{ $item->id }}">
                 <label for="todoCheck2{{ $item->id }}"></label>
-              </div>              
-              <span class="text" style="cursor:pointer;" data-target="#modal-info{{ $item->id }}" data-toggle="modal">{{ $item->title }}</span>  
-              <small class="badge badge-info"><i class="far fa-clock"></i>{{$item->finish_date}}</small>
+              </div>
+              <span class="text" style="cursor:pointer;" data-target="#modal-info{{ $item->id }}" data-toggle="modal">{{ $item->title }}</span>
+              <small class="badge badge-info"><i class="far fa-clock"></i>{{$item->finish_date->formatJalali()}}</small>
               <div class="tools">
                 <script>
                   $(document).ready(function(){
@@ -217,13 +217,13 @@
                     $("#todoCheck2{{ $item->id }}").prop("checked", false);
                 });
                });
-            
+
               </script>
               </div>
             </form>
-            </li>    
+            </li>
             @endif
-            
+
             <div class="modal fade show" id="modal-info{{ $item->id }}" aria-modal="true" role="dialog">
               <div class="modal-dialog modal-info">
                 <div class="modal-content bg-info">
@@ -234,7 +234,7 @@
                     </button>
                   </div>
                   <div class="modal-body">
-                      {{ $item->description }}  
+                      {{ $item->description }}
                   </div>
                   <div class="modal-footer justify-content-between">
                        <button type="button" class="btn btn-outline-light" data-dismiss="modal">بستن</button>
@@ -258,7 +258,7 @@
                       </div>
                       <div class="modal-body">
                           آیا این تسک را با موفقیت به اتمام رساندید ؟
-                
+
                       </div>
                       <div class="modal-footer justify-content-between">
                         <button type="button" class="btn btn-outline-light uncheckd" data-dismiss="modal">بستن</button>
@@ -273,7 +273,7 @@
                     <!-- /.modal-content -->
                   </div>
                   <!-- /.modal-dialog -->
-                </div> 
+                </div>
 
         @endforeach
       </ul>
@@ -305,7 +305,7 @@
             <div class="card-body">
               <ul class="todo-list" data-widget="todo-list">
                 @foreach ($task as $item)
-                  <li> 
+                  <li>
                   <form  method="post">
                   <span class="handle">
                     <i class="fas fa-ellipsis-v"></i>
@@ -315,8 +315,8 @@
                        <input type="checkbox"  id="todoCheck2{{ $item->id }}"  data-toggle="modal" data-target="#modal-success{{ $item->id }}">
                     <label for="todoCheck2{{ $item->id }}"></label>
                   </div>
-                  <span class="text" style="cursor:pointer;" data-target="#modal-info{{ $item->id }}" data-toggle="modal">{{ $item->title }}</span>  
-                  <small class="badge badge-info"><i class="far fa-clock"></i>{{$item->finish_date}}</small>
+                  <span class="text" style="cursor:pointer;" data-target="#modal-info{{ $item->id }}" data-toggle="modal">{{ $item->title }}</span>
+                  <small class="badge badge-info"><i class="far fa-clock"></i>{{$item->finish_date->formatJalali()}}</small>
                   <div class="tools">
                     <script>
                       $(document).ready(function(){
@@ -327,12 +327,12 @@
                         $("#todoCheck2{{ $item->id }}").prop("checked", false);
                     });
                    });
-                
+
                   </script>
                   </div>
-                
-                </li>  
-                <!-- SHOW INFO modal -->                    
+
+                </li>
+                <!-- SHOW INFO modal -->
                 <div class="modal fade show" id="modal-info{{ $item->id }}" aria-modal="true" role="dialog">
                   <div class="modal-dialog modal-info">
                     <div class="modal-content bg-info">
@@ -344,11 +344,11 @@
                       </div>
                       <div class="modal-body">
                           {{ $item->description }}
-                
+
                       </div>
                       <div class="modal-footer justify-content-between">
                         <button type="button" class="btn btn-outline-light" data-dismiss="modal">بستن</button>
-                  
+
                       </div>
                     </div>
                     <!-- /.modal-content -->
@@ -368,7 +368,7 @@
                     </div>
                     <div class="modal-body">
                         آیا این تسک را با موفقیت به اتمام رساندید ؟
-              
+
                     </div>
                     <div class="modal-footer justify-content-between">
                       <button type="button" class="btn btn-outline-light uncheckd" data-dismiss="modal">بستن</button>
@@ -383,10 +383,10 @@
                   <!-- /.modal-content -->
                 </div>
                 <!-- /.modal-dialog -->
-              </div> 
+              </div>
 
 
-                @endforeach   
+                @endforeach
               </ul>
             </div>
             <!-- /.card-body -->
@@ -397,4 +397,4 @@
         </section>
   </div>
 
-    @endsection  
+    @endsection

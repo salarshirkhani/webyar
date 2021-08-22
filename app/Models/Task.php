@@ -10,7 +10,10 @@ class Task extends Model
     use HasFactory;
     protected $table='tasks';
     protected $fillable=['project_id','employee_id','phase_id','title','description','status','start_date','finish_date'];
-
+    protected $casts = [
+        'start_date' => 'date',
+        'finish_date' => 'date',
+    ];
 
 public function for() {
     return $this->belongsTo('App\Models\User', 'employee_id');

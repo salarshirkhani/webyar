@@ -25,9 +25,9 @@
                                 <th>عنوان</th>
                                 <th>تاریخ شروع</th>
                                 <th>تاریخ پایان</th>
-                                <th>فاز بندی</th> 
-                                <th>نمایش پروژه</th> 
-                                <th>حذف</th>                               
+                                <th>فاز بندی</th>
+                                <th>نمایش پروژه</th>
+                                <th>حذف</th>
                                 <th>ویرایش</th>
                             </tr>
                             </thead>
@@ -35,14 +35,14 @@
                              @foreach($posts as $item)
                                 <tr>
                                     <td>{{ $item->title }}</td>
-                                    <td>{!! Facades\Verta::instance($item->start_date)->formatDate() !!}</td>
-                                    <td>{!! Facades\Verta::instance($item->finish_date)->formatDate() !!}</td>
+                                    <td>{!! $item->start_date->formatJalali() !!}</td>
+                                    <td>{!! $item->finish_date->formatJalali() !!}</td>
                                     <td>
-                                    <a href="{{route('dashboard.admin.phase.manage',['id'=>$item->id])}}" class="edit_post" ><i class="fas fa-project-diagram"></i></a>                 
+                                    <a href="{{route('dashboard.admin.phase.manage',['id'=>$item->id])}}" class="edit_post" ><i class="fas fa-project-diagram"></i></a>
                                     </td>
                                     <td><a href="{{route('dashboard.admin.project.index',['id'=>$item->id])}}" class="btn btn-block bg-gradient-primary btn-sm">نمایش پروژه</a></td>
                                     <td>
-                                    <a href="{{route('dashboard.admin.project.deletepost',['id'=>$item->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>                 
+                                    <a href="{{route('dashboard.admin.project.deletepost',['id'=>$item->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>
                                     </td>
                                     <td>
                                     <a href="{{route('dashboard.admin.project.updatepost',['id'=>$item->id])}}" class="edit_post" target="_blank"><i class="fas fa-edit"></i></a>
@@ -55,9 +55,9 @@
                                     <th>عنوان</th>
                                     <th>تاریخ شروع</th>
                                     <th>تاریخ پایان</th>
-                                    <th>فاز بندی</th> 
-                                    <th>نمایش پروژه</th> 
-                                    <th>حذف</th>                               
+                                    <th>فاز بندی</th>
+                                    <th>نمایش پروژه</th>
+                                    <th>حذف</th>
                                     <th>ویرایش</th>
                                 </tr>
                                 </tfoot>
@@ -66,7 +66,7 @@
                     </x-card-body>
                 <x-card-footer>
                     <a href="{{route('dashboard.admin.project.create')}}" class="btn btn-success">ثبت پروژه جدید</a>
-                </x-card-footer>      
+                </x-card-footer>
         </x-card>
     </div>
     @endsection

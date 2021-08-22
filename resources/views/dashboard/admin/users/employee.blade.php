@@ -34,22 +34,22 @@
                                 <th>تاریخ پایان</th>
                                 <th>هزینه</th>
                                 <th>ایمیل</th>
-                                <th>شماره تماس</th>     
-                                <th>مشاهده پروژه</th>                           
+                                <th>شماره تماس</th>
+                                <th>مشاهده پروژه</th>
                             </tr>
                             </thead>
                                 <tbody>
                              @foreach($employee as $item)
-                             <?php $ids=$item->id ; ?> 
+                             <?php $ids=$item->id ; ?>
                                 <tr>
                                     <td>{{ $item->for->first_name }} {{ $item->for->last_name }}</td>
                                     <td>{{ $item->project->title }}</td>
-                                    <td>{!! Facades\Verta::instance($item->start_date)->formatDate() !!}</td>
-                                    <td>{!! Facades\Verta::instance($item->finish_date)->formatDate() !!}</td>
+                                    <td>{!! $item->start_date->formatJalali() !!}</td>
+                                    <td>{!! $item->finish_date->formatJalali() !!}</td>
                                     <td>{{$item->cost}}</td>
                                     <td>{{ $item->for->email }}</td>
-                                    <td>{{ $item->for->mobile }}</td>  
-                                    <td><a href="{{route('dashboard.admin.project.index',['id'=>$item->project->id])}}" class="btn btn-block bg-gradient-primary btn-sm">نمایش پروژه</a></td>                                  
+                                    <td>{{ $item->for->mobile }}</td>
+                                    <td><a href="{{route('dashboard.admin.project.index',['id'=>$item->project->id])}}" class="btn btn-block bg-gradient-primary btn-sm">نمایش پروژه</a></td>
                                 </tr>
                              @endforeach
                                 </tbody>
@@ -62,7 +62,7 @@
                                     <th>هزینه</th>
                                     <th>ایمیل</th>
                                     <th>شماره تماس</th>
-                                    <th>مشاهده پروژه</th>         
+                                    <th>مشاهده پروژه</th>
                                 </tr>
                                 </tfoot>
                         </table>
@@ -85,7 +85,7 @@
                             </thead>
                                 <tbody>
                              @foreach($users as $item)
-                             <?php $ids=$item->id ; ?> 
+                             <?php $ids=$item->id ; ?>
                                 <tr>
                                     <td>{{ $item->first_name }} {{ $item->last_name }}</td>
                                     <td>{{ $item->email }}</td>
@@ -104,13 +104,13 @@
                                 </tfoot>
                         </table>
                         </div>
-                       
+
                         <!-- /.card-body -->
                         </div>
                     </div>
                     </x-card-body>
                 <x-card-footer>
-                </x-card-footer>      
+                </x-card-footer>
         </x-card>
     </div>
     @endsection

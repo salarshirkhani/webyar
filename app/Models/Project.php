@@ -10,6 +10,10 @@ class Project extends Model
     use HasFactory;
     protected $table='projects';
     protected $fillable=['title','description','start_date','finish_date'];
+    protected $casts = [
+        'start_date' => 'date',
+        'finish_date' => 'date',
+    ];
 
     public function Phase() {
         return $this->hasOne('App\Models\Phase', 'project_id');

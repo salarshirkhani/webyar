@@ -5,7 +5,7 @@
 @section('hierarchy')
     <x-breadcrumb-item title="داشبورد" route="dashboard.admin.index" />
     <x-breadcrumb-item title="مدیریت پروژه ها" route="dashboard.admin.project.manage" />
-    <x-breadcrumb-item title="اضافه کردن کاربر به پروژه" route="dashboard.admin.employee.manage" />   
+    <x-breadcrumb-item title="اضافه کردن کاربر به پروژه" route="dashboard.admin.employee.manage" />
 @endsection
 @section('content')
     @if(Session::has('info'))
@@ -20,7 +20,7 @@
             <x-card-header>اضافه کردن کاربر به پروژه {{$project->title}}</x-card-header>
                 <x-card-body>
                     <div class="box-body">
-                        در اینجا می توانید کاربران پروژه را مدیریت کنید 
+                        در اینجا می توانید کاربران پروژه را مدیریت کنید
                         <div style="margin-bottom: 50px;"></div>
                         <div class="card">
                             <div class="card-header">
@@ -38,7 +38,7 @@
                                 <th>هزینه</th>
                                 <th>پروفایل</th>
                                 <th>ویرایش</th>
-                                <th>حذف</th>                               
+                                <th>حذف</th>
                             </tr>
                             </thead>
                                 <tbody>
@@ -47,8 +47,8 @@
                                     <td>{{ $item->for->first_name }} {{ $item->for->last_name }}</td>
                                     <td>{{ $item->for->email }}</td>
                                     <td>{{ $item->for->mobile }}</td>
-                                    <td>{!! Facades\Verta::instance($item->start_date)->formatDate() !!}</td>
-                                    <td>{!! Facades\Verta::instance($item->finish_date)->formatDate() !!}</td>
+                                    <td>{!! $item->start_date->formatJalali() !!}</td>
+                                    <td>{!! $item->finish_date->formatJalali() !!}</td>
                                     <td>
                                         @if ($item->cost == 0)
                                         توافقی
@@ -59,7 +59,7 @@
                                     <td><a href="{{route('dashboard.admin.users.profile',['id'=>$item->id])}}" class="btn btn-block btn-outline-primary btn-sm">مشاهده پروفایل</a></td>
                                     <td><a href="{{route('dashboard.admin.employee.updateemployee',['id'=>$item->id])}}"  class="btn btn-block bg-gradient-warning btn-sm">ویرایش</a></td>
                                     <td>
-                                    <a href="{{route('dashboard.admin.employee.deleteemployee',['id'=>$item->id,'project_id'=>$item->project->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>                 
+                                    <a href="{{route('dashboard.admin.employee.deleteemployee',['id'=>$item->id,'project_id'=>$item->project->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>
                                     </td>
                                 </tr>
                              @endforeach
@@ -74,7 +74,7 @@
                                     <th>هزینه</th>
                                     <th>پروفایل</th>
                                     <th>ویرایش</th>
-                                    <th>حذف</th>           
+                                    <th>حذف</th>
                                 </tr>
                                 </tfoot>
                         </table>
@@ -98,7 +98,7 @@
                             </thead>
                                 <tbody>
                              @foreach($users as $item)
-                             <?php $ids=$item->id ; ?> 
+                             <?php $ids=$item->id ; ?>
                                 <tr>
                                     <td>{{ $item->first_name }} {{ $item->last_name }}</td>
                                     <td>{{ $item->email }}</td>
@@ -106,11 +106,11 @@
                                     <td><button type="button" class="btn btn-block btn-outline-primary btn-sm">مشاهده پروفایل</button></td>
                                     <td>
                                     <form style="padding:10px;" action="{{ route('dashboard.admin.employee.create',['id'=>$id]) }}" method="post" role="form" class="form-horizontal " enctype="multipart/form-data">
-                                         <input type="hidden" style="margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control"  name="project_id" value="{{ $id }}" >    
-                                         <input type="hidden" style="margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control"  name="employee_id" value="{{ $item->id }}" >    
-                                         <input type="hidden" style="margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control"  name="start_date" value="{{ $project->start_date }}" >    
-                                         <input type="hidden" style="margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control"  name="finish_date" value="{{ $project->finish_date  }}" >    
-                                         <input type="hidden" style="margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control"  name="cost" value="0" >    
+                                         <input type="hidden" style="margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control"  name="project_id" value="{{ $id }}" >
+                                         <input type="hidden" style="margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control"  name="employee_id" value="{{ $item->id }}" >
+                                         <input type="hidden" style="margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control"  name="start_date" value="{{ $project->start_date->formatJalali() }}" >
+                                         <input type="hidden" style="margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control"  name="finish_date" value="{{ $project->finish_date->formatJalali()  }}" >
+                                         <input type="hidden" style="margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control"  name="cost" value="0" >
                                          @csrf
                                          <button type="submit" class="btn btn-block bg-gradient-success btn-sm">افزودن به پروژه</button>
                                     </form>
@@ -129,15 +129,15 @@
                                 </tfoot>
                         </table>
                         </div>
-                       
+
                         <!-- /.card-body -->
                         </div>
                     </div>
                     </x-card-body>
                 <x-card-footer>
-                </x-card-footer>      
+                </x-card-footer>
         </x-card>
     </div>
 
     @endsection
- 
+

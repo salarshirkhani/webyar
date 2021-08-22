@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard\Admin;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Session\Store;
@@ -11,7 +12,7 @@ use App\Models\Project;
 use App\Models\Phase;
 use App\Models\Task;
 use App\Models\EmployeeProject;
-use Illuminate\Auth\Access\Gate; 
+use Illuminate\Auth\Access\Gate;
 use Illuminate\Support\Facades\Auth;
 use phpDocumentor\Reflection\Types\Null_;
 use Illuminate\Support\Facades\Storage;
@@ -24,7 +25,7 @@ class ProjectController extends Controller
     }
 
     public function GetProject($id)
-    { 
+    {
         $post = Project::find($id);
         $phase= Phase::where('project_id',$id)->orderBy('created_at', 'desc')->get();
         $users = EmployeeProject::where('project_id',$id)->orderBy('created_at', 'desc')->get();
@@ -37,8 +38,8 @@ class ProjectController extends Controller
         $post = new Project([
             'title' => $request->input('title'),
             'description' => $request->input('description'),
-            'start_date' => $request->input('start_date'),
-            'finish_date' => $request->input('finish_date'),
+            'start_date' => Carbon::fromJalali($request->input('start_date')),
+            'finish_date' => Carbon::fromJalali($request->input('finish_date')),
         ]);
         $post->save();
         return redirect()->route('dashboard.admin.project.manage')->with('info', '  پروژه جدید ذخیره شد و نام آن' .' ' . $request->input('title'));
@@ -56,7 +57,7 @@ class ProjectController extends Controller
     }
 
     public function GetEditPost($id)
-    { 
+    {
         $post = Project::find($id);
         return view('dashboard.admin.project.updatepost', ['post' => $post, 'id' => $id]);
     }
@@ -67,8 +68,8 @@ class ProjectController extends Controller
         if (!is_null($post)) {
             $post->title = $request->input('title');
             $post->description = $request->input('description');
-            $post->start_date = $request->input('start_date');
-            $post->finish_date = $request->input('finish_date');
+            $post->start_date = Carbon::fromJalali($request->input('start_date'));
+            $post->finish_date = Carbon::fromJalali($request->input('finish_date'));
             $post->save();
         }
         return redirect()->route('dashboard.admin.project.manage',$post->id)->with('info', 'پروژه ویرایش شد');

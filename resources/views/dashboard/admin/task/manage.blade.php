@@ -20,10 +20,10 @@
     <x-card type="info">
         <x-card-header>ساخت تسک جدید</x-card-header>
     <form style="padding:10px;" action="{{ route('dashboard.admin.task.create',['id'=>$id]) }}" method="post" role="form" class="form-horizontal " enctype="multipart/form-data">
-        <input type="text" style="padding:10px; margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control" required  name="title"  placeholder="عنوان">  
-        <textarea type="text" style="padding:10px; margin: 10px 0px 16px 0px; height: 140px; border-radius: 7px; font-size: 16px;"class="form-control" required name="description"  placeholder="توضیحات تسک"></textarea>  
-        <input type="hidden" style="margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control"  name="project_id" value="{{ $id }}" >    
-        <input type="hidden" style="margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control"  name="status" value="notwork" >    
+        <input type="text" style="padding:10px; margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control" required  name="title"  placeholder="عنوان">
+        <textarea type="text" style="padding:10px; margin: 10px 0px 16px 0px; height: 140px; border-radius: 7px; font-size: 16px;"class="form-control" required name="description"  placeholder="توضیحات تسک"></textarea>
+        <input type="hidden" style="margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control"  name="project_id" value="{{ $id }}" >
+        <input type="hidden" style="margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control"  name="status" value="notwork" >
         <div class="form-group">
             <label>تاریخ شروع:</label>
             <div class="input-group">
@@ -33,7 +33,7 @@
               <input id="date" name="start_date" type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy,mm,dd" data-mask="">
             </div>
             <!-- /.input group -->
-        </div> 
+        </div>
         <div class="form-group">
             <label>تاریخ پایان:</label>
             <div class="input-group">
@@ -43,7 +43,7 @@
               <input name="finish_date" type="text" id="date1" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy,mm,dd" data-mask="">
             </div>
             <!-- /.input group -->
-        </div>   
+        </div>
         <x-select-group name="employee_id" label="کاربر" :model="$model ?? null">
             @foreach($posts as $item)
             <x-select-item :value="$item->id">{{ $item->for->first_name }} {{ $item->for->last_name }}</x-select-item>
@@ -75,7 +75,7 @@
                                 <th>فاز</th>
                                 <th>کاربر</th>
                                 <th>وضعیت</th>
-                                <th>حذف</th>                               
+                                <th>حذف</th>
                                 <th>ویرایش</th>
                             </tr>
                             </thead>
@@ -83,13 +83,13 @@
                              @foreach($task as $item)
                                 <tr>
                                     <td>{{ $item->title }}</td>
-                                    <td>{{ $item->start_date }}</td>
-                                    <td>{{$item->finish_date}}</td>
+                                    <td>{{ $item->start_date->formatJalali() }}</td>
+                                    <td>{{$item->finish_date->formatJalali()}}</td>
                                     <td>{{ $item->phase->title }}</td>
                                     <td>{{ $item->for->first_name }} {{ $item->for->last_name }}</td>
-                                    <td>{{ $item->status }}</td> 
+                                    <td>{{ $item->status }}</td>
                                     <td>
-                                    <a href="{{route('dashboard.admin.task.deletetask',['id'=>$item->id,'project_id'=>$item->for->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>                 
+                                    <a href="{{route('dashboard.admin.task.deletetask',['id'=>$item->id,'project_id'=>$item->for->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>
                                     </td>
                                     <td>
                                     <a href="{{route('dashboard.admin.task.updatetask',['id'=>$item->id])}}" class="edit_post" target="_blank"><i class="fas fa-edit"></i></a>
@@ -105,7 +105,7 @@
                                     <th>فاز</th>
                                     <th>کاربر</th>
                                     <th>وضعیت</th>
-                                    <th>حذف</th>                               
+                                    <th>حذف</th>
                                     <th>ویرایش</th>
                                 </tr>
                                 </tfoot>
@@ -113,7 +113,7 @@
                     </div>
                     </x-card-body>
                 <x-card-footer>
-                </x-card-footer>      
+                </x-card-footer>
         </x-card>
     </div>
     @endsection

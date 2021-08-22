@@ -9,7 +9,7 @@
     <x-breadcrumb-item title="مدیریت مالی" route="dashboard.employee.money.index" />
 @endsection
 @section('content')
-<?php 
+<?php
 $tasks=0;
 $income=0;
 foreach ($employee as $item) {
@@ -31,7 +31,7 @@ foreach ($task as $item) {
                     <div class="small-box bg-success">
                       <div class="inner">
                         <h3><?php echo $income; ?><sup style="font-size: 20px">هزارتومان</sup></h3>
-          
+
                         <p>درآمد </p>
                       </div>
                       <div class="icon">
@@ -44,7 +44,7 @@ foreach ($task as $item) {
                     <div class="small-box bg-danger" style="background: #358e82 !important">
                       <div class="inner">
                         <h3><?php echo $tasks; ?></h3>
-          
+
                         <p>تسک های انجام شده</p>
                       </div>
                       <div class="icon">
@@ -70,9 +70,9 @@ foreach ($task as $item) {
                                          @foreach($employee as $item)
                                             <tr>
                                                 <td>{{ $item->project->title }}</td>
-                                                <td>{!! Facades\Verta::instance($item->project->start_date)->formatDate() !!}</td>
-                                                <td>{!! Facades\Verta::instance($item->project->finish_date)->formatDate() !!}</td>
-                                                <td>{{$item->cost}} تومان</td>       
+                                                <td>{!! $item->project->start_date->formatJalali() !!}</td>
+                                                <td>{!! $item->project->finish_date->formatJalali() !!}</td>
+                                                <td>{{$item->cost}} تومان</td>
                                             </tr>
                                          @endforeach
                                             </tbody>
@@ -88,7 +88,7 @@ foreach ($task as $item) {
                                 </div>
                                 </x-card-body>
                             <x-card-footer>
-                            </x-card-footer>      
+                            </x-card-footer>
                     </x-card>
                     <div style="margin-top:50px;"></div>
                     <x-card type="info">
@@ -109,15 +109,15 @@ foreach ($task as $item) {
                                          @foreach($task as $item)
                                             <tr>
                                                 <td>{{ $item->title }}</td>
-                                                <td>{{ $item->start_date }}</td>
-                                                <td>{{$item->finish_date}}</td>
+                                                <td>{{ $item->start_date->formatJalali() }}</td>
+                                                <td>{{$item->finish_date->formatJalali()}}</td>
                                                 <td>
                                                   @if ($item->status=='done')
                                                     <p style="color:green;"> انجام شده </p>
                                                   @else
                                                     <p style="color:red;">انجام نشده</p>
                                                   @endif
-                                                </td>       
+                                                </td>
                                                 <td>
                                                 <a href="{{route('dashboard.admin.task.updatetask',['id'=>$item->id])}}" class="edit_post" target="_blank"><i class="fas fa-edit"></i></a>
                                                 </td>
@@ -137,7 +137,7 @@ foreach ($task as $item) {
                                 </div>
                                 </x-card-body>
                             <x-card-footer>
-                            </x-card-footer>      
+                            </x-card-footer>
                     </x-card>
                 </div>
               </div>

@@ -27,20 +27,20 @@
                                 <th>تاریخ شروع</th>
                                 <th>تاریخ پایان</th>
                                 <th>تسک ها</th>
-                                <th>حذف</th>                               
+                                <th>حذف</th>
                                 <th>ویرایش</th>
                             </tr>
                             </thead>
                                 <tbody>
                              @foreach($posts as $item)
-                             <?php $ids=$item->id ; ?> 
+                             <?php $ids=$item->id ; ?>
                                 <tr>
                                     <td>{{ $item->title }}</td>
-                                    <td>{!! Facades\Verta::instance($item->start_date)->formatDate() !!}</td>
-                                    <td>{!! Facades\Verta::instance($item->finish_date)->formatDate() !!}</td>
+                                    <td>{!! $item->start_date->formatJalali() !!}</td>
+                                    <td>{!! $item->finish_date->formatJalali() !!}</td>
                                     <td><button type="button" class="btn btn-block bg-gradient-warning btn-sm">مدیرت تسک ها</button></td>
                                     <td>
-                                    <a href="{{route('dashboard.admin.phase.deletephase',['id'=>$item->id,'project_id'=>$item->for->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>                 
+                                    <a href="{{route('dashboard.admin.phase.deletephase',['id'=>$item->id,'project_id'=>$item->for->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>
                                     </td>
                                     <td>
                                     <a href="{{route('dashboard.admin.phase.updatephase',['id'=>$item->id])}}" class="edit_post" target="_blank"><i class="fas fa-edit"></i></a>
@@ -54,7 +54,7 @@
                                     <th>تاریخ شروع</th>
                                     <th>تاریخ پایان</th>
                                     <th>تسک ها</th>
-                                    <th>حذف</th>                               
+                                    <th>حذف</th>
                                     <th>ویرایش</th>
                                 </tr>
                                 </tfoot>
@@ -63,7 +63,7 @@
                     </x-card-body>
                 <x-card-footer>
                     <a href="{{route('dashboard.admin.phase.create',['id'=>$id])}}" class="btn btn-success">ثبت فاز جدید برای پروژه</a>
-                </x-card-footer>      
+                </x-card-footer>
         </x-card>
     </div>
     @endsection

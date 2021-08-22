@@ -8,7 +8,7 @@
     <x-breadcrumb-item title="پروفایل" route="dashboard.admin.users.profile" />
 @endsection
 @section('content')
-<?php 
+<?php
 $tasks=0;
 $income=0;
 foreach ($employee as $item) {
@@ -43,7 +43,7 @@ foreach ($task as $item) {
                     <b>امتیاز</b> <a class="float-right">{{ $post->rate }}</a>
                   </li>
                   <li class="list-group-item">
-                    <b>تاریخ تولد</b> <a class="float-right">{{ $post->birthdate }}</a>
+                    <b>تاریخ تولد</b> <a class="float-right">{{ $post->birthdate->formatJalali() }}</a>
                   </li>
                 </ul>
                 <a href="{{route('dashboard.admin.message.create',['user_id'=>$post->id])}}" class="btn btn-warning btn-block"><b>ارسال پیام</b></a>
@@ -59,7 +59,7 @@ foreach ($task as $item) {
                     <div class="small-box bg-success">
                       <div class="inner">
                         <h3><?php echo $income; ?><sup style="font-size: 20px">هزارتومان</sup></h3>
-          
+
                         <p>درآمد </p>
                       </div>
                       <div class="icon">
@@ -72,7 +72,7 @@ foreach ($task as $item) {
                     <div class="small-box bg-danger" style="background: #358e82 !important">
                       <div class="inner">
                         <h3><?php echo $tasks; ?></h3>
-          
+
                         <p>تسک های انجام شده</p>
                       </div>
                       <div class="icon">
@@ -92,7 +92,7 @@ foreach ($task as $item) {
                                             <th>تاریخ شروع</th>
                                             <th>تاریخ پایان</th>
                                             <th>وضعیت</th>
-                                            <th>حذف</th>                               
+                                            <th>حذف</th>
                                             <th>ویرایش</th>
                                         </tr>
                                         </thead>
@@ -100,11 +100,11 @@ foreach ($task as $item) {
                                          @foreach($task as $item)
                                             <tr>
                                                 <td>{{ $item->title }}</td>
-                                                <td>{{ $item->start_date }}</td>
-                                                <td>{{$item->finish_date}}</td>
-                                                <td>{{ $item->status }}</td> 
+                                                <td>{{ $item->start_date->formatJalali() }}</td>
+                                                <td>{{$item->finish_date->formatJalali()}}</td>
+                                                <td>{{ $item->status }}</td>
                                                 <td>
-                                                <a href="{{route('dashboard.admin.task.deletetask',['id'=>$item->id,'project_id'=>$item->for->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>                 
+                                                <a href="{{route('dashboard.admin.task.deletetask',['id'=>$item->id,'project_id'=>$item->for->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>
                                                 </td>
                                                 <td>
                                                 <a href="{{route('dashboard.admin.task.updatetask',['id'=>$item->id])}}" class="edit_post" target="_blank"><i class="fas fa-edit"></i></a>
@@ -118,7 +118,7 @@ foreach ($task as $item) {
                                                 <th>تاریخ شروع</th>
                                                 <th>تاریخ پایان</th>
                                                 <th>وضعیت</th>
-                                                <th>حذف</th>                               
+                                                <th>حذف</th>
                                                 <th>ویرایش</th>
                                             </tr>
                                             </tfoot>
@@ -126,7 +126,7 @@ foreach ($task as $item) {
                                 </div>
                                 </x-card-body>
                             <x-card-footer>
-                            </x-card-footer>      
+                            </x-card-footer>
                     </x-card>
                 </div>
               </div>
