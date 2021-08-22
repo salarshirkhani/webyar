@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Dashboard\Employee;
 
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Dashboard\Employee\TaskCreateRequest;
+use App\Http\Requests\Dashboard\Employee\TaskUpdateRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Session\Store;
@@ -14,7 +16,7 @@ use App\Models\Phase;
 use App\Models\Absence;
 use App\Models\message;
 use App\Models\EmployeeProject;
-use Illuminate\Auth\Access\Gate; 
+use Illuminate\Auth\Access\Gate;
 use Illuminate\Support\Facades\Auth;
 use phpDocumentor\Reflection\Types\Null_;
 use Illuminate\Support\Facades\Storage;
@@ -27,16 +29,11 @@ class TaskController extends Controller
         return view('dashboard.employee.task.create');
     }
 
-    public function CreatePost(Request $request)
+    public function CreatePost(TaskCreateRequest $request)
     {
-        $post = new Task([
-            'title' => $request->input('title'),
-            'employee_id' => Auth::user()->id,
-            'description' => $request->input('description'),
-            'start_date' => $request->input('start_date'),
-            'finish_date' => $request->input('finish_date'),
-            'status' => $request->input('status'),
-        ]);
+        $data = $request->validated();
+        $data['employee_id'] = Auth::user()->id;
+        $post = new Task($data);
         $post->save();
         return redirect()->route('dashboard.employee.task.manage')->with('info', 'تسک جدید اضافه شد ' );
     }
@@ -49,7 +46,7 @@ class TaskController extends Controller
         $diff=NULL;
         if($absence != NULL){
         if($absence->exit != NULL){
-            $diff = strtotime($absence->exit) - strtotime($absence->enter);   
+            $diff = strtotime($absence->exit) - strtotime($absence->enter);
             if($diff < 60){
                 $diff= $diff.' ثانیه ';
             }
@@ -67,7 +64,7 @@ class TaskController extends Controller
         $task=Task::where('status','notwork')->where('employee_id',Auth::user()->id)->orderBy('finish_date', 'ASC')->get();
         return view('dashboard.employee.task.manage', [
         'task' => $task,
-        'absence' => $absence, 
+        'absence' => $absence,
         'diff' => $diff,
         'message' => $message
         ]);
@@ -79,13 +76,12 @@ class TaskController extends Controller
         return view('dashboard.employee.task.show', ['task' => $task]);
     }
 
-    public function UpdatePost($id,Request $request)
+    public function UpdatePost($id,TaskUpdateRequest $request)
     {
         $task=Task::where('employee_id',Auth::user()->id)->orderBy('finish_date', 'ASC')->get();
         $post = Task::find($request->input('id'));
         if (!is_null($post)) {
-            $post->status = $request->input('status');
-            $post->save();
+            $post->update($request->validated());
         }
         return redirect()->route('dashboard.employee.task.manage')->with('info', 'تسک انجام شد');
     }
