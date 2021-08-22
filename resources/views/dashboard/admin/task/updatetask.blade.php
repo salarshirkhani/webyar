@@ -18,10 +18,10 @@
         <x-card type="info">
             <x-card-header>ویرایش تسک پروژه</x-card-header>
         <form style="padding:10px;" action="{{ route('dashboard.admin.task.updatetask', $post->id) }}" method="post" role="form" class="form-horizontal " enctype="multipart/form-data">
-            <input type="text" style="padding:10px; margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control" required  name="title" value="{{ $post->title }}" placeholder="عنوان">            
-            <textarea type="text" style="padding:10px; margin: 10px 0px 16px 0px; height: 140px; border-radius: 7px; font-size: 16px;"class="form-control" value="" name="description"  placeholder="توضیحات">{{ $post->description }}</textarea> 
+            <input type="text" style="padding:10px; margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control" required  name="title" value="{{ $post->title }}" placeholder="عنوان">
+            <textarea type="text" style="padding:10px; margin: 10px 0px 16px 0px; height: 140px; border-radius: 7px; font-size: 16px;"class="form-control" value="" name="description"  placeholder="توضیحات">{{ $post->description }}</textarea>
             <input type="hidden" style="margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control"  name="id" value="{{ $post->id }}" >
-            <input type="hidden" style="margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control"  name="project_id" value="{{ $post->project->id }}" > 
+            <input type="hidden" style="margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control"  name="project_id" value="{{ !empty($post->project->id) ? $post->project->id : '' }}" >
             <x-select-group name="employee_id" label="کاربر" :model="$model ?? null">
                 <x-select-item :value="$post->for->id ">{{ $post->for->first_name }} {{ $post->for->last_name }}</x-select-item>
                 @foreach($posts as $item)
@@ -29,7 +29,6 @@
                 @endforeach
             </x-select-group>
             <x-select-group name="phase_id" label="فاز بندی" :model="$model ?? null">
-                <x-select-item :value=" $post->phase->id ">{{ $post->phase->title }}</x-select-item>
                 @foreach($phase as $item)
                 <x-select-item :value="$item->id">{{ $item->title }}</x-select-item>
                 @endforeach
@@ -43,7 +42,7 @@
                   <input id="date" name="start_date" type="text" value="{{ $post->start_date }}" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy-mm-dd" data-mask="">
                 </div>
                 <!-- /.input group -->
-            </div> 
+            </div>
             <div class="form-group">
                 <label>تاریخ پایان:</label>
                 <div class="input-group">
@@ -53,7 +52,7 @@
                   <input id="date1" name="finish_date" value="{{ $post->finish_date }}" type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy-mm-dd" data-mask="">
                 </div>
                 <!-- /.input group -->
-            </div>  
+            </div>
             <input type="text" style="margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control"  name="status" value="{{ $post->status }}" >
              {{ csrf_field() }}
              <x-card-footer>
