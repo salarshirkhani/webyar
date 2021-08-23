@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Task;
 use App\Models\Project;
 use App\Models\Phase;
+use App\Models\Absence;
 use App\Models\EmployeeProject;
 use Illuminate\Auth\Access\Gate; 
 use Illuminate\Support\Facades\Auth; 
@@ -47,6 +48,11 @@ class UserController extends Controller
         $employee=EmployeeProject::where('employee_id',$id)->orderBy('created_at', 'desc')->get();
         foreach($employee as $employees){
         $employees->delete();
+        }
+
+        $Absence=Absence::where('employee_id',$id)->orderBy('created_at', 'desc')->get();
+        foreach($Absence as $Absences){
+        $Absences->delete();
         }
         
         return redirect()->route('dashboard.admin.users.employee', ['id' => $id])->with('info', 'کاربر پاک شد');
