@@ -23,6 +23,7 @@ class CreateMessagesTable extends Migration
             $table->foreign('answer_id')->references('id')->on('messages');
             $table->string('title');
             $table->text('content')->nullable();
+            $table->string('file')->nullable();
             $table->string('status')->nullable();
             $table->softDeletes(); 
             $table->timestamps();
