@@ -24,6 +24,7 @@ class CreateEmployeeProjectTable extends Migration
             $table->string('cost');
             $table->date('start_date');
             $table->date('finish_date');
+            $table->softDeletes(); 
             $table->timestamps();
         });
     }

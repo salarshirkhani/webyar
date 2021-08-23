@@ -35,6 +35,7 @@ class CreateUsersTable extends Migration
             $table->string('role', 191)->nullable();
             $table->unsignedTinyInteger('rate')->default(0);
             $table->rememberToken();
+            $table->softDeletes(); 
             $table->timestamps();
         });
     }

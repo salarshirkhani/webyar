@@ -16,6 +16,7 @@ use Illuminate\Auth\Access\Gate;
 use Illuminate\Support\Facades\Auth;
 use phpDocumentor\Reflection\Types\Null_;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ProjectController extends Controller
 {
@@ -51,6 +52,21 @@ class ProjectController extends Controller
     }
 
     public function DeletePost($id){
+        $phase= Phase::where('project_id',$id)->orderBy('created_at', 'desc')->get();
+        foreach($phase as $phases){
+            $phases->delete();
+        }
+
+        $users = EmployeeProject::where('project_id',$id)->orderBy('created_at', 'desc')->get();
+        foreach($users as $userss){
+        $userss->delete();
+        }
+
+        $task= Task::where('project_id',$id)->orderBy('created_at', 'desc')->get();
+        foreach($task as $tasks){
+        $tasks->delete();
+        }
+
         $post = Project::find($id);
         $post->delete();
         return redirect()->route('dashboard.admin.project.manage')->with('info', 'پروژه پاک شد');

@@ -81,6 +81,7 @@
                                 <th>ایمیل</th>
                                 <th>شماره تماس</th>
                                 <th>پروفایل</th>
+                                <th>حذف</th>
                             </tr>
                             </thead>
                                 <tbody>
@@ -91,6 +92,9 @@
                                     <td>{{ $item->email }}</td>
                                     <td>{{ $item->mobile }}</td>
                                     <td><a href="{{route('dashboard.admin.users.profile',['id'=>$item->id])}}" class="btn btn-block btn-outline-primary btn-sm">مشاهده پروفایل</a></td>
+                                    <td>
+                                        <a href="{{route('dashboard.admin.users.deleteuser',['id'=>$item->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>                 
+                                    </td>
                                 </tr>
                              @endforeach
                                 </tbody>
@@ -100,6 +104,7 @@
                                     <th>ایمیل</th>
                                     <th>شماره تماس</th>
                                     <th>پروفایل</th>
+                                    <th>حذف</th>                                   
                                 </tr>
                                 </tfoot>
                         </table>

@@ -21,6 +21,7 @@ class CreateAbsencesTable extends Migration
             $table->time('enter')->nullable();
             $table->time('exit')->nullable();
             $table->unsignedInteger('hours')->default(0);
+            $table->softDeletes(); 
             $table->timestamps();
         });
     }

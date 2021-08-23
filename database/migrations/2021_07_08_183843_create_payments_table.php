@@ -21,6 +21,7 @@ class CreatePaymentsTable extends Migration
             $table->date('payment_date')->nullable();
             $table->string('payment_status')->nullable();
             $table->string('confirm_code')->nullable();
+            $table->softDeletes(); 
             $table->timestamps();
         });
     }

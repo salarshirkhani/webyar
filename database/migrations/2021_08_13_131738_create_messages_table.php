@@ -24,6 +24,7 @@ class CreateMessagesTable extends Migration
             $table->string('title');
             $table->text('content')->nullable();
             $table->string('status')->nullable();
+            $table->softDeletes(); 
             $table->timestamps();
         });
     }

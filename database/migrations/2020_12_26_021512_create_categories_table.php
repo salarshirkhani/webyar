@@ -22,7 +22,7 @@ class CreateCategoriesTable extends Migration
             $table->text('description')->nullable();
             $table->string('type',191)->index()->nullable();
             $table->unsignedbigInteger('parent_id')->nullable()->index();
-
+            $table->softDeletes(); 
             $table->timestamps();
         });
 

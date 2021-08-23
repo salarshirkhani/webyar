@@ -10,6 +10,7 @@ use Illuminate\Session\Store;
 use App\Models\User;
 use App\Models\Project;
 use App\Models\Phase;
+use App\Models\Task;
 use Illuminate\Auth\Access\Gate;
 use Illuminate\Support\Facades\Auth;
 use phpDocumentor\Reflection\Types\Null_;
@@ -40,6 +41,12 @@ class PhaseController extends Controller
     }
 
     public function DeletePost($id,$project_id){
+
+        $task= Task::where('phase_id',$id)->orderBy('created_at', 'desc')->get();
+        foreach($task as $tasks){
+        $tasks->delete();
+        }
+
         $post = Phase::find($id);
         $post->delete();
         return redirect()->route('dashboard.admin.phase.manage', ['id' => $project_id])->with('info', 'فاز پاک شد');

@@ -34,4 +34,22 @@ class UserController extends Controller
         return view('dashboard.admin.users.profile', ['id' => $id,'post' => $post,'employee' => $employee,'task' => $task]);
     }
 
+    public function DeletePost($id){
+        $post = User::find($id);
+        $post->delete();
+
+        $task=Task::where('employee_id',$id)->orderBy('created_at', 'desc')->get();
+        foreach($task as $tasks){
+        $tasks->employee_id=NULL;
+        $tasks->save();
+        }
+
+        $employee=EmployeeProject::where('employee_id',$id)->orderBy('created_at', 'desc')->get();
+        foreach($employee as $employees){
+        $employees->delete();
+        }
+        
+        return redirect()->route('dashboard.admin.users.employee', ['id' => $id])->with('info', 'کاربر پاک شد');
+    }
+
 }

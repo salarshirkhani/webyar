@@ -68,9 +68,13 @@ Route::prefix('dashboard')
                //Users PAGE 
                Route::get('users/employee', 'UserController@GetUsers')->name('users.employee');
                Route::get('users/profile/{id}', 'UserController@GetProfile')->name('users.profile');
+               Route::get('deleteuser/{id}','UserController@DeletePost')->name('users.deleteuser');
 
                //ACCOUNTING PAGE
                Route::get('money/employee', 'AccountingController@GetEmployee')->name('money.employee');
+
+               //ABSENCE PAGE
+               Route::get('absence/manage', 'AbsenceController@GetAbsence')->name('absence.manage');
 
                //MESSAGE PAGE
                Route::post('message/create', ['uses' => 'MessageController@CreatePost','as' => 'message.create']);
