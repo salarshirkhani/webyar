@@ -80,11 +80,11 @@ Route::prefix('dashboard')
                Route::get('updatemessage/{id}','MessageController@GetEditPost')->name('message.updatemessage');
                Route::get('message/show/{id}', 'MessageController@ShowMessage')->name('message.show');
 
-                //DAILY MANAGMENT
+               //DAILY MANAGMENT
                 Route::post('daily/create', ['uses' => 'DailyController@CreatePost','as' => 'daily.create']);
                 Route::get('daily/create', ['uses' => 'DailyController@GetCreatePost','as' => 'daily.create']);  
                 Route::get('daily/manage', 'DailyController@GetManagePost')->name('daily.manage');
-                Route::get('updatedaily/{id}','DailyController@GetEditPost')->name('daily.updatedaily');
+                Route::get('updatedaily/{id}','DailyController@GetEditPost')->name('daily.updatedaily'); 
                 Route::get('show/{id}','DailyController@GetTask')->name('daily.show');
                 Route::get('updatedaily/{id}','DailyController@GetEditPost')->name('daily.updatedaily');
                 Route::post('updatedaily/{id}','DailyController@UpdatePost')->name('daily.updatedaily'); 
@@ -115,6 +115,7 @@ Route::prefix('dashboard')
                 Route::get('show/{id}','TaskController@GetTask')->name('task.show');
                 Route::get('updatetask/{id}','TaskController@GetEditPost')->name('task.updatetask');
                 Route::post('updatetask/{id}','TaskController@UpdatePost')->name('task.updatetask'); 
+                Route::post('edittask/{id}','TaskController@EditPost')->name('task.edittask'); 
 
                 //ABSENCE
                 Route::post('absence/create', ['uses' => 'TaskController@Absence','as' => 'absence.create']);

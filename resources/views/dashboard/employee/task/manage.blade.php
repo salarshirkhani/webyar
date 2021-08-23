@@ -17,6 +17,7 @@
     </div>
 @endif
 @include('dashboard.employee.task.create')
+@include('dashboard.employee.task.edit')
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 @if($absence == NULL)
     <div class="row">
@@ -41,10 +42,10 @@
         </div>
         <div class="col-md-2 col-sm-12">
           <form method="post" action="{{ route('dashboard.employee.absence.end', $absence->id) }}">
-            @csrf
-          <button style="" type="submit" class=" btn btn-block btn-outline-secondary toastrDefaultInfo">
-            ثبت پایان کار
-          </button>
+             @csrf
+            <button style="" type="submit" class=" btn btn-block btn-outline-secondary toastrDefaultInfo">
+              ثبت پایان کار
+            </button>
           </form>
         </div>
     </div>
@@ -78,7 +79,7 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-          <ul class="todo-list" data-widget="todo-list">
+          <ul class="todo-list ui-sortable" data-widget="todo-list">
             @foreach ($task as $item)
             <?php $v1 = now()->startOfDay(); $v2=$item->finish_date; ?>
             @if ( $v1->diffInDays($v2, false)<=0)
@@ -99,6 +100,7 @@
               <span class="text" style="cursor:pointer;" data-target="#modal-info{{ $item->id }}" data-toggle="modal">{{ $item->title }}</span>
               <small class="badge badge-info"><i class="far fa-clock"></i>{{$item->finish_date->formatJalali()}}</small>
               <div class="tools">
+                <i class="fas fa-edit" data-target="#modal-lf{{ $item->id }}" data-toggle="modal"></i>
                 <script>
                   $(document).ready(function(){
                 $(".check").click(function(){
@@ -108,7 +110,6 @@
                     $("#todoCheck2{{ $item->id }}").prop("checked", false);
                 });
                });
-
               </script>
               </div>
             </form>
@@ -166,6 +167,8 @@
                   <!-- /.modal-dialog -->
                 </div>
 
+
+
             @endforeach
           </ul>
         </div>
@@ -208,6 +211,7 @@
               <span class="text" style="cursor:pointer;" data-target="#modal-info{{ $item->id }}" data-toggle="modal">{{ $item->title }}</span>
               <small class="badge badge-info"><i class="far fa-clock"></i>{{$item->finish_date->formatJalali()}}</small>
               <div class="tools">
+                <i class="fas fa-edit" data-target="#modal-lf{{ $item->id }}" data-toggle="modal"></i>
                 <script>
                   $(document).ready(function(){
                 $(".check").click(function(){
@@ -317,6 +321,7 @@
                   <span class="text" style="cursor:pointer;" data-target="#modal-info{{ $item->id }}" data-toggle="modal">{{ $item->title }}</span>
                   <small class="badge badge-info"><i class="far fa-clock"></i>{{$item->finish_date->formatJalali()}}</small>
                   <div class="tools">
+                    <i class="fas fa-edit" data-target="#modal-lf{{ $item->id }}" data-toggle="modal"></i>
                     <script>
                       $(document).ready(function(){
                     $(".check").click(function(){

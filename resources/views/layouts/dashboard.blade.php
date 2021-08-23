@@ -173,6 +173,7 @@ BY WEBITO
 <script src="{{ asset('assets/dashboard/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
 <script src="{{ asset('assets/dashboard/plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
 <script src="{{ asset('assets/dashboard/plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
+<script src="{{ asset('assets/dashboard/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
 <script src="{{ asset('assets/dashboard/plugins/jszip/jszip.min.js')}}"></script>
 <script src="{{ asset('assets/dashboard/plugins/pdfmake/pdfmake.min.js')}}"></script>
 <script src="{{ asset('assets/dashboard/plugins/pdfmake/vfs_fonts.js')}}"></script>
@@ -183,13 +184,23 @@ BY WEBITO
 <script src="{{ asset('assets/dashboard/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
 <script type="text/javascript" src="{{ asset('assets/js/persianDatepicker.js') }}"></script>
 <script src="{{ asset('assets/dashboard/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<!-- Summernote -->
+<script src="{{ asset('assets/dashboard/plugins/summernote/summernote-bs4.min.js')}}"></script>
 <script type="text/javascript">
     $(function() {
-        $("#date, #date1").persianDatepicker();       
+        $("#date, #date1").persianDatepicker();   
+        $('.todo-list').sortable({
+        placeholder: 'sort-highlight',
+        handle: '.handle',
+        forcePlaceholderSize: true,
+        zIndex: 999999
+         });    
     });
+    
 </script>
  <script>
   $(function () {
+    $('#summernote').summernote();
     $("#example1").DataTable({
     "language": {
           "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Persian.json"
@@ -219,9 +230,14 @@ BY WEBITO
       toastr.error('شما یک پیام خوانده نشده دارید')
     });
   });
-
-
  </script>
+ <script src="https://cdn.ckeditor.com/4.11.2/standard/ckeditor.js"></script>
+ <script type="text/javascript">
+    CKEDITOR.replace('description', {
+     // Load the Farsi interface.
+        language: 'fa'
+      });
+</script>
 @yield('scripts', '')
 </body>
 </html>

@@ -267,7 +267,7 @@
                     <i class="fas fa-ellipsis-v"></i>
                     <i class="fas fa-ellipsis-v"></i>
                   </span>
-                  <div  class="icheck-primary d-inline ml-2">
+                  <div class="icheck-primary d-inline ml-2">
                        <input type="checkbox"  id="todoCheck2{{ $item->id }}"  data-toggle="modal" data-target="#modal-success{{ $item->id }}">
                     <label for="todoCheck2{{ $item->id }}"></label>
                   </div>

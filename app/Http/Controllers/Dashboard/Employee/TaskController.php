@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Dashboard\Employee;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\Employee\TaskCreateRequest;
 use App\Http\Requests\Dashboard\Employee\TaskUpdateRequest;
+use App\Http\Requests\Dashboard\Employee\TaskEditRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Session\Store;
@@ -84,6 +85,20 @@ class TaskController extends Controller
             $post->update($request->validated());
         }
         return redirect()->route('dashboard.employee.task.manage')->with('info', 'تسک انجام شد');
+    }
+
+    
+    public function EditPost($id,TaskEditRequest $request)
+    {
+        $data = $request->validated();
+        $data['employee_id'] = Auth::user()->id;
+        $post = Task::find($id);
+        if (!is_null($post)) {
+            $post->description = $data['content'];
+            $post->update($data);
+            
+        }
+        return redirect()->route('dashboard.employee.task.manage')->with('info', 'تسک ویرایش شد');
     }
 
 
