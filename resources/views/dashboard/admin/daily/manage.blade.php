@@ -1,12 +1,12 @@
 <?php use Hekmatinasser\Verta\Verta; ?>
 @extends('layouts.dashboard')
 @section('sidebar')
-@include('dashboard.employee.notification')
-@include('dashboard.employee.sidebar')
+@include('dashboard.admin.notification')
+@include('dashboard.admin.sidebar')
 @endsection
 @section('hierarchy')
-    <x-breadcrumb-item title="داشبورد" route="dashboard.employee.index" />
-    <x-breadcrumb-item title="مدیریت تسک ها" route="dashboard.employee.task.manage" />
+    <x-breadcrumb-item title="داشبورد" route="dashboard.admin.index" />
+    <x-breadcrumb-item title="مدیریت برنامه روزانه" route="dashboard.admin.daily.manage" />
 @endsection
 @section('content')
     @if(Session::has('info'))
@@ -16,51 +16,8 @@
         </div>
     </div>
 @endif
-@include('dashboard.employee.task.create')
+@include('dashboard.admin.daily.create')
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-@if($absence == NULL)
-    <div class="row">
-        <div class="col-md-12">
-          <div class="alert alert-danger" style="">
-            <p>لطفا حضوری خود را ثبت کنید</p>
-            <form method="post" action="{{ route('dashboard.employee.absence.create') }}">
-              @csrf
-            <button type="submit" class="btn btn-primary toastrDefaultInfo">
-              ثبت حضوری
-            </button>
-            </form>
-          </div>
-        </div>
-    </div>
-@elseif($absence != NULL && $absence->exit==NULL)
-<div class="row">
-  <div class="col-md-12">
-      <div class="alert alert-info" style="background: #17a2b85e; width:100%;display:inline-flex;">
-        <div class="col-md-10 col-sm-12">
-          <p style="color:#464545; position: relative; top: 8px;">ساعت زدن حضوری شما : {{$absence->enter}}</p>
-        </div>
-        <div class="col-md-2 col-sm-12">
-          <form method="post" action="{{ route('dashboard.employee.absence.end', $absence->id) }}">
-            @csrf
-          <button style="" type="submit" class=" btn btn-block btn-outline-secondary toastrDefaultInfo">
-            ثبت پایان کار
-          </button>
-          </form>
-        </div>
-    </div>
-  </div>
-</div>
-@elseif($absence != NULL && $absence->exit!=NULL)
-<div class="row">
-  <div class="col-md-12">
-      <div class="alert alert-info " style="background: #17a2b85e; width:100%;display:inline-flex;">
-        <div class="col-md-10 col-sm-12">
-          <p style="color:#464545; position: relative; top: 8px;">شما امروز به مدت  {{$diff}} کار کرده اید</p>
-        </div>
-    </div>
-  </div>
-</div>
-@endif
 <div class="row">
     <!-- SIDE 1 -->
     <section class="col-lg-4 connectedSortable">
@@ -125,7 +82,7 @@
                     </button>
                   </div>
                   <div class="modal-body">
-                    {!! $item->description !!}
+                      {!! $item->description !!}
                   </div>
                   <div class="modal-footer justify-content-between">
                        <button type="button" class="btn btn-outline-light" data-dismiss="modal">بستن</button>
@@ -153,7 +110,7 @@
                       </div>
                       <div class="modal-footer justify-content-between">
                         <button type="button" class="btn btn-outline-light uncheckd" data-dismiss="modal">نه هنوز انجام نشده</button>
-                        <form  action="{{ route('dashboard.employee.task.updatetask', $item->id) }}" method="post">
+                        <form  action="{{ route('dashboard.admin.daily.updatedaily', $item->id) }}" method="post">
                             @csrf
                             <input type="hidden" name="id" value="{{ $item->id }}" >
                             <input type="hidden"  name="status" value="done">
@@ -261,8 +218,8 @@
                       </div>
                       <div class="modal-footer justify-content-between">
                         <button type="button" class="btn btn-outline-light uncheckd" data-dismiss="modal">نه هنوز انجام نشده</button>
-                        <form  action="{{ route('dashboard.employee.task.updatetask', $item->id) }}" method="post">
-                            @csrf
+                        <form  action="{{ route('dashboard.admin.daily.updatedaily', $item->id) }}" method="post">
+                          @csrf
                             <input type="hidden" name="id" value="{{ $item->id }}" >
                             <input type="hidden"  name="status" value="done">
                            <button type="submit"  class="btn btn-outline-light">بله انجام و تست شده</button>
@@ -343,7 +300,6 @@
                       </div>
                       <div class="modal-body">
                         {!! $item->description !!}
-
                       </div>
                       <div class="modal-footer justify-content-between">
                         <button type="button" class="btn btn-outline-light" data-dismiss="modal">بستن</button>
@@ -371,8 +327,8 @@
                     </div>
                     <div class="modal-footer justify-content-between">
                       <button type="button" class="btn btn-outline-light uncheckd" data-dismiss="modal">نه هنوز انجام نشده</button>
-                       <form  action="{{ route('dashboard.employee.task.updatetask', $item->id) }}" method="post">
-                           @csrf
+                      <form  action="{{ route('dashboard.admin.daily.updatedaily', $item->id) }}" method="post">
+                        @csrf
                            <input type="hidden" name="id" value="{{ $item->id }}" >
                            <input type="hidden"  name="status" value="done">
                           <button type="submit"  class="btn btn-outline-light">بله انجام و تست شده</button>

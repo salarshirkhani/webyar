@@ -10,7 +10,7 @@
       <div class="modal-body">
         <x-card type="info">
           <x-card-header>ساخت برنامه کاری جدید</x-card-header>
-      <form style="padding:10px;" action="{{ route('dashboard.employee.task.create') }}" method="post" role="form" class="form-horizontal " enctype="multipart/form-data">
+      <form style="padding:10px;" action="{{ route('dashboard.admin.daily.create') }}" method="post" role="form" class="form-horizontal " enctype="multipart/form-data">
           <input type="text" style="padding:10px; margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control" required  name="title"  placeholder="عنوان">  
           <textarea type="text" style="padding:10px; margin: 10px 0px 16px 0px; height: 140px; border-radius: 7px; font-size: 16px;"class="form-control" required name="description"  placeholder="توضیحات تسک"></textarea>  
           <input type="hidden" style="margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control"  name="status" value="notwork" >    
