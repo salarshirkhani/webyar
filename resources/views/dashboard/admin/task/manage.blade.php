@@ -116,4 +116,12 @@
                 </x-card-footer>
         </x-card>
     </div>
+    <script src="https://cdn.ckeditor.com/4.11.2/standard/ckeditor.js"></script>
+    <script type="text/javascript">
+        CKEDITOR.replace('description', {
+        // Load the Farsi interface.
+            language: 'fa'
+        });
+        CKFinder.setupCKEditor(null, 'ckfinder/ckfinder.js');
+    </script>
     @endsection

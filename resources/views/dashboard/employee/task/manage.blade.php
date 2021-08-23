@@ -152,12 +152,12 @@
 
                       </div>
                       <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-outline-light uncheckd" data-dismiss="modal">بستن</button>
-                         <form  action="{{ route('dashboard.employee.task.updatetask', $item->id) }}" method="post">
-                             @csrf
-                             <input type="hidden" name="id" value="{{ $item->id }}" >
-                             <input type="hidden"  name="status" value="done">
-                            <button type="submit"  class="btn btn-outline-light" >اتمام تسک</button>
+                        <button type="button" class="btn btn-outline-light uncheckd" data-dismiss="modal">نه هنوز انجام نشده</button>
+                        <form  action="{{ route('dashboard.employee.task.updatetask', $item->id) }}" method="post">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $item->id }}" >
+                            <input type="hidden"  name="status" value="done">
+                           <button type="submit"  class="btn btn-outline-light">بله انجام و تست شده</button>
                         </form>
                       </div>
                     </div>
@@ -171,7 +171,7 @@
         </div>
         <!-- /.card-body -->
         <div class="card-footer clearfix">
-          <button type="button" data-toggle="modal" data-target="#modal-lg" style="font-size:13px;" class="btn btn-info float-right"><i class="fas fa-plus"></i>اضافه کردن کارت</button>
+          <button type="button"  data-toggle="modal" data-target="#modal-lg" style="font-size:13px;" class="btn btn-info float-right"><i class="fas fa-plus"></i>اضافه کردن کار</button>
         </div>
       </div>
     </section>
@@ -223,7 +223,14 @@
             </form>
             </li>
             @endif
-
+            <script src="https://cdn.ckeditor.com/4.11.2/standard/ckeditor.js"></script>
+            <script type="text/javascript">
+                CKEDITOR.replace('description', {
+                // Load the Farsi interface.
+                    language: 'fa'
+                });
+                CKFinder.setupCKEditor(null, 'ckfinder/ckfinder.js');
+            </script>
             <div class="modal fade show" id="modal-info{{ $item->id }}" aria-modal="true" role="dialog">
               <div class="modal-dialog modal-info">
                 <div class="modal-content bg-info">
@@ -261,13 +268,13 @@
 
                       </div>
                       <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-outline-light uncheckd" data-dismiss="modal">بستن</button>
-                         <form  action="{{ route('dashboard.employee.task.updatetask', $item->id) }}" method="post">
-                             @csrf
-                             <input type="hidden" name="id" value="{{ $item->id }}" >
-                             <input type="hidden"  name="status" value="done">
-                            <button type="submit"  class="btn btn-outline-light">اتمام تسک</button>
-                         </form>
+                        <button type="button" class="btn btn-outline-light uncheckd" data-dismiss="modal">نه هنوز انجام نشده</button>
+                        <form  action="{{ route('dashboard.employee.task.updatetask', $item->id) }}" method="post">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $item->id }}" >
+                            <input type="hidden"  name="status" value="done">
+                           <button type="submit"  class="btn btn-outline-light">بله انجام و تست شده</button>
+                        </form>
                       </div>
                     </div>
                     <!-- /.modal-content -->
@@ -280,7 +287,7 @@
     </div>
     <!-- /.card-body -->
     <div class="card-footer clearfix">
-      <button type="button"  data-toggle="modal" data-target="#modal-lg" style="font-size:13px;" class="btn btn-info float-right"><i class="fas fa-plus"></i>اضافه کردن کارت</button>
+              <button type="button"  data-toggle="modal" data-target="#modal-lg" style="font-size:13px;" class="btn btn-info float-right"><i class="fas fa-plus"></i>اضافه کردن کار</button>
     </div>
   </div>
 </section>
@@ -371,12 +378,12 @@
 
                     </div>
                     <div class="modal-footer justify-content-between">
-                      <button type="button" class="btn btn-outline-light uncheckd" data-dismiss="modal">بستن</button>
+                      <button type="button" class="btn btn-outline-light uncheckd" data-dismiss="modal">نه هنوز انجام نشده</button>
                        <form  action="{{ route('dashboard.employee.task.updatetask', $item->id) }}" method="post">
                            @csrf
                            <input type="hidden" name="id" value="{{ $item->id }}" >
                            <input type="hidden"  name="status" value="done">
-                          <button type="submit"  class="btn btn-outline-light">اتمام تسک</button>
+                          <button type="submit"  class="btn btn-outline-light">بله انجام و تست شده</button>
                        </form>
                     </div>
                   </div>
@@ -391,7 +398,7 @@
             </div>
             <!-- /.card-body -->
             <div class="card-footer clearfix">
-              <button type="button"  data-toggle="modal" data-target="#modal-lg" style="font-size:13px;" class="btn btn-info float-right"><i class="fas fa-plus"></i>اضافه کردن کارت</button>
+              <button type="button"  data-toggle="modal" data-target="#modal-lg" style="font-size:13px;" class="btn btn-info float-right"><i class="fas fa-plus"></i>اضافه کردن کار</button>
             </div>
           </div>
         </section>
