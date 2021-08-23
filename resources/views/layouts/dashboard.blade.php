@@ -33,6 +33,17 @@ BY WEBITO
     </script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
+<style>
+    .card-info:not(.card-outline) > .card-header {
+        background-color: #dc3545;
+    }
+    a {
+        color: #dc3545
+    }
+    .content-wrapper {
+        background: #f9f4f4;
+    }
+</style>
 <body class="hold-transition sidebar-mini dark-mode">
 <div class="wrapper">
 

@@ -41,7 +41,7 @@
                                 <tr>
                                     <td>{{ $item->for->first_name }} {{ $item->for->last_name }}</td>
                                     <td>{{ $item->title }}</td>
-                                    <td>{!! Facades\Verta::instance($item->created_at)->formatDate() !!}</td> 
+                                    <td>{!! $item->created_at->formatJalali() !!}</td> 
                                     <td>
                                         @if ($item->status=='seen')
                                           <p style="color:green;"> خوانده شده </p>
