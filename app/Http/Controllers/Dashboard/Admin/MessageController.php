@@ -57,5 +57,23 @@ class MessageController extends Controller
         return view('dashboard.admin.message.show', ['message' => $message]);  
     }
 
+    public function GetEditPost($id)
+    {
+        $users = User::orderBy('created_at', 'desc')->get();
+        $post = message::find($id);
+        return view('dashboard.admin.message.update', ['post' => $post, 'id' => $id , 'users' => $users]);
+    }
+
+    public function UpdatePost($id,Request $request)
+    {
+        $post = message::find($request->input('id'));
+        if (!is_null($post)) {
+            $post->user_id = $request->input('user_id');
+            $post->title = $request->input('title');
+            $post->content= $request->input('content');
+            $post->save();
+        }
+        return redirect()->route('dashboard.admin.message.manage')->with('info', 'پیام ویرایش شد');
+    }
 
 }

@@ -33,6 +33,7 @@
                                 <th>تاریخ</th>
                                 <th>خوانده شده</th>
                                 <th>مشاهده </th>
+                                <th>ویرایش </th>
                                 <th>حذف</th>                               
                             </tr>
                             </thead>
@@ -50,6 +51,7 @@
                                     @endif
                                     </td>
                                     <td><a href="{{route('dashboard.admin.message.show',['id'=>$item->id])}}" class="btn btn-block btn-outline-primary btn-sm">مشاهده پیام</a></td>
+                                    <td><a href="{{route('dashboard.admin.message.updatemessage',['id'=>$item->id])}}"  class="btn btn-block bg-gradient-warning btn-sm">ویرایش</a></td>
                                     <td>
                                     <a href="{{route('dashboard.admin.message.deletemessage',['id'=>$item->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>                 
                                     </td>
@@ -63,6 +65,7 @@
                                     <th>تاریخ</th>
                                     <th>خوانده شده</th>
                                     <th>مشاهده </th>
+                                    <th>ویرایش </th>
                                     <th>حذف</th>           
                                 </tr>
                                 </tfoot>

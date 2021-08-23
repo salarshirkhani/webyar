@@ -78,6 +78,7 @@ Route::prefix('dashboard')
                Route::get('message/manage', 'MessageController@GetMessage')->name('message.manage');
                Route::get('deletemessage/{id}','MessageController@DeletePost')->name('message.deletemessage');  
                Route::get('updatemessage/{id}','MessageController@GetEditPost')->name('message.updatemessage');
+               Route::post('updatemessage/{id}','MessageController@UpdatePost')->name('message.updatemessage');
                Route::get('message/show/{id}', 'MessageController@ShowMessage')->name('message.show');
 
                //DAILY MANAGMENT
