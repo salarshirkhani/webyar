@@ -1,14 +1,16 @@
-/* 1086 of 10091 CSS properties converted by rtl.daskhat.ir
- These properties should be override originals.
- just load rtl css file after original css file.*/
-
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Poppins:400,600,700&amp;display=swap");
+@font-face {
+    font-family: iransans;
+    src: url('../fonts/IRANSansWeb(FaNum).ttf');
+}
 body {
     direction: rtl;
     text-align: right;
+    font-family: iransans;
 }
 
 *:not(.far):not(.fa):not(.fas) {
-    font-family: Shabnam, sans-serif !important;
+    font-family: iransans !important;
 }
 
 dd {
