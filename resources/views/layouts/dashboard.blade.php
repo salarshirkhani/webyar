@@ -120,6 +120,15 @@ BY WEBITO
 
         <!-- Main content -->
         <div class="content">
+            @if($errors->any())
+                <div class="row">
+                    @foreach ($errors->all() as $error)
+                        <div class="col-md-12">
+                            <p class="alert alert-danger">{{ $error }}</p>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
             @yield('content')
         </div>
         <!-- /.content -->
@@ -188,15 +197,15 @@ BY WEBITO
 <script src="{{ asset('assets/dashboard/plugins/summernote/summernote-bs4.min.js')}}"></script>
 <script type="text/javascript">
     $(function() {
-        $("#date, #date1").persianDatepicker();   
+        $("#date, #date1").persianDatepicker();
         $('.todo-list').sortable({
         placeholder: 'sort-highlight',
         handle: '.handle',
         forcePlaceholderSize: true,
         zIndex: 999999
-         });    
+         });
     });
-    
+
 </script>
  <script>
   $(function () {
