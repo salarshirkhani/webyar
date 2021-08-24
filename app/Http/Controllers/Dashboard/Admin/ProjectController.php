@@ -42,6 +42,8 @@ class ProjectController extends Controller
             'start_date' => Carbon::fromJalali($request->input('start_date')),
             'finish_date' => Carbon::fromJalali($request->input('finish_date')),
         ]);
+        if ($post->finish_date->lt($post->start_date))
+            return redirect()->back()->withErrors(['finish_date' => 'تاریخ پایان نباید از تاریخ شروع کوچک‌تر باشد.']);
         $post->save();
         return redirect()->route('dashboard.admin.project.manage')->with('info', '  پروژه جدید ذخیره شد و نام آن' .' ' . $request->input('title'));
     }
@@ -86,6 +88,8 @@ class ProjectController extends Controller
             $post->description = $request->input('description');
             $post->start_date = Carbon::fromJalali($request->input('start_date'));
             $post->finish_date = Carbon::fromJalali($request->input('finish_date'));
+            if ($post->finish_date->lt($post->start_date))
+                return redirect()->back()->withErrors(['finish_date' => 'تاریخ پایان نباید از تاریخ شروع کوچک‌تر باشد.']);
             $post->save();
         }
         return redirect()->route('dashboard.admin.project.manage',$post->id)->with('info', 'پروژه ویرایش شد');

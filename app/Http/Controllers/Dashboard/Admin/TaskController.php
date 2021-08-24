@@ -37,6 +37,8 @@ class TaskController extends Controller
             'finish_date' => Carbon::fromJalali($request->input('finish_date')),
             'status' => $request->input('status'),
         ]);
+        if ($post->finish_date->lt($post->start_date))
+            return redirect()->back()->withErrors(['finish_date' => 'تاریخ پایان نباید از تاریخ شروع کوچک‌تر باشد.']);
         $post->save();
         return redirect()->route('dashboard.admin.task.manage', ['id' => $id])->with('info', 'تسک جدید اضافه شد ' );
     }
@@ -76,6 +78,8 @@ class TaskController extends Controller
             $post->start_date = Carbon::fromJalali($request->input('start_date'));
             $post->finish_date = Carbon::fromJalali($request->input('finish_date'));
             $post->status = $request->input('status');
+            if ($post->finish_date->lt($post->start_date))
+                return redirect()->back()->withErrors(['finish_date' => 'تاریخ پایان نباید از تاریخ شروع کوچک‌تر باشد.']);
             $post->save();
         }
         return redirect()->route('dashboard.admin.task.manage',$post->project_id)->with('info', 'تسک ویرایش شد');

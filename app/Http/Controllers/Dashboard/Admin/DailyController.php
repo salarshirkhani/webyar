@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Dashboard\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\Employee\TaskCreateRequest;
-use App\Http\Requests\Dashboard\Employee\TaskUpdateRequest;
+use App\Http\Requests\Dashboard\Employee\TaskStatusUpdateRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Session\Store;
@@ -76,7 +76,7 @@ class DailyController extends Controller
         return view('dashboard.admin.daily.show', ['task' => $task]);
     }
 
-    public function UpdatePost($id,TaskUpdateRequest $request)
+    public function UpdatePost($id, TaskStatusUpdateRequest $request)
     {
         $task=Task::where('employee_id',Auth::user()->id)->orderBy('finish_date', 'ASC')->get();
         $post = Task::find($request->input('id'));

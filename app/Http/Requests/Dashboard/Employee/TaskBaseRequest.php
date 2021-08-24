@@ -49,6 +49,9 @@ class TaskBaseRequest extends FormRequest
             $data['start_date'] = Carbon::fromJalali($data['start_date']);
             $data['finish_date'] = Carbon::fromJalali($data['finish_date']);
             $validator->setData($data);
+
+            if ($data['finish_date']->lt($data['start_date']))
+                $validator->errors()->add('finish_date', 'تاریخ پایان نباید از تاریخ شروع کوچک‌تر باشد.');
         });
     }
 }

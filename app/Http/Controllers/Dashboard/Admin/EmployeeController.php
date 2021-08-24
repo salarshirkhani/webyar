@@ -13,6 +13,7 @@ use App\Models\Phase;
 use App\Models\EmployeeProject;
 use Illuminate\Auth\Access\Gate;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 use phpDocumentor\Reflection\Types\Null_;
 use Illuminate\Support\Facades\Storage;
 
@@ -32,6 +33,8 @@ class EmployeeController extends Controller
             'start_date' => Carbon::fromJalali($request->input('start_date')),
             'finish_date' => Carbon::fromJalali($request->input('finish_date')),
         ]);
+        if ($post->finish_date->lt($post->start_date))
+            return redirect()->back()->withErrors(['finish_date' => 'تاریخ پایان نباید از تاریخ شروع کوچک‌تر باشد.']);
         $post->save();
         return redirect()->route('dashboard.admin.employee.manage', ['id' => $id])->with('info', 'کاربر جدید اضافه شد ' );
     }
@@ -64,6 +67,8 @@ class EmployeeController extends Controller
             $post->employee_id = $request->input('employee_id');
             $post->start_date = Carbon::fromJalali($request->input('start_date'));
             $post->finish_date = Carbon::fromJalali($request->input('finish_date'));
+            if ($post->finish_date->lt($post->start_date))
+                return redirect()->back()->withErrors(['finish_date' => 'تاریخ پایان نباید از تاریخ شروع کوچک‌تر باشد.']);
             $post->save();
         }
         return redirect()->route('dashboard.admin.employee.manage',$post->project_id)->with('info', 'کاربر پروژه ویرایش شد');
