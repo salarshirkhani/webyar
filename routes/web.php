@@ -69,6 +69,8 @@ Route::prefix('dashboard')
                Route::get('users/employee', 'UserController@GetUsers')->name('users.employee');
                Route::get('users/profile/{id}', 'UserController@GetProfile')->name('users.profile');
                Route::get('deleteuser/{id}','UserController@DeletePost')->name('users.deleteuser');
+               Route::get('updateuser/{id}','UserController@GetEditPost')->name('users.updateuser');
+               Route::post('updateuser/{id}','UserController@UpdatePost')->name('users.updateuser');
 
                //ACCOUNTING PAGE
                Route::get('money/employee', 'AccountingController@GetEmployee')->name('money.employee');

@@ -4,7 +4,7 @@
 @endsection
 @section('hierarchy')
     <x-breadcrumb-item title="داشبورد" route="dashboard.admin.index" />
-    <x-breadcrumb-item title="مدیریت کارمند ها" route="dashboard.admin.project.manage" />
+    <x-breadcrumb-item title="مدیریت کارمند ها" route="dashboard.admin.users.employee" />
 @endsection
 @section('content')
     @if(Session::has('info'))
@@ -81,6 +81,7 @@
                                 <th>ایمیل</th>
                                 <th>شماره تماس</th>
                                 <th>پروفایل</th>
+                                <th>ویرایش</th>
                                 <th>حذف</th>
                             </tr>
                             </thead>
@@ -93,6 +94,9 @@
                                     <td>{{ $item->mobile }}</td>
                                     <td><a href="{{route('dashboard.admin.users.profile',['id'=>$item->id])}}" class="btn btn-block btn-outline-primary btn-sm">مشاهده پروفایل</a></td>
                                     <td>
+                                        <a href="{{route('dashboard.admin.users.updateuser',['id'=>$item->id])}}" class="edit_post" target="_blank"><i class="fas fa-edit"></i></a>
+                                    </td>
+                                    <td>
                                         <a href="{{route('dashboard.admin.users.deleteuser',['id'=>$item->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>                 
                                     </td>
                                 </tr>
@@ -104,6 +108,7 @@
                                     <th>ایمیل</th>
                                     <th>شماره تماس</th>
                                     <th>پروفایل</th>
+                                    <th>ویرایش</th>
                                     <th>حذف</th>                                   
                                 </tr>
                                 </tfoot>

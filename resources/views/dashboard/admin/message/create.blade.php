@@ -8,6 +8,8 @@
     <x-breadcrumb-item title="ارسال پیام" route="dashboard.admin.message.create" />
 @endsection
 @section('content')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/min/dropzone.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.js"></script>
 @if ($user_id!=NULL)
 @foreach($users as $user)
 <?php
@@ -40,6 +42,29 @@ if ($user_id==$user->id){
             </x-select-group>
             <textarea type="text" style="padding:10px; margin: 10px 0px 16px 0px; height: 140px; border-radius: 7px; font-size: 16px;"class="form-control" required name="content"  placeholder="متن پیام"></textarea>
             {{ csrf_field() }}
+            <input type="file" style="margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; width: 100%; font-size: 16px;" class="dropzone" required name="file">
+            <script type="text/javascript">
+                Dropzone.options.dropzone =
+                    {
+                        maxFilesize: 12,
+                        renameFile: function(file) {
+                            var dt = new Date();
+                            var time = dt.getTime();
+                            return time+file.name;
+                        },
+                        acceptedFiles: ".jpeg,.jpg,.png,.gif,.docx,.pdf,.mp4,.mp3,.3gp,.xlxx,.txt",
+                       success: function(file, response)
+                        {
+                            console.log(response);
+                        },
+                             addRemoveLinks: true,
+                        timeout: 500000,
+                    error: function(file, response)
+                        {
+                            return 1;
+                        }
+                    };
+                </script>
              <x-card-footer>
                 <button type="submit" style=" margin: 20px 0px; height: 42px;width: 100%;font-size: 20px;"  class="btn btn-primary">ارسال</button>
              </x-card-footer>

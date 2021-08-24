@@ -58,4 +58,25 @@ class UserController extends Controller
         return redirect()->route('dashboard.admin.users.employee', ['id' => $id])->with('info', 'کاربر پاک شد');
     }
 
+    public function GetEditPost($id)
+    {
+        $post = User::find($id);
+        return view('dashboard.admin.users.edit', ['post' => $post, 'id' => $id]);
+    }
+
+    public function UpdatePost($id,Request $request)
+    {
+        $post = User::find($request->input('id'));
+        if (!is_null($post)) {
+            $post->first_name = $request->input('first_name');
+            $post->last_name = $request->input('last_name');
+            $post->mobile = $request->input('mobile');
+            $post->situation = $request->input('situation');
+            $post->email = $request->input('email');
+            $post->birthdate = $request->input('birthdate');
+            $post->save();
+        }
+        return redirect()->route('dashboard.admin.users.employee',$post->id)->with('info', 'کاربر ویرایش شد');
+    }
+
 }

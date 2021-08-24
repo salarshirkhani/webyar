@@ -42,6 +42,14 @@ class MessageController extends Controller
             'title' => $request->input('title'),
             'content' => $request->input('content'),
         ]);
+
+        //--------------
+        if($request->input('file')!=NULL){
+        $uploadedFile = $request->file('file');
+        $filename = $uploadedFile->getClientOriginalName();
+        Storage::disk('public')->putFileAs('/files/'.$filename, $uploadedFile, $filename);
+        $post->file = $filename;
+        }        
         $post->save();
         return redirect()->route('dashboard.admin.message.manage')->with('info', '  پیام جدید ارسال شد و نام آن' .' ' . $request->input('title'));
     }
@@ -71,6 +79,13 @@ class MessageController extends Controller
             $post->user_id = $request->input('user_id');
             $post->title = $request->input('title');
             $post->content= $request->input('content');
+            //--------------
+            if($request->input('file')!=NULL){
+            $uploadedFile = $request->file('file');
+            $filename = $uploadedFile->getClientOriginalName();
+            Storage::disk('public')->putFileAs('/files/'.$filename, $uploadedFile, $filename);
+            $post->file = $filename;
+            }        
             $post->save();
         }
         return redirect()->route('dashboard.admin.message.manage')->with('info', 'پیام ویرایش شد');

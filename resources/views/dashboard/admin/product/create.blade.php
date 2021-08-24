@@ -41,13 +41,13 @@
                             return time+img.name;
                         },
                         acceptedFiles: ".jpeg,.jpg,.png,.gif",
-                        addRemoveLinks: true,
-                        timeout: 500000,
-                        success: function(img, response)
+                       success: function(img, response)
                         {
                             console.log(response);
                         },
-                        error: function(img, response)
+                             addRemoveLinks: true,
+                        timeout: 500000,
+                    error: function(img, response)
                         {
                             return 1;
                         }
@@ -58,6 +58,6 @@
                 <button type="submit" style=" margin: 20px 0px; height: 42px;width: 100%;font-size: 20px;"  class="btn btn-primary">ارسال</button>
              </x-card-footer>
             </form>
-    </x-card>
+    </x-card> 
     </div>
     @endsection
