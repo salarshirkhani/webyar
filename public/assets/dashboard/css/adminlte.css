@@ -30016,4 +30016,8 @@ a.text-muted:hover {
 [class*="accent-"] a.btn-dark {
     color: #ffffff;
 }
+
+.ck-editor__editable_inline {
+    min-height: 250px;
+}
 /*# sourceMappingURL=adminlte.css.map */

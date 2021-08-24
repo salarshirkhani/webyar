@@ -16,7 +16,7 @@
                             <form style="padding:10px;" action="{{ route('dashboard.employee.task.edittask', $item->id) }}" method="post" role="form" class="form-horizontal " enctype="multipart/form-data">
                                 <input type="hidden" name="id" value="{{ $item->id }}" >
                                 <input type="text" style="padding:10px; margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control" required  name="title" value="{{ $item->title }}" placeholder="عنوان">
-                                <textarea type="text" id="ckeditor{{ $item->id }}" style="padding:10px; margin: 10px 0px 16px 0px; height: 140px; border-radius: 7px; font-size: 16px;"class="form-control" name="content"  placeholder="توضیحات">{{ $item->description }}</textarea>
+                                <textarea type="text" id="ckeditor{{ $item->id }}" style="padding:10px; margin: 10px 0px 16px 0px; height: 140px; border-radius: 7px; font-size: 16px;"class="form-control" name="description"  placeholder="توضیحات">{{ $item->description }}</textarea>
                                 <input type="hidden" name="employee_id" value="{{ Auth::user()->id }}" >
                                 <div class="form-group">
                                     <label>تاریخ شروع:</label>
@@ -56,17 +56,12 @@
                     </div>
                     <!-- /.modal-dialog -->
                   </div>
-                  <script src="{{ asset('assets/js/ckeditor.js') }}"></script>
                   <script>
-                        CKEDITOR.replace('content', {
-                       // Load the Farsi interface.
-                          language: 'fa'
-                        });
+                      document.addEventListener("DOMContentLoaded", function (event) {
+                          CKEDITOR.replace('ckeditor{{ $item->id }}', {
+                              // Load the Farsi interface.
+                              language: 'fa'
+                          });
+                      });
                   </script>
-                                    <script>
-                                      CKEDITOR.replace('#ckeditor{{ $item->id }}', {
-                                     // Load the Farsi interface.
-                                        language: 'fa'
-                                      });
-                                </script>
 @endforeach

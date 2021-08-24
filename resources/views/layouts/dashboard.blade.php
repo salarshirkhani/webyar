@@ -231,7 +231,7 @@ BY WEBITO
     });
   });
  </script>
- <script src="{{ asset('assets/js/ckeditor.js') }}"></script>
+ <script src="{{ asset('assets/dashboard/plugins/ckeditor/ckeditor.js') }}"></script>
  <script type="text/javascript">
     CKEDITOR.replace('description', {
      // Load the Farsi interface.

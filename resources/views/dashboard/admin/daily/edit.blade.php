@@ -58,7 +58,7 @@
                   </div>
 
 @endforeach
-<script src="{{ asset('assets/js/ckeditor.js') }}"></script>
+<script src="{{ asset('assets/dashboard/plugins/ckeditor/ckeditor.js') }}"></script>
 <script>
       CKEDITOR.replace('content', {
      // Load the Farsi interface.

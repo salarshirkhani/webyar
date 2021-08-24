@@ -94,9 +94,7 @@ class TaskController extends Controller
         $data['employee_id'] = Auth::user()->id;
         $post = Task::find($id);
         if (!is_null($post)) {
-            $post->description = $data['content'];
             $post->update($data);
-
         }
         return redirect()->route('dashboard.employee.task.manage')->with('info', 'تسک ویرایش شد');
     }
