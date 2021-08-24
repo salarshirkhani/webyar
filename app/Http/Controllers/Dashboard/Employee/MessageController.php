@@ -12,8 +12,8 @@ use App\Models\Project;
 use App\Models\Phase;
 use App\Models\message;
 use App\Models\EmployeeProject;
-use Illuminate\Auth\Access\Gate; 
-use Illuminate\Support\Facades\Auth; 
+use Illuminate\Auth\Access\Gate;
+use Illuminate\Support\Facades\Auth;
 use phpDocumentor\Reflection\Types\Null_;
 use Illuminate\Support\Facades\Storage;
 use Hekmatinasser\Verta\Verta;
@@ -34,7 +34,37 @@ class MessageController extends Controller
             $post->status = 'seen';
             $post->save();
         }
-        return view('dashboard.employee.message.show', ['message' => $message]);  
+        return view('dashboard.employee.message.show', ['message' => $message]);
+    }
+
+    public function GetAnswerMessage(Request $request, message $message)
+    {
+        return view('dashboard.employee.message.answer', ['message' => $message]);
+    }
+
+    public function AnswerMessage(Request $request, message $message)
+    {
+        if ($message->answer_id != null)
+            return;
+
+        $post = new message([
+            'sender_id' => Auth::user()->id,
+            'user_id' => $message->sender_id,
+            'title' => $request->input('title'),
+            'content' => $request->input('content'),
+        ]);
+
+        //--------------
+        if($request->input('file')!=NULL){
+            $uploadedFile = $request->file('file');
+            $filename = $uploadedFile->getClientOriginalName();
+            Storage::disk('public')->putFileAs('/files/'.$filename, $uploadedFile, $filename);
+            $post->file = $filename;
+        }
+        $post->save();
+        $message->answer()->associate($post);
+        $message->save();
+        return redirect()->route('dashboard.employee.message.manage')->with('info', '  پیام جدید ارسال شد و نام آن' .' ' . $request->input('title'));
     }
 
 }

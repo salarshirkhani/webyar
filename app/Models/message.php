@@ -22,10 +22,7 @@ class message extends Model
     }
 
     public function answer() {
-        return $this->belongsTo('App\Models\messages', 'answer_id');
+        return $this->belongsTo('App\Models\message', 'answer_id');
     }
 
-    public function messages() {
-        return $this->hasMany('App\Models\messages', 'answer_id');
-    }
 }

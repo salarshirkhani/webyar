@@ -4,7 +4,7 @@
 @endsection
 @section('hierarchy')
     <x-breadcrumb-item title="داشبورد" route="dashboard.admin.index" />
-    <x-breadcrumb-item title="مدیریت پیام ها" route="dashboard.admin.message.manage" />  
+    <x-breadcrumb-item title="مدیریت پیام ها" route="dashboard.admin.message.manage" />
 @endsection
 @section('content')
     @if(Session::has('info'))
@@ -18,7 +18,7 @@
         <x-card type="info">
             <x-card-header>مدیریت پیام ها</x-card-header>
                 <x-card-body>
-                    <div class="box-body"> 
+                    <div class="box-body">
                         <div style="margin-bottom: 50px;"></div>
                         <div class="card">
                             <div class="card-header">
@@ -34,7 +34,8 @@
                                 <th>خوانده شده</th>
                                 <th>مشاهده </th>
                                 <th>ویرایش </th>
-                                <th>حذف</th>                               
+                                <th>ارسال پاسخ</th>
+                                <th>حذف</th>
                             </tr>
                             </thead>
                                 <tbody>
@@ -42,7 +43,7 @@
                                 <tr>
                                     <td>{{ $item->for->first_name }} {{ $item->for->last_name }}</td>
                                     <td>{{ $item->title }}</td>
-                                    <td>{!! Facades\Verta::instance($item->created_at)->formatDate() !!}</td> 
+                                    <td>{!! Facades\Verta::instance($item->created_at)->formatDate() !!}</td>
                                     <td>
                                     @if ($item->status=='seen')
                                       <p style="color:green;"> خوانده شده </p>
@@ -53,7 +54,12 @@
                                     <td><a href="{{route('dashboard.admin.message.show',['id'=>$item->id])}}" class="btn btn-block btn-outline-primary btn-sm">مشاهده پیام</a></td>
                                     <td><a href="{{route('dashboard.admin.message.updatemessage',['id'=>$item->id])}}"  class="btn btn-block bg-gradient-warning btn-sm">ویرایش</a></td>
                                     <td>
-                                    <a href="{{route('dashboard.admin.message.deletemessage',['id'=>$item->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>                 
+                                        @if(!$item->answer_id && $item->user_id == Auth::user()->id)
+                                            <a href="{{route('dashboard.admin.message.answer',['message'=>$item])}}" class="btn btn-block bg-gradient-success btn-sm">ارسال پاسخ</a>
+                                        @endif
+                                    </td>
+                                    <td>
+                                    <a href="{{route('dashboard.admin.message.deletemessage',['id'=>$item->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>
                                     </td>
                                 </tr>
                              @endforeach
@@ -66,7 +72,7 @@
                                     <th>خوانده شده</th>
                                     <th>مشاهده </th>
                                     <th>ویرایش </th>
-                                    <th>حذف</th>           
+                                    <th>حذف</th>
                                 </tr>
                                 </tfoot>
                         </table>
@@ -77,9 +83,9 @@
                     </x-card-body>
                 <x-card-footer>
                     <a href="{{route('dashboard.admin.message.create')}}" class="btn btn-success">ایجاد پیام جدید</a>
-                </x-card-footer>      
+                </x-card-footer>
         </x-card>
     </div>
 
     @endsection
- 
+

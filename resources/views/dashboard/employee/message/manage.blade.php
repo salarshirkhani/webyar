@@ -5,7 +5,7 @@
 @endsection
 @section('hierarchy')
     <x-breadcrumb-item title="داشبورد" route="dashboard.employee.index" />
-    <x-breadcrumb-item title="مدیریت پیام ها" route="dashboard.employee.message.manage" />  
+    <x-breadcrumb-item title="مدیریت پیام ها" route="dashboard.employee.message.manage" />
 @endsection
 @section('content')
     @if(Session::has('info'))
@@ -19,7 +19,7 @@
         <x-card type="info">
             <x-card-header>مدیریت پیام ها</x-card-header>
                 <x-card-body>
-                    <div class="box-body"> 
+                    <div class="box-body">
                         <div style="margin-bottom: 50px;"></div>
                         <div class="card">
                             <div class="card-header">
@@ -41,7 +41,7 @@
                                 <tr>
                                     <td>{{ $item->for->first_name }} {{ $item->for->last_name }}</td>
                                     <td>{{ $item->title }}</td>
-                                    <td>{!! $item->created_at->formatJalali() !!}</td> 
+                                    <td>{!! $item->created_at->formatJalali() !!}</td>
                                     <td>
                                         @if ($item->status=='seen')
                                           <p style="color:green;"> خوانده شده </p>
@@ -49,7 +49,12 @@
                                           <p style="color:red;">خوانده نشده</p>
                                         @endif
                                     </td>
-                                    <td><a href="{{route('dashboard.employee.message.show',['id'=>$item->id])}}" class="btn btn-block btn-outline-primary btn-sm">مشاهده پیام</a></td>
+                                    <td>
+                                        <a href="{{route('dashboard.employee.message.show',['id'=>$item->id])}}" class="btn btn-block btn-outline-primary btn-sm">مشاهده پیام</a>
+                                        @if(!$item->answer_id)
+                                            <a href="{{route('dashboard.employee.message.answer',['message'=>$item])}}" class="btn btn-block btn-outline-success btn-sm">ارسال پاسخ</a>
+                                        @endif
+                                    </td>
                                 </tr>
                              @endforeach
                                 </tbody>
@@ -69,9 +74,9 @@
                     </div>
                     </x-card-body>
                 <x-card-footer>
-                </x-card-footer>      
+                </x-card-footer>
         </x-card>
     </div>
 
     @endsection
- 
+
