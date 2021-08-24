@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Dashboard\Employee;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\Employee\TaskCreateRequest;
+use App\Http\Requests\Dashboard\Employee\TaskStatusUpdateRequest;
 use App\Http\Requests\Dashboard\Employee\TaskUpdateRequest;
-use App\Http\Requests\Dashboard\Employee\TaskEditRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Session\Store;
@@ -77,7 +77,7 @@ class TaskController extends Controller
         return view('dashboard.employee.task.show', ['task' => $task]);
     }
 
-    public function UpdatePost($id,TaskUpdateRequest $request)
+    public function UpdatePost($id, TaskStatusUpdateRequest $request)
     {
         $task=Task::where('employee_id',Auth::user()->id)->orderBy('finish_date', 'ASC')->get();
         $post = Task::find($request->input('id'));
@@ -87,8 +87,8 @@ class TaskController extends Controller
         return redirect()->route('dashboard.employee.task.manage')->with('info', 'تسک انجام شد');
     }
 
-    
-    public function EditPost($id,TaskEditRequest $request)
+
+    public function EditPost($id, TaskUpdateRequest $request)
     {
         $data = $request->validated();
         $data['employee_id'] = Auth::user()->id;
@@ -96,7 +96,7 @@ class TaskController extends Controller
         if (!is_null($post)) {
             $post->description = $data['content'];
             $post->update($data);
-            
+
         }
         return redirect()->route('dashboard.employee.task.manage')->with('info', 'تسک ویرایش شد');
     }
