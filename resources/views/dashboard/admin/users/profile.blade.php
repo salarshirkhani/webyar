@@ -43,7 +43,7 @@ foreach ($task as $item) {
                     <b>امتیاز</b> <a class="float-right">{{ $post->rate }}</a>
                   </li>
                   <li class="list-group-item">
-                    <b>تاریخ تولد</b> <a class="float-right">{{ $post->birthdate->formatJalali() }}</a>
+                    <b>تاریخ تولد</b> <a class="float-right">{{ $post->birthdate }}</a>
                   </li>
                 </ul>
                 <a href="{{route('dashboard.admin.message.create',['user_id'=>$post->id])}}" class="btn btn-warning btn-block"><b>ارسال پیام</b></a>
