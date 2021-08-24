@@ -16,7 +16,7 @@
     </div>
 @endif
 @include('dashboard.admin.daily.create')
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="{{ asset('assets/js/jquery-3.5.1.min.js') }}"></script>
 <div class="row">
     <!-- SIDE 1 -->
     <section class="col-lg-4 connectedSortable">

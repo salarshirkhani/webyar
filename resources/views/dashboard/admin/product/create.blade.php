@@ -7,9 +7,8 @@
     <x-breadcrumb-item title="افزودن محصول" route="dashboard.admin.news.create" />
 @endsection
 @section('content')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/min/dropzone.min.css">
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.js"></script>
+<link rel="stylesheet" href="{{ asset('assets/dashboard/plugins/dropzone/min/dropzone.min.css') }}">
+<script src="{{ asset('assets/dashboard/plugins/dropzone/min/dropzone.min.js') }}"></script>
     @if(Session::has('info'))
     <div class="row">
         <div class="col-md-12">
@@ -21,7 +20,7 @@
         <x-card type="info">
             <x-card-header>محصولات</x-card-header>
         <form style="padding:10px;" action="{{ route('dashboard.admin.product.create') }}" method="post" role="form" class="form-horizontal " enctype="multipart/form-data">
-            <input type="text" style="padding:10px; margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control" required  name="title"  placeholder="عنوان">            
+            <input type="text" style="padding:10px; margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control" required  name="title"  placeholder="عنوان">
             <input type="text" style="padding:10px; margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control" required name="explain"  placeholder="توضیح کوتاه">
             <x-select-group name="category_id" label="دسته‌بندی" required :model="$model ?? null">
                 @foreach($categories as $category)
@@ -58,6 +57,6 @@
                 <button type="submit" style=" margin: 20px 0px; height: 42px;width: 100%;font-size: 20px;"  class="btn btn-primary">ارسال</button>
              </x-card-footer>
             </form>
-    </x-card> 
+    </x-card>
     </div>
     @endsection

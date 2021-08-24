@@ -13,18 +13,15 @@ BY WEBITO
     <link type="text/css" rel="stylesheet" href="{{ asset('assets/css/persianDatepicker.css') }}" />
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ asset('assets/dashboard/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
-          integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="{{ asset('assets/dashboard/plugins/fontawesome-free/css/all.css') }}" />
     <!-- Theme style -->
-    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/shabnam-font@v5.0.1/dist/font-face.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/fonts/shabnam.css') }}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="{{ asset('assets/dashboard/css/adminlte.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/dashboard/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/dashboard/plugins/toastr/toastr.min.css') }}">
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     @yield('styles', '')
     <link rel="stylesheet" href="{{ asset('assets/dashboard/css/adminlte.rtl.css') }}">
     <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
     <script>
         window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),
@@ -152,16 +149,10 @@ BY WEBITO
 <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->
-<script
-    src="https://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-    crossorigin="anonymous"></script>
-<script src="https://getbootstrap.com/docs/4.1/assets/js/vendor/popper.min.js"></script>
+<script src="{{ asset('assets/js/jquery-3.5.1.min.js') }}"></script>
+<script src="{{ asset('assets/dashboard/plugins/popper/popper.min.js') }}"></script>
 <!-- Bootstrap 4 -->
-<script
-    src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-    crossorigin="anonymous"></script>
+<script src="{{ asset('assets/dashboard/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('assets/dashboard/js/adminlte.min.js') }}"></script>
 <script>
@@ -212,14 +203,14 @@ BY WEBITO
     $('#summernote').summernote();
     $("#example1").DataTable({
     "language": {
-          "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Persian.json"
+          "url": "{{ asset('assets/dashboard/table-persian.json') }}"
       },
       "responsive": true,"searching": true, "lengthChange": false, "autoWidth": false,
       "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({
     "language": {
-          "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Persian.json"
+          "url": "{{ asset('assets/dashboard/table-persian.json') }}"
       },
       "paging": true,
       "lengthChange": false,
@@ -240,7 +231,7 @@ BY WEBITO
     });
   });
  </script>
- <script src="https://cdn.ckeditor.com/4.11.2/standard/ckeditor.js"></script>
+ <script src="{{ asset('assets/js/ckeditor.js') }}"></script>
  <script type="text/javascript">
     CKEDITOR.replace('description', {
      // Load the Farsi interface.

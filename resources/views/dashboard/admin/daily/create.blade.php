@@ -11,9 +11,9 @@
         <x-card type="info">
           <x-card-header>ساخت برنامه کاری جدید</x-card-header>
       <form style="padding:10px;" action="{{ route('dashboard.admin.daily.create') }}" method="post" role="form" class="form-horizontal " enctype="multipart/form-data">
-          <input type="text" style="padding:10px; margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control" required  name="title"  placeholder="عنوان">  
-          <textarea type="text" style="padding:10px; margin: 10px 0px 16px 0px; height: 140px; border-radius: 7px; font-size: 16px;"class="form-control" required name="description"  placeholder="توضیحات تسک"></textarea>  
-          <input type="hidden" style="margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control"  name="status" value="notwork" >    
+          <input type="text" style="padding:10px; margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control" required  name="title"  placeholder="عنوان">
+          <textarea type="text" style="padding:10px; margin: 10px 0px 16px 0px; height: 140px; border-radius: 7px; font-size: 16px;"class="form-control" required name="description"  placeholder="توضیحات تسک"></textarea>
+          <input type="hidden" style="margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control"  name="status" value="notwork" >
           <div class="form-group">
               <label>تاریخ شروع:</label>
               <div class="input-group">
@@ -23,7 +23,7 @@
                 <input id="date" name="start_date" type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy-mm-dd" data-mask="">
               </div>
               <!-- /.input group -->
-          </div> 
+          </div>
           <div class="form-group">
               <label>تاریخ پایان:</label>
               <div class="input-group">
@@ -33,12 +33,12 @@
                 <input name="finish_date" type="text" id="date1" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy-mm-dd" data-mask="">
               </div>
               <!-- /.input group -->
-          </div>   
+          </div>
 
             {{ csrf_field() }}
            <x-card-footer>
            </x-card-footer>
-          
+
        </x-card>
 
       </div>
@@ -52,7 +52,7 @@
   </div>
   <!-- /.modal-dialog -->
 </div>
-<script src="https://cdn.ckeditor.com/4.11.2/standard/ckeditor.js"></script>
+<script src="{{ asset('assets/js/ckeditor.js') }}"></script>
 <script type="text/javascript">
     CKEDITOR.replace('description', {
     // Load the Farsi interface.

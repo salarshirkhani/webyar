@@ -8,14 +8,14 @@
     <x-breadcrumb-item title="ارسال پیام" route="dashboard.admin.message.create" />
 @endsection
 @section('content')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/min/dropzone.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.js"></script>
+<link rel="stylesheet" href="{{ asset('assets/dashboard/plugins/dropzone/min/dropzone.min.css') }}">
+<script src="{{ asset('assets/dashboard/plugins/dropzone/min/dropzone.min.js') }}"></script>
 @if ($user_id!=NULL)
 @foreach($users as $user)
 <?php
 if ($user_id==$user->id){
-  $name=$user->first_name;  
-  $lastname=$user->last_name; 
+  $name=$user->first_name;
+  $lastname=$user->last_name;
 }
 ?>
 @endforeach
@@ -31,10 +31,10 @@ if ($user_id==$user->id){
         <x-card type="info">
             <x-card-header>ارسال پیام</x-card-header>
         <form style="padding:10px;" action="{{ route('dashboard.admin.message.create') }}" method="post" role="form" class="form-horizontal " enctype="multipart/form-data">
-            <input type="text" style="padding:10px; margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control" required  name="title"  placeholder="عنوان">            
+            <input type="text" style="padding:10px; margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control" required  name="title"  placeholder="عنوان">
             <x-select-group name="user_id" label="ارسال به" required :model="$model ?? null">
                @if ($user_id!=NULL)
-               <x-select-item :value="$user_id"><?php echo $name.' '.$lastname; ?></x-select-item>    
+               <x-select-item :value="$user_id"><?php echo $name.' '.$lastname; ?></x-select-item>
                @endif
                 @foreach($users as $user)
                     <x-select-item :value="$user->id">{{ $user->first_name }} {{ $user->last_name }}</x-select-item>

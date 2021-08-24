@@ -42,7 +42,7 @@
                                   <x-select-item value="notwork">انجام نشده</x-select-item>
                                   <x-select-item value="done">انجام شده</x-select-item>
                                 </x-select-group>
-                                 {{ csrf_field() }}   
+                                 {{ csrf_field() }}
                         </x-card>
                         </div>
                         </div>
@@ -58,7 +58,7 @@
                   </div>
 
 @endforeach
-<script src="https://cdn.ckeditor.com/4.11.2/standard/ckeditor.js"></script>
+<script src="{{ asset('assets/js/ckeditor.js') }}"></script>
 <script>
       CKEDITOR.replace('content', {
      // Load the Farsi interface.

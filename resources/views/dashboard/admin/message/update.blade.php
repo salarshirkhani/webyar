@@ -7,8 +7,8 @@
     <x-breadcrumb-item title="پیام ها " route="dashboard.admin.message.manage" />
 @endsection
 @section('content')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/min/dropzone.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.4.0/dropzone.js"></script>
+    <link rel="stylesheet" href="{{ asset('assets/dashboard/plugins/dropzone/min/dropzone.min.css') }}">
+    <script src="{{ asset('assets/dashboard/plugins/dropzone/min/dropzone.min.js') }}"></script>
 @if(Session::has('info'))
     <div class="row">
         <div class="col-md-12">
@@ -21,7 +21,7 @@
             <x-card-header>ویرایش پیام</x-card-header>
         <form style="padding:10px;" action="{{ route('dashboard.admin.message.updatemessage',['id'=>$post->id]) }}" method="post" role="form" class="form-horizontal " enctype="multipart/form-data">
             <input type="hidden" name="id" value="{{ $post->id }}" >
-            <input type="text" style="padding:10px; margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control" required  name="title" value="{{$post->title}}" placeholder="عنوان">            
+            <input type="text" style="padding:10px; margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control" required  name="title" value="{{$post->title}}" placeholder="عنوان">
             <x-select-group name="user_id" label="ارسال به" required :model="$model ?? null">
                 <x-select-item :value="$post->user_id">{{$post->for->first_name}} {{$post->for->last_name }}</x-select-item>
                 @foreach($users as $user)

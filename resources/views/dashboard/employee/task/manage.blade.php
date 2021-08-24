@@ -9,6 +9,7 @@
     <x-breadcrumb-item title="مدیریت تسک ها" route="dashboard.employee.task.manage" />
 @endsection
 @section('content')
+<script src="{{ asset('assets/js/jquery-3.5.1.min.js') }}"></script>
     @if(Session::has('info'))
     <div class="row">
         <div class="col-md-12">
@@ -18,7 +19,6 @@
 @endif
 @include('dashboard.employee.task.create')
 @include('dashboard.employee.task.edit')
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 @if($absence == NULL)
     <div class="row">
         <div class="col-md-12">

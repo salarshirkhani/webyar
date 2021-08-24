@@ -8,11 +8,11 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" href="{{ asset('assets/dashboard/plugins/fontawesome-free/css/all.css') }}" />
 
     <!-- Styles -->
-    <link href="https://cdn.fontcdn.ir/Font/Persian/Shabnam/Shabnam.css" rel="stylesheet">
+    <link href="{{ asset('assets/fonts/shabnam.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/auth/css/main.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/auth/css/main.rtl.css') }}" rel="stylesheet">
 </head>
@@ -25,8 +25,8 @@
         </div>
     </div>
 </div>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="{{ asset('assets/js/jquery-3.5.1.min.js') }}"></script>
+<script src="{{ asset('assets/dashboard/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset("assets/auth/js/tilt.jquery.min.js") }}" type="text/javascript"></script>
 <script src="{{ asset("assets/auth/js/main.js") }}" type="text/javascript"></script>
 </body>
