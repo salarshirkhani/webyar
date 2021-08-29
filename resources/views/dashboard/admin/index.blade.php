@@ -18,7 +18,23 @@ foreach ($users as $key) {
 }
 ?>
     <div class="container">
-      <div class="row">
+        <div class="row">
+        @if(!empty($finishing_projects) || !empty($finishing_phases))
+            <div class="col-12">
+                @foreach($finishing_projects as $project)
+                    <div class="alert alert-danger">
+                        پروژه {{ $project->title }} در تاریخ {{ $project->finish_date->formatJalali() }} به پایان
+                        خواهد رسید!
+                    </div>
+                @endforeach
+                @foreach($finishing_phases as $phase)
+                    <div class="alert alert-danger">
+                        فاز {{ $phase->title }} از پروژه {{ $phase->for->title }} در
+                        تاریخ {{ $phase->finish_date->formatJalali() }} به پایان خواهد رسید!
+                    </div>
+                @endforeach
+            </div>
+        @endif
         <div class="col-lg-3 col-6">
           <!-- small box -->
           <div class="small-box bg-info">
@@ -79,6 +95,6 @@ foreach ($users as $key) {
           </div>
         </div>
         <!-- ./col -->
-      </div> 
+      </div>
     </div>
 @endsection
