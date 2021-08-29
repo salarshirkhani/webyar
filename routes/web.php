@@ -50,6 +50,14 @@ Route::prefix('dashboard')
                 Route::post('updatephase/{id}','PhaseController@UpdatePost')->name('phase.updatephase');
                 Route::get('phase/tasks/{id}', 'PhaseController@GetManageTask')->name('phase.tasks');
 
+                //SALARY PAGE
+                Route::get('salary', ['uses' => 'SalaryController@GetIndex','as' => 'salary.index']);
+                Route::post('salary/create', ['uses' => 'SalaryController@CreatePost','as' => 'salary.create']);
+                Route::get('salary/create', ['uses' => 'SalaryController@GetCreatePost','as' => 'salary.create']);
+                Route::get('salary/{salary}/delete','SalaryController@DeletePost')->name('salary.delete');
+                Route::get('salary/{salary}','SalaryController@GetEditPost')->name('salary.edit');
+                Route::post('salary/{salary}','SalaryController@UpdatePost')->name('salary.update');
+
                //EMPLOYEE PAGE
                Route::post('employee/create/{id}', ['uses' => 'EmployeeController@CreatePost','as' => 'employee.create']);
                Route::get('employee/create/{id}', ['uses' => 'EmployeeController@GetCreatePost','as' => 'employee.create']);
