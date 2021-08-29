@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\Project;
 use App\Models\Phase;
 use App\Models\Task;
+use App\Models\EmployeeProject;
 use Illuminate\Auth\Access\Gate;
 use Illuminate\Support\Facades\Auth;
 use phpDocumentor\Reflection\Types\Null_;
@@ -74,5 +75,15 @@ class PhaseController extends Controller
         }
         return redirect()->route('dashboard.admin.phase.manage',$post->project_id)->with('info', 'فاز ویرایش شد');
     }
+
+       //TASK CONTROLLER
+
+       public function GetManageTask($id)
+       {
+        $task=Task::where('phase_id',$id)->orderBy('created_at', 'desc')->get();
+        $phase = Phase::find($id);
+        $posts = EmployeeProject::where('project_id',$id)->orderBy('created_at', 'desc')->get();
+        return view('dashboard.admin.phase.tasks', ['posts' => $posts,'id' => $id,'task' => $task,'phase' => $phase]);
+       }
 
 }
