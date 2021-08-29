@@ -127,7 +127,7 @@
                         <div style="margin-bottom: 50px;"></div>
                         <div class="card">
                             <div class="card-header">
-                              <h3 class="card-title">تسک های این پروژه</h3>
+                              <h3 class="card-title">مسئولیت های این پروژه</h3>
                             </div>
                         <div class="card-body p-0">
                          <table id="example2" class="table table-bordered table-hover">
@@ -175,7 +175,7 @@
                                      </tfoot>
                          </table>
                          </div>
-                         <a href="{{route('dashboard.admin.task.manage',['id'=>$id])}}" class="btn btn-success">مدیریت تسک ها </a>
+                         <a href="{{route('dashboard.admin.task.manage',['id'=>$id])}}" class="btn btn-success">مدیریت مسئولیت ها </a>
 
                          <!-- /.card-body -->
                          </div>

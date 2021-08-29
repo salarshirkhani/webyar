@@ -40,7 +40,7 @@ class TaskController extends Controller
         if ($post->finish_date->lt($post->start_date))
             return redirect()->back()->withErrors(['finish_date' => 'تاریخ پایان نباید از تاریخ شروع کوچک‌تر باشد.']);
         $post->save();
-        return redirect()->route('dashboard.admin.task.manage', ['id' => $id])->with('info', 'تسک جدید اضافه شد ' );
+        return redirect()->route('dashboard.admin.task.manage', ['id' => $id])->with('info', 'مسئولیت جدید اضافه شد ' );
     }
     public function GetManagePost($id,Request $request)
     {
@@ -54,7 +54,7 @@ class TaskController extends Controller
     public function DeletePost($id,$project_id){
         $post = Task::find($id);
         $post->delete();
-        return redirect()->route('dashboard.admin.task.manage', ['id' => $project_id])->with('info', 'تسک پاک شد');
+        return redirect()->route('dashboard.admin.task.manage', ['id' => $project_id])->with('info', 'مسئولیت پاک شد');
     }
 
     public function GetEditPost($id)
@@ -82,7 +82,7 @@ class TaskController extends Controller
                 return redirect()->back()->withErrors(['finish_date' => 'تاریخ پایان نباید از تاریخ شروع کوچک‌تر باشد.']);
             $post->save();
         }
-        return redirect()->route('dashboard.admin.task.manage',$post->project_id)->with('info', 'تسک ویرایش شد');
+        return redirect()->route('dashboard.admin.task.manage',$post->project_id)->with('info', 'مسئولیت ویرایش شد');
     }
 
 }

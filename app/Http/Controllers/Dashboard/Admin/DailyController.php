@@ -35,7 +35,7 @@ class DailyController extends Controller
         $data['employee_id'] = Auth::user()->id;
         $post = new Task($data);
         $post->save();
-        return redirect()->route('dashboard.admin.daily.manage')->with('info', 'تسک جدید اضافه شد ' );
+        return redirect()->route('dashboard.admin.daily.manage')->with('info', 'مسئولیت جدید اضافه شد ' );
     }
     public function GetManagePost(Request $request)
     {
@@ -83,7 +83,7 @@ class DailyController extends Controller
         if (!is_null($post)) {
             $post->update($request->validated());
         }
-        return redirect()->route('dashboard.admin.daily.manage')->with('info', 'تسک انجام شد');
+        return redirect()->route('dashboard.admin.daily.manage')->with('info', 'مسئولیت انجام شد');
     }
 
 

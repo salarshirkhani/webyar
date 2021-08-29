@@ -104,7 +104,7 @@
                         </button>
                       </div>
                       <div class="modal-body">
-                          آیا این تسک را با موفقیت به اتمام رساندید ؟
+                          آیا این مسئولیت را با موفقیت به اتمام رساندید ؟
 
                       </div>
                       <div class="modal-footer justify-content-between">
@@ -212,7 +212,7 @@
                         </button>
                       </div>
                       <div class="modal-body">
-                          آیا این تسک را با موفقیت به اتمام رساندید ؟
+                          آیا این مسئولیت را با موفقیت به اتمام رساندید ؟
 
                       </div>
                       <div class="modal-footer justify-content-between">
@@ -247,7 +247,7 @@
             <div class="card-header">
               <h3 class="card-title">
                 <i class="ion ion-clipboard mr-1"></i>
-                تمامی تسک های انجام نشده
+                تمامی مسئولیت های انجام نشده
               </h3>
 
               <div class="card-tools">
@@ -321,7 +321,7 @@
                       </button>
                     </div>
                     <div class="modal-body">
-                        آیا این تسک را با موفقیت به اتمام رساندید ؟
+                        آیا این مسئولیت را با موفقیت به اتمام رساندید ؟
 
                     </div>
                     <div class="modal-footer justify-content-between">

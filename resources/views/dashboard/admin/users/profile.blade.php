@@ -37,7 +37,7 @@ foreach ($task as $item) {
 
                 <ul class="list-group list-group-unbordered mb-3">
                   <li class="list-group-item">
-                    <b>تسک های انجام شده</b> <a class="float-right"><?php echo $tasks ;  ?></a>
+                    <b>مسئولیت های انجام شده</b> <a class="float-right"><?php echo $tasks ;  ?></a>
                   </li>
                   <li class="list-group-item">
                     <b>امتیاز</b> <a class="float-right">{{ $post->rate }}</a>
@@ -73,7 +73,7 @@ foreach ($task as $item) {
                       <div class="inner">
                         <h3><?php echo $tasks; ?></h3>
 
-                        <p>تسک های انجام شده</p>
+                        <p>مسئولیت های انجام شده</p>
                       </div>
                       <div class="icon">
                         <i class="ion ion-pie-graph"></i>
@@ -82,7 +82,7 @@ foreach ($task as $item) {
                   </div>
                   <div class="col-md-12">
                     <x-card type="info">
-                        <x-card-header>مدیریت تسک ها</x-card-header>
+                        <x-card-header>مدیریت مسئولیت ها</x-card-header>
                             <x-card-body>
                                 <div class="box-body">
                                     <table id="example2" class="table table-bordered table-hover">

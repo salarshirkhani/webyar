@@ -45,7 +45,7 @@ foreach ($task as $item) {
                       <div class="inner">
                         <h3><?php echo $tasks; ?></h3>
 
-                        <p>تسک های انجام شده</p>
+                        <p>مسئولیت های انجام شده</p>
                       </div>
                       <div class="icon">
                         <i class="ion ion-pie-graph"></i>
@@ -92,7 +92,7 @@ foreach ($task as $item) {
                     </x-card>
                     <div style="margin-top:50px;"></div>
                     <x-card type="info">
-                        <x-card-header>تسک ها</x-card-header>
+                        <x-card-header>مسئولیت ها</x-card-header>
                             <x-card-body>
                                 <div class="box-body">
                                     <table id="example2" class="table table-bordered table-hover">

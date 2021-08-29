@@ -29,7 +29,7 @@ foreach ($task as $item) {
             <div class="inner">
               <h3><?php echo $notwork; ?></h3>
 
-              <p>تسک های انجام نشده</p>
+              <p>مسئولیت های انجام نشده</p>
             </div>
             <div class="icon">
               <i class="ion ion-bag"></i>
@@ -59,7 +59,7 @@ foreach ($task as $item) {
             <div class="inner">
               <h3><?php echo $tasks; ?></h3>
 
-              <p>تسک های انجام شده</p>
+              <p>مسئولیت های انجام شده</p>
             </div>
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
@@ -68,6 +68,6 @@ foreach ($task as $item) {
           </div>
         </div>
         <!-- ./col -->
-      </div> 
+      </div>
     </div>
 @endsection

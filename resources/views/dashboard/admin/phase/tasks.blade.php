@@ -5,7 +5,7 @@
 @section('hierarchy')
     <x-breadcrumb-item title="داشبورد" route="dashboard.admin.index" />
     <x-breadcrumb-item title="مدیریت پروژه ها" route="dashboard.admin.project.manage" />
-    <x-breadcrumb-item title="مدیریت تسک ها" route="dashboard.admin.phase.tasks" />
+    <x-breadcrumb-item title="مدیریت مسئولیت ها" route="dashboard.admin.phase.tasks" />
 @endsection
 @section('content')
     @if(Session::has('info'))
@@ -18,10 +18,10 @@
 
 <div class="col-md-12">
     <x-card type="info">
-        <x-card-header>ساخت تسک برای فاز {{$phase->title}}</x-card-header>
+        <x-card-header>ساخت مسئولیت برای فاز {{$phase->title}}</x-card-header>
     <form style="padding:10px;" action="{{ route('dashboard.admin.task.create',['id'=>$id]) }}" method="post" role="form" class="form-horizontal " enctype="multipart/form-data">
         <input type="text" style="padding:10px; margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control" required  name="title"  placeholder="عنوان">
-        <textarea type="text" style="padding:10px; margin: 10px 0px 16px 0px; height: 140px; border-radius: 7px; font-size: 16px;"class="form-control" required name="description"  placeholder="توضیحات تسک"></textarea>
+        <textarea type="text" style="padding:10px; margin: 10px 0px 16px 0px; height: 140px; border-radius: 7px; font-size: 16px;"class="form-control" required name="description"  placeholder="توضیحات مسئولیت"></textarea>
         <input type="hidden" name="project_id" value="{{ $phase->project_id }}" >
         <input type="hidden" name="phase_id" value="{{$phase->id}}">
         <input type="hidden" name="status" value="notwork" >
@@ -59,7 +59,7 @@
 </div>
     <div class="col-md-12">
         <x-card type="info">
-            <x-card-header>مدیریت تسک های {{$phase->title}}</x-card-header>
+            <x-card-header>مدیریت مسئولیت های {{$phase->title}}</x-card-header>
                 <x-card-body>
                     <div class="box-body">
                         <table id="example2" class="table table-bordered table-hover">

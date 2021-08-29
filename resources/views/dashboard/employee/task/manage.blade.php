@@ -6,7 +6,7 @@
 @endsection
 @section('hierarchy')
     <x-breadcrumb-item title="داشبورد" route="dashboard.employee.index" />
-    <x-breadcrumb-item title="مدیریت تسک ها" route="dashboard.employee.task.manage" />
+    <x-breadcrumb-item title="مدیریت مسئولیت ها" route="dashboard.employee.task.manage" />
 @endsection
 @section('content')
 <script src="{{ asset('assets/js/jquery-3.5.1.min.js') }}"></script>
@@ -149,7 +149,7 @@
                         </button>
                       </div>
                       <div class="modal-body">
-                          آیا این تسک را با موفقیت به اتمام رساندید ؟
+                          آیا این مسئولیت را با موفقیت به اتمام رساندید ؟
 
                       </div>
                       <div class="modal-footer justify-content-between">
@@ -260,7 +260,7 @@
                         </button>
                       </div>
                       <div class="modal-body">
-                          آیا این تسک را با موفقیت به اتمام رساندید ؟
+                          آیا این مسئولیت را با موفقیت به اتمام رساندید ؟
 
                       </div>
                       <div class="modal-footer justify-content-between">
@@ -295,7 +295,7 @@
             <div class="card-header">
               <h3 class="card-title">
                 <i class="ion ion-clipboard mr-1"></i>
-                تمامی تسک های انجام نشده
+                تمامی مسئولیت های انجام نشده
               </h3>
 
               <div class="card-tools">
@@ -371,7 +371,7 @@
                       </button>
                     </div>
                     <div class="modal-body">
-                        آیا این تسک را با موفقیت به اتمام رساندید ؟
+                        آیا این مسئولیت را با موفقیت به اتمام رساندید ؟
 
                     </div>
                     <div class="modal-footer justify-content-between">

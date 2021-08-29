@@ -26,7 +26,7 @@
                                 <th>عنوان</th>
                                 <th>تاریخ شروع</th>
                                 <th>تاریخ پایان</th>
-                                <th>تسک ها</th>
+                                <th>مسئولیت ها</th>
                                 <th>حذف</th>
                                 <th>ویرایش</th>
                             </tr>
@@ -38,7 +38,7 @@
                                     <td>{{ $item->title }}</td>
                                     <td>{!! $item->start_date->formatJalali() !!}</td>
                                     <td>{!! $item->finish_date->formatJalali() !!}</td>
-                                    <td><button type="button" class="btn btn-block bg-gradient-warning btn-sm">مدیرت تسک ها</button></td>
+                                    <td><button type="button" class="btn btn-block bg-gradient-warning btn-sm">مدیرت مسئولیت ها</button></td>
                                     <td>
                                     <a href="{{route('dashboard.admin.phase.deletephase',['id'=>$item->id,'project_id'=>$item->for->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>
                                     </td>
@@ -53,7 +53,7 @@
                                     <th>عنوان</th>
                                     <th>تاریخ شروع</th>
                                     <th>تاریخ پایان</th>
-                                    <th>تسک ها</th>
+                                    <th>مسئولیت ها</th>
                                     <th>حذف</th>
                                     <th>ویرایش</th>
                                 </tr>

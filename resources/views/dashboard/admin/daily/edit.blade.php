@@ -12,7 +12,7 @@
                         <div class="modal-body">
                           <div class="col-md-12">
                             <x-card type="info">
-                                <x-card-header>ویرایش تسک </x-card-header>
+                                <x-card-header>ویرایش مسئولیت </x-card-header>
                             <form style="padding:10px;" action="{{ route('dashboard.employee.task.edittask', $item->id) }}" method="post" role="form" class="form-horizontal " enctype="multipart/form-data">
                                 <input type="hidden" name="id" value="{{ $item->id }}" >
                                 <input type="text" style="padding:10px; margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control" required  name="title" value="{{ $item->title }}" placeholder="عنوان">
