@@ -65,7 +65,13 @@
                                 </tfoot>
                         </table>
                        </div>
-                       <a href="{{route('dashboard.admin.phase.create',['id'=>$id])}}" class="btn btn-success">ثبت فاز جدید برای پروژه</a>
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col-12 col-md-4 col-lg-3">
+                                    <a href="{{route('dashboard.admin.phase.create',['id'=>$id])}}" class="btn btn-success">ثبت فاز جدید برای پروژه</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                        <div style="margin-bottom: 50px;"></div>
                        <div class="card">
@@ -119,7 +125,14 @@
                                     </tfoot>
                         </table>
                         </div>
-                        <a href="{{route('dashboard.admin.employee.manage',['id'=>$id])}}" class="btn btn-success">مدیریت کاربران </a>
+
+                       <div class="card-footer">
+                           <div class="row">
+                               <div class="col-12 col-md-4 col-lg-3">
+                                    <a href="{{route('dashboard.admin.employee.manage',['id'=>$id])}}" class="btn btn-success">مدیریت کاربران </a>
+                               </div>
+                           </div>
+                       </div>
 
                         <!-- /.card-body -->
                         </div>
@@ -175,14 +188,17 @@
                                      </tfoot>
                          </table>
                          </div>
-                         <a href="{{route('dashboard.admin.task.manage',['id'=>$id])}}" class="btn btn-success">مدیریت مسئولیت ها </a>
-
+                         <div class="card-footer">
+                             <div class="row">
+                                 <div class="col-12 col-md-4 col-lg-3">
+                                     <a href="{{route('dashboard.admin.task.manage',['id'=>$id])}}" class="btn btn-success">مدیریت مسئولیت ها </a>
+                                 </div>
+                             </div>
+                         </div>
                          <!-- /.card-body -->
                          </div>
                     </div>
                     </x-card-body>
-                <x-card-footer>
-                </x-card-footer>
         </x-card>
     </div>
     @endsection
