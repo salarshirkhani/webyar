@@ -42,18 +42,15 @@
             </button>
         </div>
 
-        {{--        <div class="text-center p-t-12">--}}
-        {{--            <a class="txt2" href="#">--}}
-        {{--                رمزعبور خود--}}
-        {{--            </a>--}}
-        {{--            <span class="txt1">--}}
-        {{--							را فراموش کرده‌اید؟--}}
-        {{--						</span>--}}
-        {{--        </div>--}}
 
         <div class="text-center p-t-136">
             <a class="txt2" href="{{ route('register') }}">
                 {{ __('میخواهید ثبت‌نام کنید؟') }}
+                <i class="fa fa-long-arrow-left m-l-5" aria-hidden="true"></i>
+            </a>
+            <br>
+            <a class="txt2" href="{{ route('password.request') }}">
+                {{ __('رمز خود را فراموش کرده‌اید؟') }}
                 <i class="fa fa-long-arrow-left m-l-5" aria-hidden="true"></i>
             </a>
             <br>
