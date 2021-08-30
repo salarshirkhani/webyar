@@ -82,7 +82,7 @@
           <ul class="todo-list ui-sortable" data-widget="todo-list">
             @foreach ($task as $item)
             <?php $v1 = now()->startOfDay(); $v2=$item->finish_date; ?>
-            @if ( $v1->diffInDays($v2, false)<=0)
+            @if ( $v1->diffInDays($v2, false)<=0 || $item->continuity == '1d' || ($item->continuity == '2d' && $item->dayOfYear % 2 == 0))
             @if ( $v1->diffInDays($v2, false)<0)
               <li style="background:#ff7c7c">
               @else
@@ -197,7 +197,7 @@
       <ul class="todo-list" data-widget="todo-list">
         @foreach ($task as $item)
         <?php $v1 = now()->startOfDay(); $v2=$item->finish_date; ?>
-        @if ( $v1->diffInDays($v2, false)<=1 && $v1->diffInDays($v2, false)>0)
+        @if (( $v1->diffInDays($v2, false)<=1 && $v1->diffInDays($v2, false)>0) || ($item->continuity == '2d' && $item->dayOfYear % 2 == 1))
         <li>
               <form method="post">
               <span class="handle">
