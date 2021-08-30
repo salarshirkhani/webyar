@@ -37,6 +37,7 @@ Route::prefix('dashboard')
                 Route::post('project/create', ['uses' => 'ProjectController@CreatePost','as' => 'project.create']);
                 Route::get('project/create', ['uses' => 'ProjectController@GetCreatePost','as' => 'project.create']);
                 Route::get('project/manage', 'ProjectController@GetManagePost')->name('project.manage');
+                Route::get('project/{id}/status/{status}','ProjectController@UpdateStatus')->name('project.updatestatus');
                 Route::get('deletepost/{id}','ProjectController@DeletePost')->name('project.deletepost');
                 Route::get('updatepost/{id}','ProjectController@GetEditPost')->name('project.updatepost');
                 Route::post('updatepost/{id}','ProjectController@UpdatePost')->name('project.updatepost');

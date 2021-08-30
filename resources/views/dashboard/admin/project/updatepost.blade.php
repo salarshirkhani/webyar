@@ -42,6 +42,11 @@
                 </div>
                 <!-- /.input group -->
             </div>
+
+            <x-select-group label="وضعیت" name="status" :model="$post">
+                <x-select-item value="in_progress">درحال انجام</x-select-item>
+                <x-select-item value="done">به‌اتمام رسیده</x-select-item>
+            </x-select-group>
             {{ csrf_field() }}
              <x-card-footer>
                 <button type="submit" style=" margin: 20px 0px; height: 42px;width: 100%;font-size: 20px;"  class="btn btn-primary">ارسال</button>

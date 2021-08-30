@@ -199,6 +199,15 @@
                          </div>
                     </div>
                     </x-card-body>
+            <x-card-footer>
+                <div class="row">
+                    <div class="col-12 col-md-4 col-lg-3">
+                        @if($post->status != 'done')
+                            <a class="btn btn-warning" href="{{ route("dashboard.admin.project.updatestatus", ['id'=>$id,'status'=>'done']) }}">به اتمام‌رساندن پروژه</a>
+                        @endif
+                    </div>
+                </div>
+            </x-card-footer>
         </x-card>
     </div>
     @endsection

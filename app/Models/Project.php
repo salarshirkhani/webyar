@@ -11,7 +11,7 @@ class Project extends Model
     use SoftDeletes;
     use HasFactory;
     protected $table='projects';
-    protected $fillable=['title','description','start_date','finish_date'];
+    protected $fillable=['title','description','start_date','finish_date', 'status'];
     protected $casts = [
         'start_date' => 'date',
         'finish_date' => 'date',
