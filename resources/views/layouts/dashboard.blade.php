@@ -30,7 +30,7 @@ BY WEBITO
     <link rel="stylesheet" href="{{ asset('assets/dashboard/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/dashboard/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/dashboard/plugins/daterangepicker/daterangepicker.css') }}">
-  
+
     @yield('styles', '')
     <link rel="stylesheet" href="{{ asset('assets/dashboard/css/adminlte.rtl.css') }}">
     <!-- Google Font: Source Sans Pro -->
@@ -196,15 +196,15 @@ BY WEBITO
 <script src="{{ asset('assets/dashboard/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <script type="text/javascript">
     $(function() {
-        $("#date, #date1").persianDatepicker();   
+        $("#date, #date1").persianDatepicker();
         $('.todo-list').sortable({
         placeholder: 'sort-highlight',
         handle: '.handle',
         forcePlaceholderSize: true,
         zIndex: 999999
-         });    
+         });
     });
-    
+
 </script>
  <script>
   $(function () {
@@ -244,6 +244,11 @@ BY WEBITO
      // Load the Farsi interface.
         language: 'fa'
       });
+</script>
+<script>
+    setTimeout(function() {
+        $('.alert').hide('slow', function(){ $target.remove(); });
+    }, 6000);
 </script>
 @yield('scripts', '')
 </body>
