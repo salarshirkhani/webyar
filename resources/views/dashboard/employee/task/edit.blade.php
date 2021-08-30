@@ -38,6 +38,26 @@
                                     </div>
                                     <!-- /.input group -->
                                 </div>
+                                <div class="form-group">
+                                    <label>ساعت شروع کار:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                        </div>
+                                        <input name="start_time" value="{{ !empty($item->start_time) ? $item->start_time->format('H:i') : '' }}" type="text" class="form-control">
+                                    </div>
+                                    <!-- /.input group -->
+                                </div>
+                                <div class="form-group">
+                                    <label>ساعت پایان کار:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                        </div>
+                                        <input name="finish_time" value="{{ !empty($item->finish_time) ? $item->finish_time->format('H:i') : '' }}" type="text" class="form-control">
+                                    </div>
+                                    <!-- /.input group -->
+                                </div>
                                 <x-select-group name="status" label="وضعیت" :model="$model ?? null">
                                   <x-select-item value="notwork">انجام نشده</x-select-item>
                                   <x-select-item value="done">انجام شده</x-select-item>

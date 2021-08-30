@@ -34,6 +34,26 @@
               </div>
               <!-- /.input group -->
           </div>
+          <div class="form-group">
+              <label>ساعت شروع کار:</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                </div>
+                <input name="start_time" type="text" class="form-control">
+              </div>
+              <!-- /.input group -->
+          </div>
+          <div class="form-group">
+              <label>ساعت پایان کار:</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                </div>
+                <input name="finish_time" type="text" class="form-control">
+              </div>
+              <!-- /.input group -->
+          </div>
           <x-select-group label="نوع زمان‌بندی" name="continuity">
               <x-select-item value=""></x-select-item>
               <x-select-item value="1d">نمایش در هر روز</x-select-item>

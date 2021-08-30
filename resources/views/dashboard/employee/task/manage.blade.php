@@ -83,7 +83,7 @@
             @foreach ($task as $item)
             <?php $v1 = now()->startOfDay(); $v2=$item->finish_date; ?>
             @if ( $v1->diffInDays($v2, false)<=0 || $item->continuity == '1d' || ($item->continuity == '2d' && $item->dayOfYear % 2 == 0))
-            @if ( $v1->diffInDays($v2, false)<0)
+            @if ( $v1->diffInDays($v2, false)<0 || (!empty($item->finish_time) && $item->finish_time->lte(now())))
               <li style="background:#ff7c7c">
               @else
               <li>

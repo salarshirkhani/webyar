@@ -33,6 +33,8 @@ class TaskBaseRequest extends FormRequest
             'description' => ['required', 'string'],
             'start_date' => ['required', new JalaliDate],
             'finish_date' => ['required', new JalaliDate],
+            'start_time' => ['nullable', 'regex:/^\d{1,2}:\d{1,2}$/'],
+            'finish_time' => ['nullable', 'regex:/^\d{1,2}:\d{1,2}$/'],
             'continuity' => ['nullable', 'in:1d,2d'],
         ];
     }
