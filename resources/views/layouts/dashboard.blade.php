@@ -130,6 +130,15 @@ BY WEBITO
 
         <!-- Main content -->
         <div class="content">
+            @if ($errors->any())
+                <div class="row">
+                    @foreach ($errors->all() as $error)
+                        <div class="col-12">
+                            <div class="alert alert-danger">{{ $error }}</div>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
             @yield('content')
         </div>
         <!-- /.content -->
