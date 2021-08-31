@@ -38,26 +38,28 @@
     </div>
 @elseif($absence != NULL && $absence->exit==NULL)
 <div class="row">
-  <div class="col-md-12">
-      <div class="alert alert-info" style="background: #17a2b85e; width:100%;display:inline-flex;">
-        <div class="col-md-10 col-sm-12">
-          <p style="color:#464545; position: relative; top: 8px;">ساعت زدن حضوری شما : {{$absence->enter}}</p>
+    <div class="col-12">
+        <div class="alert alert-info no-dismiss" style="background: #17a2b85e; width:100%;display:inline-flex;">
+            <div class="row" style="width:100%">
+                <div class="col-sm-8 col-md-10 col-12">
+                    <p style="color:#464545; position: relative; top: 8px;">ساعت زدن حضوری شما : {{$absence->enter}}</p>
+                </div>
+                <div class="col-sm-4 col-md-2 col-12">
+                    <form method="post" action="{{ route('dashboard.employee.absence.end', $absence->id) }}">
+                        @csrf
+                        <button style="" type="submit" class=" btn btn-block btn-outline-secondary toastrDefaultInfo">
+                            ثبت پایان کار
+                        </button>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div class="col-md-2 col-sm-12">
-          <form method="post" action="{{ route('dashboard.employee.absence.end', $absence->id) }}">
-             @csrf
-            <button style="" type="submit" class=" btn btn-block btn-outline-secondary toastrDefaultInfo">
-              ثبت پایان کار
-            </button>
-          </form>
-        </div>
-    </div>
   </div>
 </div>
 @elseif($absence != NULL && $absence->exit!=NULL)
 <div class="row">
   <div class="col-md-12">
-      <div class="alert alert-info " style="background: #17a2b85e; width:100%;display:inline-flex;">
+      <div class="alert alert-info no-dismiss" style="background: #17a2b85e; width:100%;display:inline-flex;">
         <div class="col-md-10 col-sm-12">
           <p style="color:#464545; position: relative; top: 8px;">شما امروز به مدت  {{$diff}} کار کرده اید</p>
         </div>
