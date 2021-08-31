@@ -22,7 +22,7 @@
 @if($absence == NULL)
     <div class="row">
         <div class="col-md-12">
-          <div class="alert alert-danger" style="">
+          <div class="alert alert-danger no-dismiss" style="">
             <p>لطفا حضوری خود را ثبت کنید</p>
             <form method="post" action="{{ route('dashboard.employee.absence.create') }}">
               @csrf

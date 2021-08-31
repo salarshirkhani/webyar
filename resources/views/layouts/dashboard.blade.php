@@ -247,7 +247,7 @@ BY WEBITO
 </script>
 <script>
     setTimeout(function() {
-        $('.alert').hide('slow', function(){ $target.remove(); });
+        $('.alert:not(.no-dismiss)').hide('slow', function(){ $target.remove(); });
     }, 6000);
 </script>
 @yield('scripts', '')
