@@ -55,7 +55,7 @@
               <!-- /.input group -->
           </div>
           <x-select-group label="نوع زمان‌بندی" name="continuity">
-              <x-select-item value=""></x-select-item>
+              <x-select-item value="">پیش‌فرض</x-select-item>
               <x-select-item value="1d">نمایش در هر روز</x-select-item>
               <x-select-item value="2d">نمایش یک روز در میان</x-select-item>
           </x-select-group>
