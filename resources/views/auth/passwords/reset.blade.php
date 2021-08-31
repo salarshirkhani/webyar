@@ -60,7 +60,7 @@
                 <i class="fa fa-long-arrow-left m-l-5" aria-hidden="true"></i>
             </a>
             <br>
-            <a class="txt2" href="">
+            <a class="txt2" href="javascript:history.back()">
                 {{ __('بازگشت') }}
                 <i class="fa fa-long-arrow-left m-l-5" aria-hidden="true"></i>
             </a>
