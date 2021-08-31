@@ -9,7 +9,7 @@
         </div>
     @endif
 
-    <div class="login100-pic js-tilt" data-tilt="">
+    <div class="login100-pic">
         <img style="display:block ; margin-right:auto; margin-left:auto;" src="{{ asset("assets/images/logo.png") }}" alt="IMG">
     </div>
 
@@ -39,7 +39,7 @@
         </div>
 
         <div class="wrap-input100 validate-input" data-validate="تاریخ تولد اجباری است!">
-            <input type="text" name="birthdate" maxlength="100" class=" input100" placeholder="تاریخ تولد" 
+            <input type="text" name="birthdate" maxlength="100" class=" input100" placeholder="تاریخ تولد"
                    id="id_birthdate" value="{{ old('birthdate') ?? '' }}">
             <span class="focus-input100"></span>
             <span class="symbol-input100">
@@ -48,7 +48,7 @@
         </div>
 
         <div class="wrap-input100 validate-input" data-validate="سمت را وارد کنید">
-            <input type="text" name="situation" maxlength="100" class=" input100" placeholder="سمت" 
+            <input type="text" name="situation" maxlength="100" class=" input100" placeholder="سمت"
                    id="id_situation" value="{{ old('situation') ?? '' }}">
             <span class="focus-input100"></span>
             <span class="symbol-input100">
