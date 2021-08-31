@@ -8,6 +8,9 @@
     <x-breadcrumb-item title="داشبورد" route="dashboard.employee.index" />
     <x-breadcrumb-item title="مدیریت مسئولیت ها" route="dashboard.employee.task.manage" />
 @endsection
+@section('styles')
+    <link href="{{ asset('assets/dashboard/plugins/jquery-timepicker/jquery.timepicker.min.css') }}" rel="stylesheet"/>
+@endsection
 @section('content')
 <script src="{{ asset('assets/js/jquery-3.5.1.min.js') }}"></script>
     @if(Session::has('info'))
@@ -400,5 +403,16 @@
           </div>
         </section>
   </div>
-
     @endsection
+@section('scripts')
+    <script src="{{ asset('assets/dashboard/plugins/jquery-timepicker/jquery.timepicker.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('*[name=start_time], *[name=finish_time]').timepicker({
+                'scrollDefault': 'now',
+                'timeFormat': 'H:i',
+                'orientation': 'r',
+            });
+        });
+    </script>
+@endsection
