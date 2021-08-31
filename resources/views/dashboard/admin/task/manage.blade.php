@@ -44,6 +44,11 @@
             </div>
             <!-- /.input group -->
         </div>
+        <x-select-group label="نوع زمان‌بندی" name="continuity" :model="$model ?? null">
+            <x-select-item value="">پیش‌فرض</x-select-item>
+            <x-select-item value="1d">نمایش در هر روز</x-select-item>
+            <x-select-item value="2d">نمایش یک روز در میان</x-select-item>
+        </x-select-group>
         <x-select-group name="employee_id" label="کاربر" :model="$model ?? null">
             @foreach($posts as $item)
             <x-select-item :value="$item->id">{{ $item->for->first_name }} {{ $item->for->last_name }}</x-select-item>
