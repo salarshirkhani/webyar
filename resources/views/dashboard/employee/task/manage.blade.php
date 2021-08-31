@@ -19,7 +19,7 @@
 @endif
 @include('dashboard.employee.task.create')
 @include('dashboard.employee.task.edit')
-@if($absence == NULL)
+@if(empty($absence))
     <div class="row">
         <div class="col-md-12">
           <div class="alert alert-danger no-dismiss" style="">
