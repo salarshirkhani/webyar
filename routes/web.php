@@ -97,6 +97,8 @@ Route::prefix('dashboard')
                Route::get('updatemessage/{id}','MessageController@GetEditPost')->name('message.updatemessage');
                Route::post('updatemessage/{id}','MessageController@UpdatePost')->name('message.updatemessage');
                Route::get('message/show/{id}', 'MessageController@ShowMessage')->name('message.show');
+               Route::get('message/{message}/answer', 'MessageController@GetAnswerMessage')->name('message.answer');
+               Route::post('message/{message}/answer', 'MessageController@AnswerMessage')->name('message.answer');
 
                //DAILY MANAGMENT
                 Route::post('daily/create', ['uses' => 'DailyController@CreatePost','as' => 'daily.create']);
@@ -142,6 +144,8 @@ Route::prefix('dashboard')
                 //MESSAGE PAGE
                 Route::get('message/manage', 'MessageController@GetMessage')->name('message.manage');
                 Route::get('message/show/{id}', 'MessageController@ShowMessage')->name('message.show');
+                Route::get('message/{message}/answer', 'MessageController@GetAnswerMessage')->name('message.answer');
+                Route::post('message/{message}/answer', 'MessageController@AnswerMessage')->name('message.answer');
 
                 //ACCOUNTING PAGE
                 Route::get('money', 'AccountingController@GetMoney')->name('money.index');
