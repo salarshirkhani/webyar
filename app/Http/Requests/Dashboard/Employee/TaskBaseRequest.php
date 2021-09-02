@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Dashboard\Employee;
 
+use App\Models\Task;
 use App\Rules\JalaliDate;
 use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
@@ -55,6 +56,89 @@ class TaskBaseRequest extends FormRequest
 
             if ($data['finish_date']->lt($data['start_date']))
                 $validator->errors()->add('finish_date', 'تاریخ پایان نباید از تاریخ شروع کوچک‌تر باشد.');
+            $existing_tasks = Task
+                ::where('employee_id', \Auth::user()->id)
+                ->where('status', 'notwork')
+                ->where(function ($q) use ($data) {
+                    $q
+                        ->where(function ($q) use ($data) {
+                            $q
+                                ->whereNull('continuity');
+
+                            if (empty($data['continuity']))
+                                $q
+                                    ->where('finish_date', $data['finish_date']);
+                            else
+                                $q
+                                    ->where('finish_date', '<=', $data['finish_date']);
+                        })
+                        ->orWhere(function ($q) use ($data) {
+                            if (empty($data['continuity']))
+                                $q
+                                    ->where('finish_date', '>=', $data['finish_date'])
+                                    ->where('start_date', '<=', $data['finish_date']);
+                            else
+                                $q->where(function($q) use ($data) {
+                                    $q
+                                        ->where(function($q) use ($data) {
+                                            $q
+                                                ->where('start_date', '<=', $data['start_date'])
+                                                ->where('finish_date', '>=', $data['start_date']);
+                                        })
+                                        ->orWhere(function($q) use ($data) {
+                                            $q
+                                                ->where('start_date', '<=', $data['finish_date'])
+                                                ->where('finish_date', '>=', $data['finish_date']);
+                                        })
+                                        ->orWhere(function($q) use ($data) {
+                                            $q
+                                                ->where('start_date', '<=', $data['start_date'])
+                                                ->where('finish_date', '>=', $data['finish_date']);
+                                        });
+
+                                });
+                            $q
+                                ->where(function ($q) {
+                                    $q->whereNotNull('continuity');
+                                });
+
+                        });
+                });
+            if (!empty($data['start_time']) && !empty($data['finish_time']))
+                $existing_tasks = $existing_tasks->where(function($q) use ($data) {
+                    $q
+                        ->where(function($q) {
+                            $q
+                                ->whereNull('start_time')
+                                ->orWhereNull('finish_time');
+                        })
+                        ->orWhere(function($q) use ($data) {
+                            $q
+                                ->where(function($q) use ($data) {
+                                    $q
+                                        ->where('start_time', '<=', $data['start_time'])
+                                        ->where('finish_time', '>=', $data['start_time']);
+                                })
+                                ->orWhere(function($q) use ($data) {
+                                    $q
+                                        ->where('start_time', '<=', $data['finish_time'])
+                                        ->where('finish_time', '>=', $data['finish_time']);
+                                })
+                                ->orWhere(function($q) use ($data) {
+                                    $q
+                                        ->where('start_time', '<=', $data['start_time'])
+                                        ->where('finish_time', '>=', $data['finish_time']);
+                                });
+
+                        });
+                });
+
+            if (!empty($this->id))
+                $existing_tasks = $existing_tasks
+                    ->where('id', '!=', $this->id);
+
+            if ($existing_tasks->count() > 0)
+                $validator->errors()->add('start_date', 'در بازه زمانی مشخص‌شده تسک‌های دیگری وجود دارند!');
         });
     }
 }
