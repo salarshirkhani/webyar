@@ -158,7 +158,7 @@
                                 </thead>
                                     <tbody>
                                  @foreach($tasks as $item)
-                                    <tr>
+                                    <tr style="background-color: @if($item->status == 'notwork' && $item->finish_date->lt(now()->startOfDay())) #f4b9b9 @elseif($item->status == 'done') #a9ecb0 @else #fff @endif">
                                         <td>{{ $item->title }}</td>
                                         <td>{!! $item->start_date->formatJalali() !!}</td>
                                         <td>{!! $item->finish_date->formatJalali() !!}</td>
