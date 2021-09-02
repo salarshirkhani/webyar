@@ -107,12 +107,9 @@ class TaskBaseRequest extends FormRequest
             if (!empty($data['start_time']) && !empty($data['finish_time']))
                 $existing_tasks = $existing_tasks->where(function($q) use ($data) {
                     $q
-                        ->where(function($q) {
-                            $q
-                                ->whereNull('start_time')
-                                ->orWhereNull('finish_time');
-                        })
-                        ->orWhere(function($q) use ($data) {
+                        ->whereNotNull('start_time')
+                        ->whereNotNull('finish_time')
+                        ->where(function($q) use ($data) {
                             $q
                                 ->where(function($q) use ($data) {
                                     $q
