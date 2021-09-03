@@ -9,7 +9,13 @@
     <x-breadcrumb-item title="مدیریت مسئولیت ها" route="dashboard.employee.task.manage" />
 @endsection
 @section('styles')
-    <link href="{{ asset('assets/dashboard/plugins/jquery-timepicker/jquery.timepicker.min.css') }}" rel="stylesheet"/>
+    <link rel="stylesheet" href="{{ asset('assets/dashboard/plugins/MDTimePicker/mdtimepicker.min.css') }}">
+    <style>
+        .mdtimepicker {
+            direction: ltr;
+            text-align: left;
+        }
+    </style>
 @endsection
 @section('content')
 <script src="{{ asset('assets/js/jquery-3.5.1.min.js') }}"></script>
@@ -407,14 +413,10 @@
   </div>
     @endsection
 @section('scripts')
-    <script src="{{ asset('assets/dashboard/plugins/jquery-timepicker/jquery.timepicker.min.js') }}"></script>
+    <script src="{{ asset('assets/dashboard/plugins/MDTimePicker/mdtimepicker.min.js') }}"></script>
     <script>
-        $(document).ready(function() {
-            $('*[name=start_time], *[name=finish_time]').timepicker({
-                'scrollDefault': 'now',
-                'timeFormat': 'H:i',
-                'orientation': 'r',
-            });
+        mdtimepicker('.mdtimepicker-input', {
+            is24hour: true,
         });
     </script>
 @endsection

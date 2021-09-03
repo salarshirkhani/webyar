@@ -44,7 +44,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                         </div>
-                                        <input name="start_time" value="{{ !empty($item->start_time) ? $item->start_time->format('H:i') : '' }}" type="text" class="form-control">
+                                        <input name="start_time" value="{{ !empty($item->start_time) ? $item->start_time->format('H:i') : '' }}" type="text" class="form-control mdtimepicker-input">
                                     </div>
                                     <!-- /.input group -->
                                 </div>
@@ -54,7 +54,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                         </div>
-                                        <input name="finish_time" value="{{ !empty($item->finish_time) ? $item->finish_time->format('H:i') : '' }}" type="text" class="form-control">
+                                        <input name="finish_time" value="{{ !empty($item->finish_time) ? $item->finish_time->format('H:i') : '' }}" type="text" class="form-control mdtimepicker-input">
                                     </div>
                                     <!-- /.input group -->
                                 </div>

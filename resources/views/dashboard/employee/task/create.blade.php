@@ -40,7 +40,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                 </div>
-                <input name="start_time" type="text" class="form-control">
+                <input name="start_time" type="text" class="form-control mdtimepicker-input">
               </div>
               <!-- /.input group -->
           </div>
@@ -50,7 +50,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                 </div>
-                <input name="finish_time" type="text" class="form-control">
+                <input name="finish_time" type="text" class="form-control mdtimepicker-input">
               </div>
               <!-- /.input group -->
           </div>
