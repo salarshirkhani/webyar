@@ -21,7 +21,7 @@
             <x-card-header>{{ $post->title }}</x-card-header>
                 <x-card-body>
                     <div class="box-body">
-                        {{ $post->description }}
+                        {!! $post->description !!}
                         <div style="margin-bottom: 50px;"></div>
                         <div class="card">
                             <div class="card-header">
