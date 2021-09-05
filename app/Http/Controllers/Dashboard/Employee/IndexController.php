@@ -21,7 +21,7 @@ class IndexController extends Controller
 {
     public function profile() {
         $message=message::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
-        $employee=EmployeeProject::where('employee_id',Auth::user()->id)->orderBy('created_at', 'desc')->get();
+        $employee=EmployeeProject::where('employee_id',Auth::user()->id)->with('project')->orderBy('created_at', 'desc')->get();
         $task=Task::where('employee_id',Auth::user()->id)->orderBy('finish_date', 'ASC')->get();
         return view('dashboard.employee.index', ['employee' => $employee , 'task' => $task , 'message' => $message]);
     }
