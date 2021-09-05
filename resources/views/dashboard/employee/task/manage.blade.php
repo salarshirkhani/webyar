@@ -208,7 +208,7 @@
       <ul class="todo-list" data-widget="todo-list">
         @foreach ($task as $item)
         <?php $v1 = now()->startOfDay(); $v2=$item->finish_date; ?>
-        @if (( $v1->diffInDays($v2, false)<=1 && $v1->diffInDays($v2, false)>0) || ($item->start_date->lte($v1) && $item->finish_date->gte($v1) && ($item->continuity == '2d' && $item->dayOfYear % 2 == 1)))
+        @if (( $v1->diffInDays($v2, false)<=1 && $v1->diffInDays($v2, false)>0) || ($item->start_date->lte($v1) && $item->finish_date->gte($v1) && (($item->continuity == '1d') || ($item->continuity == '2d' && $item->dayOfYear % 2 == 1))))
         <li>
               <form method="post">
               <span class="handle">
