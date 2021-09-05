@@ -135,7 +135,7 @@ class TaskBaseRequest extends FormRequest
                     ->where('id', '!=', $this->id);
 
             if ($existing_tasks->count() > 0)
-                $validator->errors()->add('start_date', 'در بازه زمانی مشخص‌شده تسک‌های دیگری وجود دارند!');
+                $validator->errors()->add('start_date', 'در بازه زمانی مشخص‌شده مسئولیت‌های دیگری وجود دارند!');
         });
     }
 }
