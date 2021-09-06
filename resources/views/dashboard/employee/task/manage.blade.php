@@ -45,7 +45,12 @@
 @elseif($absence != NULL && $absence->exit==NULL)
 <div class="row">
     <div class="col-12">
-        <div class="alert alert-info no-dismiss" style="background: #17a2b85e; width:100%;display:inline-flex;">
+        <div class="alert alert-info no-dismiss" style="background: none;
+        width: 100%;
+        display: inline-flex;
+        border: none;
+        margin: 0px 7px 15px 0px;
+        padding: 0px;">
             <div class="row" style="width:100%">
                 <div class="col-sm-8 col-md-10 col-12">
                     <p style="color:#464545; position: relative; top: 8px;">ساعت زدن حضوری شما : {{$absence->enter}}</p>
