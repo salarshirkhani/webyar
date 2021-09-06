@@ -1,9 +1,9 @@
 @extends('layouts.dashboard')
 @section('sidebar')
-    @include('dashboard.owner.sidebar')
+    @include('dashboard.customer.sidebar')
 @endsection
 @section('hierarchy')
-    <x-breadcrumb-item title="داشبورد" route="dashboard.owner.index" />
+    <x-breadcrumb-item title="داشبورد" route="dashboard.customer.index" />
 @endsection
 @section('content')
     <div class="container">

@@ -26,6 +26,8 @@ Route::prefix('dashboard')
     ->namespace('Dashboard')
     ->group(function() {
         Route::get('',  'IndexController@get')->name('index');
+        Route::get('profile',  'ProfileController@edit')->name('profile.edit');
+        Route::put('profile',  'ProfileController@update')->name('profile.update');
         Route::prefix('admin')
             ->name('admin.')
             ->middleware(['user_type:admin'])
