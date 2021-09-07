@@ -51,7 +51,7 @@
         </x-select-group>
         <x-select-group name="employee_id" label="کاربر" :model="$model ?? null">
             @foreach($posts as $item)
-            <x-select-item :value="$item->id">{{ $item->for->first_name }} {{ $item->for->last_name }}</x-select-item>
+            <x-select-item :value="$item->employee_id">{{ $item->for->first_name }} {{ $item->for->last_name }}</x-select-item>
             @endforeach
         </x-select-group>
         <x-select-group name="phase_id" label="فاز بندی" :model="$model ?? null">
