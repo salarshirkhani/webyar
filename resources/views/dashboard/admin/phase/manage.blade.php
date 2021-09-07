@@ -38,7 +38,9 @@
                                     <td>{{ $item->title }}</td>
                                     <td>{!! $item->start_date->formatJalali() !!}</td>
                                     <td>{!! $item->finish_date->formatJalali() !!}</td>
-                                    <td><button type="button" class="btn btn-block bg-gradient-warning btn-sm">مدیرت مسئولیت ها</button></td>
+                                    <td>
+                                    <a href="{{route('dashboard.admin.phase.tasks',['id'=>$id])}}" class="btn btn-block bg-gradient-warning btn-sm">مدیریت مسئولیت ها</a>
+                                    </td>
                                     <td>
                                     <a href="{{route('dashboard.admin.phase.deletephase',['id'=>$item->id,'project_id'=>$item->for->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>
                                     </td>
