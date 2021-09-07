@@ -7,6 +7,15 @@
     <x-breadcrumb-item title="مدیریت پروژه ها" route="dashboard.admin.project.manage" />
     <x-breadcrumb-item title="مدیریت مسئولیت ها" route="dashboard.admin.task.manage" />
 @endsection
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('assets/dashboard/plugins/MDTimePicker/mdtimepicker.min.css') }}">
+    <style>
+        .mdtimepicker {
+            direction: ltr;
+            text-align: left;
+        }
+    </style>
+@endsection
 @section('content')
     @if(Session::has('info'))
     <div class="row">
@@ -41,6 +50,26 @@
                 <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
               </div>
               <input name="finish_date" type="text" id="date1" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy,mm,dd" data-mask="">
+            </div>
+            <!-- /.input group -->
+        </div>
+        <div class="form-group">
+            <label>ساعت شروع:</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+              </div>
+              <input name="start_time" type="text" class="form-control mdtimepicker-input">
+            </div>
+            <!-- /.input group -->
+        </div>
+        <div class="form-group">
+            <label>ساعت پایان:</label>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+              </div>
+              <input name="finish_time" type="text" class="form-control mdtimepicker-input">
             </div>
             <!-- /.input group -->
         </div>
@@ -129,3 +158,12 @@
         });
     </script>
     @endsection
+
+@section('scripts')
+    <script src="{{ asset('assets/dashboard/plugins/MDTimePicker/mdtimepicker.min.js') }}"></script>
+    <script>
+        mdtimepicker('.mdtimepicker-input', {
+            is24hour: true,
+        });
+    </script>
+@endsection

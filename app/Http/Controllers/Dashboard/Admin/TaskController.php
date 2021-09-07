@@ -3,20 +3,14 @@
 namespace App\Http\Controllers\Dashboard\Admin;
 
 use App\Http\Controllers\Controller;
-use Carbon\Carbon;
+use App\Http\Requests\Dashboard\Admin\TaskCreateRequest;
+use App\Http\Requests\Dashboard\Admin\TaskUpdateRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use Illuminate\Session\Store;
-use App\Models\User;
 use App\Models\Task;
 use App\Models\Project;
 use App\Models\Phase;
 use App\Models\EmployeeProject;
-use Illuminate\Auth\Access\Gate;
-use Illuminate\Support\Facades\Auth;
-use phpDocumentor\Reflection\Types\Null_;
-use Illuminate\Support\Facades\Storage;
-use Hekmatinasser\Verta\Verta;
 
 class TaskController extends Controller
 {
@@ -25,21 +19,13 @@ class TaskController extends Controller
         return view('dashboard.admin.task.create', ['id' => $id]);
     }
 
-    public function CreatePost($id,Request $request)
+    public function CreatePost($id,TaskCreateRequest $request)
     {
-        $post = new Task([
-            'title' => $request->input('title'),
-            'employee_id' => $request->input('employee_id'),
+        $data = array_merge($request->validated(), [
             'project_id' => $id,
-            'description' => $request->input('description'),
-            'phase_id' => $request->input('phase_id'),
-            'start_date' => Carbon::fromJalali($request->input('start_date')),
-            'finish_date' => Carbon::fromJalali($request->input('finish_date')),
-            'status' => $request->input('status'),
-            'continuity' => $request->input('continuity'),
         ]);
-        if ($post->finish_date->lt($post->start_date))
-            return redirect()->back()->withErrors(['finish_date' => 'تاریخ پایان نباید از تاریخ شروع کوچک‌تر باشد.']);
+
+        $post = new Task($data);
         $post->save();
         return redirect()->route('dashboard.admin.task.manage', ['id' => $id])->with('info', 'مسئولیت جدید اضافه شد ' );
     }
@@ -67,21 +53,11 @@ class TaskController extends Controller
         return view('dashboard.admin.task.updatetask', ['posts' => $posts,'id' => $id,'phase' => $phase,'project' => $project,'post' => $post]);
     }
 
-    public function UpdatePost($id,Request $request)
+    public function UpdatePost($id,TaskUpdateRequest $request)
     {
         $post = Task::find($request->input('id'));
         if (!is_null($post)) {
-            $post->title = $request->input('title');
-            $post->project_id = $request->input('project_id');
-            $post->employee_id = $request->input('employee_id');
-            $post->phase_id = $request->input('phase_id');
-            $post->description = $request->input('description');
-            $post->start_date = Carbon::fromJalali($request->input('start_date'));
-            $post->finish_date = Carbon::fromJalali($request->input('finish_date'));
-            $post->status = $request->input('status');
-            $post->continuity = $request->input('continuity');
-            if ($post->finish_date->lt($post->start_date))
-                return redirect()->back()->withErrors(['finish_date' => 'تاریخ پایان نباید از تاریخ شروع کوچک‌تر باشد.']);
+            $post->fill($request->validated());
             $post->save();
         }
         return redirect()->route('dashboard.admin.task.manage',$post->project_id)->with('info', 'مسئولیت ویرایش شد');

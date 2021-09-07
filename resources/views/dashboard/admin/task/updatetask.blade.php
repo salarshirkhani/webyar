@@ -6,6 +6,15 @@
     <x-breadcrumb-item title="داشبورد" route="dashboard.admin.index" />
     <x-breadcrumb-item title="ویرایش مسئولیت پروژه" route="dashboard.admin.task.updatetask" />
 @endsection
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('assets/dashboard/plugins/MDTimePicker/mdtimepicker.min.css') }}">
+    <style>
+        .mdtimepicker {
+            direction: ltr;
+            text-align: left;
+        }
+    </style>
+@endsection
 @section('content')
     @if(Session::has('info'))
     <div class="row">
@@ -53,6 +62,31 @@
                 </div>
                 <!-- /.input group -->
             </div>
+            <div class="form-group">
+                <label>ساعت شروع:</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                    </div>
+                    <input value="{{ $post->start_time->format('H:i') }}" name="start_time" type="text" class="form-control mdtimepicker-input">
+                </div>
+                <!-- /.input group -->
+            </div>
+            <div class="form-group">
+                <label>ساعت پایان:</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                    </div>
+                    <input value="{{ $post->finish_time->format('H:i') }}" name="finish_time" type="text" class="form-control mdtimepicker-input">
+                </div>
+                <!-- /.input group -->
+            </div>
+            <x-select-group label="نوع زمان‌بندی" name="continuity" :model="$model ?? null">
+                <x-select-item value="">پیش‌فرض</x-select-item>
+                <x-select-item value="1d">نمایش در هر روز</x-select-item>
+                <x-select-item value="2d">نمایش یک روز در میان</x-select-item>
+            </x-select-group>
             <input type="text" style="margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control"  name="status" value="{{ $post->status }}" >
              {{ csrf_field() }}
              <x-card-footer>
@@ -62,3 +96,12 @@
     </x-card>
     </div>
     @endsection
+
+@section('scripts')
+    <script src="{{ asset('assets/dashboard/plugins/MDTimePicker/mdtimepicker.min.js') }}"></script>
+    <script>
+        mdtimepicker('.mdtimepicker-input', {
+            is24hour: true,
+        });
+    </script>
+@endsection
