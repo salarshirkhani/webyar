@@ -17,6 +17,44 @@
         }
     </style>
 @endsection
+@section('breadcrumb_extra')
+    @if($absence != NULL && $absence->exit==NULL)
+        <div class="row">
+            <div class="col-12">
+                <div class="alert alert-info no-dismiss" style="background: none;
+        width: 100%;
+        display: inline-flex;
+        border: none;
+        margin: 0px 7px 15px 0px;
+        padding: 0px;">
+                    <div class="row" style="width:100%">
+                        <div class="col-sm-6 col-md-8 col-12">
+                            <p style="color:#464545; position: relative; top: 8px;">ساعت زدن حضوری شما : {{$absence->enter}}</p>
+                        </div>
+                        <div class="col-sm-6 col-md-4 col-12">
+                            <form method="post" action="{{ route('dashboard.employee.absence.end', $absence->id) }}">
+                                @csrf
+                                <button style="" type="submit" class=" btn btn-block btn-outline-secondary toastrDefaultInfo">
+                                    ثبت پایان کار
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @elseif($absence != NULL && $absence->exit!=NULL)
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-info no-dismiss" style="background: #17a2b85e; width:100%;display:inline-flex;">
+                    <div class="col-md-10 col-sm-12">
+                        <p style="color:#464545; position: relative; top: 8px;">شما امروز به مدت  {{$diff}} کار کرده اید</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+@endsection
 @section('content')
 <script src="{{ asset('assets/js/jquery-3.5.1.min.js') }}"></script>
     @if(Session::has('info'))
@@ -42,41 +80,6 @@
           </div>
         </div>
     </div>
-@elseif($absence != NULL && $absence->exit==NULL)
-<div class="row">
-    <div class="col-12">
-        <div class="alert alert-info no-dismiss" style="background: none;
-        width: 100%;
-        display: inline-flex;
-        border: none;
-        margin: 0px 7px 15px 0px;
-        padding: 0px;">
-            <div class="row" style="width:100%">
-                <div class="col-sm-8 col-md-10 col-12">
-                    <p style="color:#464545; position: relative; top: 8px;">ساعت زدن حضوری شما : {{$absence->enter}}</p>
-                </div>
-                <div class="col-sm-4 col-md-2 col-12">
-                    <form method="post" action="{{ route('dashboard.employee.absence.end', $absence->id) }}">
-                        @csrf
-                        <button style="" type="submit" class=" btn btn-block btn-outline-secondary toastrDefaultInfo">
-                            ثبت پایان کار
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-  </div>
-</div>
-@elseif($absence != NULL && $absence->exit!=NULL)
-<div class="row">
-  <div class="col-md-12">
-      <div class="alert alert-info no-dismiss" style="background: #17a2b85e; width:100%;display:inline-flex;">
-        <div class="col-md-10 col-sm-12">
-          <p style="color:#464545; position: relative; top: 8px;">شما امروز به مدت  {{$diff}} کار کرده اید</p>
-        </div>
-    </div>
-  </div>
-</div>
 @endif
 <div class="row">
     <!-- SIDE 1 -->
