@@ -70,7 +70,8 @@ class TaskBaseRequest extends FormRequest
                                     ->where('finish_date', $data['finish_date']);
                             else
                                 $q
-                                    ->where('finish_date', '<=', $data['finish_date']);
+                                    ->where('finish_date', '<=', $data['finish_date'])
+                                    ->where('finish_date', '>=', $data['start_date']);
                         })
                         ->orWhere(function ($q) use ($data) {
                             if (empty($data['continuity']))
@@ -109,25 +110,8 @@ class TaskBaseRequest extends FormRequest
                     $q
                         ->whereNotNull('start_time')
                         ->whereNotNull('finish_time')
-                        ->where(function($q) use ($data) {
-                            $q
-                                ->where(function($q) use ($data) {
-                                    $q
-                                        ->where('start_time', '<=', $data['start_time'])
-                                        ->where('finish_time', '>=', $data['start_time']);
-                                })
-                                ->orWhere(function($q) use ($data) {
-                                    $q
-                                        ->where('start_time', '<=', $data['finish_time'])
-                                        ->where('finish_time', '>=', $data['finish_time']);
-                                })
-                                ->orWhere(function($q) use ($data) {
-                                    $q
-                                        ->where('start_time', '<=', $data['start_time'])
-                                        ->where('finish_time', '>=', $data['finish_time']);
-                                });
-
-                        });
+                        ->where('start_time', '<=', $data['finish_time'])
+                        ->where('finish_time', '>=', $data['start_time']);
                 });
 
             if (!empty($this->id))
