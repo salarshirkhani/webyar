@@ -37,6 +37,7 @@ class TaskBaseRequest extends FormRequest
             'start_time' => ['nullable', 'regex:/^\d{1,2}:\d{1,2}$/'],
             'finish_time' => ['nullable', 'regex:/^\d{1,2}:\d{1,2}$/'],
             'continuity' => ['nullable', 'in:1d,2d'],
+            'ignore_conflict' => ['sometimes', 'required', 'in:1'],
         ];
     }
 
@@ -79,25 +80,9 @@ class TaskBaseRequest extends FormRequest
                                     ->where('finish_date', '>=', $data['finish_date'])
                                     ->where('start_date', '<=', $data['finish_date']);
                             else
-                                $q->where(function($q) use ($data) {
-                                    $q
-                                        ->where(function($q) use ($data) {
-                                            $q
-                                                ->where('start_date', '<=', $data['start_date'])
-                                                ->where('finish_date', '>=', $data['start_date']);
-                                        })
-                                        ->orWhere(function($q) use ($data) {
-                                            $q
-                                                ->where('start_date', '<=', $data['finish_date'])
-                                                ->where('finish_date', '>=', $data['finish_date']);
-                                        })
-                                        ->orWhere(function($q) use ($data) {
-                                            $q
-                                                ->where('start_date', '<=', $data['start_date'])
-                                                ->where('finish_date', '>=', $data['finish_date']);
-                                        });
-
-                                });
+                                $q
+                                    ->where('start_date', '<=', $data['finish_date'])
+                                    ->where('finish_date', '>=', $data['start_date']);
                             $q
                                 ->where(function ($q) {
                                     $q->whereNotNull('continuity');
@@ -118,8 +103,8 @@ class TaskBaseRequest extends FormRequest
                 $existing_tasks = $existing_tasks
                     ->where('id', '!=', $this->id);
 
-            if ($existing_tasks->count() > 0)
-                $validator->errors()->add('start_date', 'در بازه زمانی مشخص‌شده مسئولیت‌های دیگری وجود دارند!');
+            if (!$this->has('ignore_conflict') && $existing_tasks->count() > 0)
+                $validator->errors()->add('start_date', 'در بازه زمانی مشخص‌شده مسئولیت‌های دیگری وجود دارند! در صورت تایید، هنگام ساخت یا ویرایش مسئولیت، تیک "صرف‌نظر کردن از تداخل زمانی" را بزنید.');
         });
     }
 }

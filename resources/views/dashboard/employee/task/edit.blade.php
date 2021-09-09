@@ -58,11 +58,19 @@
                                     </div>
                                     <!-- /.input group -->
                                 </div>
-                                <x-select-group name="status" label="وضعیت" :model="$model ?? null">
+                                <div class="form-group">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="1" name="ignore_conflict" id="ignore_conflict">
+                                        <label class="form-check-label" for="ignore_conflict">
+                                            صرف‌نظر کردن از تداخل زمانی
+                                        </label>
+                                    </div>
+                                </div>
+                                <x-select-group name="status" label="وضعیت" :model="$item ?? null">
                                   <x-select-item value="notwork">انجام نشده</x-select-item>
                                   <x-select-item value="done">انجام شده</x-select-item>
                                 </x-select-group>
-                                <x-select-group label="نوع زمان‌بندی" name="continuity" :model="$model ?? null">
+                                <x-select-group label="نوع زمان‌بندی" name="continuity" :model="$item ?? null">
                                     <x-select-item value="">پیش‌فرض</x-select-item>
                                     <x-select-item value="1d">نمایش در هر روز</x-select-item>
                                     <x-select-item value="2d">نمایش یک روز در میان</x-select-item>
