@@ -218,7 +218,7 @@ BY WEBITO
     "language": {
           "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Persian.json"
       },
-      "responsive": true,"searching": true, "lengthChange": false, "autoWidth": false,
+      "responsive": true,"searching": true, "lengthChange": true, "autoWidth": false, "pageLength": 50,
       "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example2').DataTable({
@@ -226,12 +226,13 @@ BY WEBITO
           "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Persian.json"
       },
       "paging": true,
-      "lengthChange": false,
+      "lengthChange": true,
       "searching": true,
       "ordering": true,
       "info": true,
       "autoWidth": false,
       "responsive": true,
+      "pageLength": 50,
     });
     $('.toastrDefaultSuccess').click(function() {
       toastr.error('شما حضوری خود را ثبت کرده اید')
