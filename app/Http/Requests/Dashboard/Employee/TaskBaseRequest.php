@@ -31,7 +31,7 @@ class TaskBaseRequest extends FormRequest
         return [
             'status' => ['required', 'string'],
             'title' => ['required', 'string', 'max:250'],
-            'description' => ['required', 'string'],
+            'description' => ['nullable', 'string'],
             'start_date' => ['required', new JalaliDate],
             'finish_date' => ['required', new JalaliDate],
             'start_time' => ['nullable', 'regex:/^\d{1,2}:\d{1,2}$/'],
