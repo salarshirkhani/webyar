@@ -22,13 +22,13 @@ foreach ($users as $key) {
         @if(!empty($finishing_projects) || !empty($finishing_phases))
             <div class="col-12">
                 @foreach($finishing_projects as $project)
-                    <div class="alert alert-danger">
+                    <div class="alert alert-danger no-dismiss">
                         پروژه {{ $project->title }} در تاریخ {{ $project->finish_date->formatJalali() }} به پایان
                         خواهد رسید!
                     </div>
                 @endforeach
                 @foreach($finishing_phases as $phase)
-                    <div class="alert alert-danger">
+                    <div class="alert alert-danger no-dismiss">
                         فاز {{ $phase->title }} از پروژه {{ $phase->for->title }} در
                         تاریخ {{ $phase->finish_date->formatJalali() }} به پایان خواهد رسید!
                     </div>
