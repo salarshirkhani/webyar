@@ -4,7 +4,7 @@
 @endsection
 @section('hierarchy')
     <x-breadcrumb-item title="داشبورد" route="dashboard.admin.index" />
-    <x-breadcrumb-item title="حضور غیاب" route="dashboard.admin.absence.manage" />  
+    <x-breadcrumb-item title="حضور غیاب" route="dashboard.admin.absence.manage" />
 @endsection
 @section('content')
     @if(Session::has('info'))
@@ -18,7 +18,7 @@
         <x-card type="info">
             <x-card-header>مدیریت حضور غیاب ها</x-card-header>
                 <x-card-body>
-                    <div class="box-body"> 
+                    <div class="box-body">
                         <div style="margin-bottom: 50px;"></div>
                         <div class="card">
                             <div class="card-header">
@@ -32,17 +32,17 @@
                                 <th>تاریخ</th>
                                 <th>ساعت ورود</th>
                                 <th>ساعت خروج</th>
-                                <th>مقدار ساعت</th>                               
+                                <th>مقدار ساعت</th>
                             </tr>
                             </thead>
                                 <tbody>
                              @foreach($absence as $item)
                                 <tr>
                                     <td>{{ $item->for->first_name }} {{ $item->for->last_name }}</td>
-                                    <td>{!! Facades\Verta::instance($item->date)->formatDate() !!}</td> 
+                                    <td>{!! Facades\Verta::instance($item->date)->formatDate() !!}</td>
                                     <td>{{ $item->enter }}</td>
                                     <td>{{ $item->exit }}</td>
-                                    <td>{{ $item->hours }}</td>
+                                    <td>{{ round($item->hours / 3600, 1) }}</td>
                                 </tr>
                              @endforeach
                                 </tbody>
@@ -52,7 +52,7 @@
                                     <th>تاریخ</th>
                                     <th>ساعت ورود</th>
                                     <th>ساعت خروج</th>
-                                    <th>مقدار ساعت</th>           
+                                    <th>مقدار ساعت</th>
                                 </tr>
                                 </tfoot>
                         </table>
@@ -62,9 +62,9 @@
                     </div>
                     </x-card-body>
                 <x-card-footer>
-                </x-card-footer>      
+                </x-card-footer>
         </x-card>
     </div>
 
     @endsection
- 
+
