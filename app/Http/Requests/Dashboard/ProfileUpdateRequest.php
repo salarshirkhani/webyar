@@ -15,6 +15,7 @@ class ProfileUpdateRequest extends FormRequest
             'type' => ['nullable', 'in:customer,owner'],
             'mobile' => ['required', 'regex:/^(09[0-9]{9})|(۰۹[۰-۹]{9})$/', Rule::unique('users')->ignoreModel(\Auth::user())],
             'password' => ['nullable', 'string', 'confirmed'],
+            'picture' => ['nullable', 'file', 'mimes:jpg,jpeg,png'],
         ];
         if (\Auth::user()->type == 'customer') {
             $rules = array_merge($rules, [
@@ -25,7 +26,6 @@ class ProfileUpdateRequest extends FormRequest
                 'landline' => ['nullable', 'regex:/^0[0-9]+$/'],
                 'address' => ['nullable', 'string'],
                 'referral' => ['nullable', 'string'],
-                'picture' => ['nullable', 'file', 'mimes:jpg,jpeg,png'],
             ]);
         }
         return $rules;

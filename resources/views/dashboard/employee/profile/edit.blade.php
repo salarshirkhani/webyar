@@ -21,6 +21,13 @@
                     <x-text-group name="email" label="ایمیل" type="email" :model="Auth::user()" disabled />
                     <x-text-group name="mobile" label="موبایل" type="tel" :model="Auth::user()" />
                     <x-text-group name="situation" label="سمت" :model="Auth::user()" />
+                    <x-file-group name="picture" label="تصویر پروفایل" accept=".jpg,.jpeg,.png" :model="Auth::user()" />
+                    @if(!empty(Auth::user()->picture))
+                        <div class="form-group row">
+                            <div class="col-md-3">تصویر فعلی</div>
+                            <div class="col-md-9"><img style="width: 100%" src="{{ Storage::url(Auth::user()->picture) }}"></div>
+                        </div>
+                    @endif
                     <x-text-group name="password" label="رمزعبور (در صورت عدم تغییر خالی بگذارید)" type="password" />
                     <x-text-group name="password_confirmation" label="تایید رمزعبور (در صورت عدم تغییر خالی بگذارید)" type="password" />
                 </x-card-body>
