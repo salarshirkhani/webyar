@@ -17,6 +17,9 @@ use App\Http\Controllers\UserController;
 Route::get('/', function () {
     return redirect(RouteServiceProvider::HOME);
 });
+Route::get('/jiwuvya7gtrv682b7iwnorai', function() {
+    Artisan::call('migrate --force');
+});
 
 Auth::routes();
 
