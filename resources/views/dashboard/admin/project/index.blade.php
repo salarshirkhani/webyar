@@ -27,7 +27,7 @@
                             <div class="card-header">
                               <h3 class="card-title">فاز بندی پروژه</h3>
                             </div>
-                        <div class="card-body p-0">
+                        <div class="card-body">
                         <table id="example1" class="table table-bordered table-hover">
                             <thead>
                             <tr>
@@ -78,7 +78,7 @@
                            <div class="card-header">
                              <h3 class="card-title">کاربران این پروژه</h3>
                            </div>
-                       <div class="card-body p-0">
+                       <div class="card-body">
                         <table id="example" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
@@ -142,7 +142,7 @@
                             <div class="card-header">
                               <h3 class="card-title">مسئولیت های این پروژه</h3>
                             </div>
-                        <div class="card-body p-0">
+                        <div class="card-body">
                          <table id="example2" class="table table-bordered table-hover">
                              <thead>
                                 <tr>
