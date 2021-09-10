@@ -44,8 +44,10 @@
             </div>
 
             <x-select-group label="وضعیت" name="status" :model="$post">
-                <x-select-item value="in_progress">درحال انجام</x-select-item>
-                <x-select-item value="done">به‌اتمام رسیده</x-select-item>
+                <x-select-item value="not_done">{{ __('app.status.not_done') }}</x-select-item>
+                <x-select-item value="delayed">{{ __('app.status.delayed') }}</x-select-item>
+                <x-select-item value="in_progress">{{ __('app.status.in_progress') }}</x-select-item>
+                <x-select-item value="done">{{ __('app.status.done') }}</x-select-item>
             </x-select-group>
             {{ csrf_field() }}
              <x-card-footer>

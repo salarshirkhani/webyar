@@ -102,7 +102,7 @@ foreach ($task as $item) {
                                                 <td>{{ $item->title }}</td>
                                                 <td>{{ $item->start_date->formatJalali() }}</td>
                                                 <td>{{$item->finish_date->formatJalali()}}</td>
-                                                <td>{{ $item->status }}</td>
+                                                <td>{{ __('app.status.' . $item->status) }}</td>
                                                 <td>
                                                 <a href="{{route('dashboard.admin.task.deletetask',['id'=>$item->id,'project_id'=>$item->for->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>
                                                 </td>

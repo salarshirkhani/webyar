@@ -104,7 +104,7 @@ class ProjectController extends Controller
             $post->status = $status;
             $post->save();
         }
-        return redirect()->back()->with('info', 'وضعیت پروژه تغییر کرد به "به‌اتمام رسیده"');
+        return redirect()->back()->with('info', 'وضعیت پروژه تغییر کرد به "' . __('app.status.' . $status) . '"');
     }
 
 }
