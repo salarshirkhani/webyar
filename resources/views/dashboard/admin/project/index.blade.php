@@ -203,7 +203,12 @@
                 <div class="row">
                     <div class="col-12 col-md-4 col-lg-3">
                         @if($post->status != 'done')
-                            <a class="btn btn-warning" href="{{ route("dashboard.admin.project.updatestatus", ['id'=>$id,'status'=>'done']) }}">به اتمام‌رساندن پروژه</a>
+                            <a class="btn btn-warning w-100 m-2" href="{{ route("dashboard.admin.project.updatestatus", ['id'=>$id,'status'=>'done']) }}">به اتمام‌رساندن پروژه</a>
+                        @endif
+                    </div>
+                    <div class="col-12 col-md-4 col-lg-3">
+                        @if($post->status != 'paid')
+                            <a class="btn btn-success w-100 m-2" href="{{ route("dashboard.admin.project.updatestatus", ['id'=>$id,'status'=>'paid']) }}">پروژه تسویه شده</a>
                         @endif
                     </div>
                 </div>
