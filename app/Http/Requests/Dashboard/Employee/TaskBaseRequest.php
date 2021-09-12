@@ -41,6 +41,20 @@ class TaskBaseRequest extends FormRequest
         ];
     }
 
+    public function validated()
+    {
+        $data = parent::validated();
+        $task = Task::find($this->id);
+        if (
+            $data['status'] == 'done' &&
+            !empty($data['continuity']) &&
+            (empty($task->done_at) || $task->done_at->startOfDay()->lt(now()->startOfDay()))) {
+
+            $data['done_at'] = now();
+        }
+        return $data;
+    }
+
     /**
      * Configure the validator instance.
      *

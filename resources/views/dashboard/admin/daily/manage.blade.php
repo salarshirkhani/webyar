@@ -45,9 +45,8 @@
         <div class="card-body">
           <ul class="todo-list ui-sortable" data-widget="todo-list">
             @foreach ($task as $item)
-            <?php $v1 = now()->startOfDay(); $v2=$item->finish_date; ?>
-            @if ( $v1->diffInDays($v2, false)<=0 || ($item->start_date->lte($v1) && $item->finish_date->gte($v1) && ($item->continuity == '1d' || ($item->continuity == '2d' && $item->dayOfYear % 2 == 0))))
-            @if ( $v1->diffInDays($v2, false)<0 || (!empty($item->finish_time) && $item->finish_time->lte(now())))
+            @if ($item->is_due_or_overdue)
+            @if ($item->is_overdue)
               <li style="background:#ff7c7c">
               @else
               <li>
@@ -159,8 +158,7 @@
     <div class="card-body">
       <ul class="todo-list" data-widget="todo-list">
         @foreach ($task as $item)
-        <?php $v1 = now()->startOfDay(); $v2=$item->finish_date; ?>
-        @if (( $v1->diffInDays($v2, false)<=1 && $v1->diffInDays($v2, false)>0) || ($item->start_date->lte($v1) && $item->finish_date->gte($v1) && (($item->continuity == '1d') || ($item->continuity == '2d' && $item->dayOfYear % 2 == 1))))
+        @if($item->is_for_tomorrow)
         <li>
               <form method="post">
               <span class="handle">
@@ -270,6 +268,7 @@
             <div class="card-body">
               <ul class="todo-list" data-widget="todo-list">
                 @foreach ($task as $item)
+                  @if(!$item->is_done)
                   <li>
                   <form  method="post">
                   <span class="handle">
@@ -351,6 +350,7 @@
               </div>
 
 
+                      @endif
                 @endforeach
               </ul>
             </div>

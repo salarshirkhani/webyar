@@ -62,7 +62,7 @@ class TaskController extends Controller
             }
         }
         }
-        $task=Task::where('status','notwork')->where('employee_id',Auth::user()->id)->orderBy('finish_date', 'ASC')->get();
+        $task=Task::managePage()->where('employee_id',Auth::user()->id)->orderBy('finish_date', 'ASC')->get();
         return view('dashboard.employee.task.manage', [
         'task' => $task,
         'absence' => $absence,

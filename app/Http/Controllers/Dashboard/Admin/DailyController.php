@@ -61,7 +61,7 @@ class DailyController extends Controller
             }
         }
         }
-        $task=Task::where('status','notwork')->where('employee_id',Auth::user()->id)->orderBy('finish_date', 'ASC')->get();
+        $task=Task::managePage()->where('employee_id',Auth::user()->id)->orderBy('finish_date', 'ASC')->get();
         return view('dashboard.admin.daily.manage', [
         'task' => $task,
         'absence' => $absence,
