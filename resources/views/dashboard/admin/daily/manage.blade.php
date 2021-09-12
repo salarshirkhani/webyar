@@ -7,7 +7,17 @@
     <x-breadcrumb-item title="داشبورد" route="dashboard.admin.index" />
     <x-breadcrumb-item title="مدیریت برنامه روزانه" route="dashboard.admin.daily.manage" />
 @endsection
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('assets/dashboard/plugins/MDTimePicker/mdtimepicker.min.css') }}">
+    <style>
+        .mdtimepicker {
+            direction: ltr;
+            text-align: left;
+        }
+    </style>
+@endsection
 @section('content')
+<script src="{{ asset('assets/js/jquery-3.5.1.min.js') }}"></script>
     @if(Session::has('info'))
     <div class="row">
         <div class="col-md-12">
@@ -16,7 +26,6 @@
     </div>
 @endif
 @include('dashboard.admin.daily.create')
-<script src="{{ asset('assets/js/jquery-3.5.1.min.js') }}"></script>
 <div class="row">
     <!-- SIDE 1 -->
     <section class="col-lg-4 connectedSortable">
@@ -34,11 +43,11 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-          <ul class="todo-list" data-widget="todo-list">
+          <ul class="todo-list ui-sortable" data-widget="todo-list">
             @foreach ($task as $item)
             <?php $v1 = now()->startOfDay(); $v2=$item->finish_date; ?>
-            @if ( $v1->diffInDays($v2, false)<=0)
-            @if ( $v1->diffInDays($v2, false)<0)
+            @if ( $v1->diffInDays($v2, false)<=0 || ($item->start_date->lte($v1) && $item->finish_date->gte($v1) && ($item->continuity == '1d' || ($item->continuity == '2d' && $item->dayOfYear % 2 == 0))))
+            @if ( $v1->diffInDays($v2, false)<0 || (!empty($item->finish_time) && $item->finish_time->lte(now())))
               <li style="background:#ff7c7c">
               @else
               <li>
@@ -64,7 +73,6 @@
                     $("#todoCheck2{{ $item->id }}").prop("checked", false);
                 });
                });
-
               </script>
               </div>
             </form>
@@ -81,7 +89,7 @@
                     </button>
                   </div>
                   <div class="modal-body">
-                      {!! $item->description !!}
+                    {!! $item->description !!}
                   </div>
                   <div class="modal-footer justify-content-between">
                        <button type="button" class="btn btn-outline-light" data-dismiss="modal">بستن</button>
@@ -122,6 +130,8 @@
                   <!-- /.modal-dialog -->
                 </div>
 
+
+
             @endforeach
           </ul>
         </div>
@@ -150,7 +160,7 @@
       <ul class="todo-list" data-widget="todo-list">
         @foreach ($task as $item)
         <?php $v1 = now()->startOfDay(); $v2=$item->finish_date; ?>
-        @if ( $v1->diffInDays($v2, false)<=1 && $v1->diffInDays($v2, false)>0)
+        @if (( $v1->diffInDays($v2, false)<=1 && $v1->diffInDays($v2, false)>0) || ($item->start_date->lte($v1) && $item->finish_date->gte($v1) && (($item->continuity == '1d') || ($item->continuity == '2d' && $item->dayOfYear % 2 == 1))))
         <li>
               <form method="post">
               <span class="handle">
@@ -266,7 +276,7 @@
                     <i class="fas fa-ellipsis-v"></i>
                     <i class="fas fa-ellipsis-v"></i>
                   </span>
-                  <div class="icheck-primary d-inline ml-2">
+                  <div  class="icheck-primary d-inline ml-2">
                        <input type="checkbox"  id="todoCheck2{{ $item->id }}"  data-toggle="modal" data-target="#modal-success{{ $item->id }}">
                     <label for="todoCheck2{{ $item->id }}"></label>
                   </div>
@@ -299,6 +309,7 @@
                       </div>
                       <div class="modal-body">
                         {!! $item->description !!}
+
                       </div>
                       <div class="modal-footer justify-content-between">
                         <button type="button" class="btn btn-outline-light" data-dismiss="modal">بستن</button>
@@ -350,5 +361,12 @@
           </div>
         </section>
   </div>
-
     @endsection
+@section('scripts')
+    <script src="{{ asset('assets/dashboard/plugins/MDTimePicker/mdtimepicker.min.js') }}"></script>
+    <script>
+        mdtimepicker('.mdtimepicker-input', {
+            is24hour: true,
+        });
+    </script>
+@endsection

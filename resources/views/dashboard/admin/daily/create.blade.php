@@ -34,6 +34,39 @@
               </div>
               <!-- /.input group -->
           </div>
+          <div class="form-group">
+              <label>ساعت شروع کار:</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                </div>
+                <input name="start_time" type="text" class="form-control mdtimepicker-input">
+              </div>
+              <!-- /.input group -->
+          </div>
+          <div class="form-group">
+              <label>ساعت پایان کار:</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                </div>
+                <input name="finish_time" type="text" class="form-control mdtimepicker-input">
+              </div>
+              <!-- /.input group -->
+          </div>
+          <div class="form-group">
+              <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="1" name="ignore_conflict" id="ignore_conflict">
+                  <label class="form-check-label" for="ignore_conflict">
+                      صرف‌نظر کردن از تداخل زمانی
+                  </label>
+              </div>
+          </div>
+          <x-select-group label="نوع زمان‌بندی" name="continuity">
+              <x-select-item value="">پیش‌فرض</x-select-item>
+              <x-select-item value="1d">نمایش در هر روز</x-select-item>
+              <x-select-item value="2d">نمایش یک روز در میان</x-select-item>
+          </x-select-group>
 
             {{ csrf_field() }}
            <x-card-footer>
