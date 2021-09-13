@@ -83,6 +83,7 @@ public function project() {
         ) || (
             $this->status == 'done' &&
             !empty($this->continuity) &&
+            !empty($this->done_at) &&
             $this->done_at->isSameDay(now())
         );
     }
