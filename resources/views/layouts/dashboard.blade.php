@@ -208,7 +208,24 @@ BY WEBITO
 <script src="{{ asset('assets/dashboard/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <script type="text/javascript">
     $(function() {
-        $("#date, #date1").persianDatepicker();
+        function updateContinuityIsEnabled() {
+            let $continuity = $('form').find('[name=continuity]');
+            let first_val = $('form').find('input[name=start_date]').val();
+            let second_val = $('form').find('input[name=finish_date]').val();
+            if (first_val && first_val == second_val) {
+                $continuity.prop('disabled', true);
+                $continuity.val('').change();
+            }
+            else
+                $continuity.prop('disabled', false);
+        }
+
+        $('input[name=start_date]').on('change input', updateContinuityIsEnabled);
+        $('input[name=finish_date]').on('change input', updateContinuityIsEnabled);
+        $("#date, #date1").persianDatepicker({
+            onSelect: updateContinuityIsEnabled,
+        });
+
         $('.todo-list').sortable({
         placeholder: 'sort-highlight',
         handle: '.handle',
