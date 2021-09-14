@@ -13,4 +13,12 @@ class TaskStatusUpdateRequest extends FormRequest
             'status' => ['required', 'string'],
         ];
     }
+
+    public function validated()
+    {
+        $data = parent::validated();
+        if ($data['status'] == 'done')
+            $data['done_at'] = now();
+        return $data;
+    }
 }

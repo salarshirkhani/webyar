@@ -79,7 +79,7 @@ class DailyController extends Controller
     public function UpdatePost($id, TaskStatusUpdateRequest $request)
     {
         $task=Task::where('employee_id',Auth::user()->id)->orderBy('finish_date', 'ASC')->get();
-        $post = Task::find($request->input('id'));
+        $post = Task::find($id);
         if (!is_null($post)) {
             $post->update($request->validated());
         }
