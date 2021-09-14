@@ -70,7 +70,7 @@
                                   <x-select-item value="notwork">انجام نشده</x-select-item>
                                   <x-select-item value="done">انجام شده</x-select-item>
                                 </x-select-group>
-                                <x-select-group label="نوع زمان‌بندی" name="continuity" :model="$item ?? null" :model="$model ?? null" @if($model->start_date->eq($model->finish_date)) disabled @endif>
+                                <x-select-group label="نوع زمان‌بندی" name="continuity" :model="$item ?? null" :class="$item->start_date->isSameDay($item->finish_date) ? 'should_disable' : ''">
                                     <x-select-item value="">پیش‌فرض</x-select-item>
                                     <x-select-item value="1d">نمایش در هر روز</x-select-item>
                                     <x-select-item value="2d">نمایش یک روز در میان</x-select-item>
