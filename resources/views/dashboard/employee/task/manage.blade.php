@@ -116,7 +116,7 @@
                 <label for="todoCheck2{{ $item->id }}"></label>
               </div>
               <span class="text" style="cursor:pointer;" data-target="#modal-info{{ $item->id }}" data-toggle="modal">{{ $item->title }}</span>
-              <small class="badge badge-info"><i class="far fa-clock"></i>{{$item->finish_date->formatJalali()}}</small>
+              <small class="badge badge-info"><i class="far fa-clock"></i>{{$item->finish_date->formatJalali()}} @if(!empty($item->start_time)) ({{ $item->start_time->format('H:i') }} - {{ $item->finish_time->format('H:i') }})@endif</small>
               <div class="tools">
                 <i class="fas fa-edit" data-target="#modal-lf{{ $item->id }}" data-toggle="modal"></i>
                 <script>
@@ -226,7 +226,7 @@
                 <label for="todoCheck2{{ $item->id }}"></label>
               </div>
               <span class="text" style="cursor:pointer;" data-target="#modal-info{{ $item->id }}" data-toggle="modal">{{ $item->title }}</span>
-              <small class="badge badge-info"><i class="far fa-clock"></i>{{$item->finish_date->formatJalali()}}</small>
+              <small class="badge badge-info"><i class="far fa-clock"></i>{{$item->finish_date->formatJalali()}} @if(!empty($item->start_time)) ({{ $item->start_time->format('H:i') }} - {{ $item->finish_time->format('H:i') }})@endif</small>
               <div class="tools">
                 <i class="fas fa-edit" data-target="#modal-lf{{ $item->id }}" data-toggle="modal"></i>
                 <script>
@@ -337,7 +337,7 @@
                     <label for="todoCheck2{{ $item->id }}"></label>
                   </div>
                   <span class="text" style="cursor:pointer;" data-target="#modal-info{{ $item->id }}" data-toggle="modal">{{ $item->title }}</span>
-                  <small class="badge badge-info"><i class="far fa-clock"></i>{{$item->finish_date->formatJalali()}}</small>
+                  <small class="badge badge-info"><i class="far fa-clock"></i>{{$item->finish_date->formatJalali()}} @if(!empty($item->start_time)) ({{ $item->start_time->format('H:i') }} - {{ $item->finish_time->format('H:i') }})@endif</small>
                   <div class="tools">
                     <i class="fas fa-edit" data-target="#modal-lf{{ $item->id }}" data-toggle="modal"></i>
                     <script>
