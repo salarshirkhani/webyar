@@ -35,7 +35,7 @@ class TaskBaseRequest extends FormRequest
             'start_date' => ['required', new JalaliDate],
             'finish_date' => ['required', new JalaliDate],
             'start_time' => ['nullable', 'regex:/^\d{1,2}:\d{1,2}$/'],
-            'finish_time' => ['nullable', 'regex:/^\d{1,2}:\d{1,2}$/'],
+            'finish_time' => ['required_with:start_time', 'regex:/^\d{1,2}:\d{1,2}$/'],
             'continuity' => ['nullable', 'in:1d,2d'],
             'ignore_conflict' => ['sometimes', 'required', 'in:1'],
         ];
@@ -71,6 +71,10 @@ class TaskBaseRequest extends FormRequest
 
             if ($data['finish_date']->lt($data['start_date']))
                 $validator->errors()->add('finish_date', 'تاریخ پایان نباید از تاریخ شروع کوچک‌تر باشد.');
+
+            if (!empty($data['start_time']) && !empty($data['finish_time']) && Carbon::createFromFormat('H:i', $data['finish_time'])->lt(Carbon::createFromFormat('H:i', $data['start_time'])))
+                $validator->errors()->add('finish_date', 'ساعت پایان نباید از ساعت شروع کوچک‌تر باشد.');
+
             $existing_tasks = Task
                 ::where('employee_id', \Auth::user()->id)
                 ->where('status', 'notwork')
