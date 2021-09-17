@@ -61,7 +61,7 @@
                 <label for="todoCheck2{{ $item->id }}"></label>
               </div>
               <span class="text" style="cursor:pointer;" data-target="#modal-info{{ $item->id }}" data-toggle="modal">{{ $item->title }}</span>
-              <small class="badge badge-info"><i class="far fa-clock"></i>{{$item->finish_date->formatJalali()}} @if(!empty($item->start_time)) ({{ $item->start_time->format('H:i') }} - {{ $item->finish_time->format('H:i') }})@endif</small>
+              <small class="badge badge-info"><i class="far fa-clock"></i>@if(!empty($item->start_time)){{ $item->start_time->format('H:i') }} - {{ $item->finish_time->format('H:i') }}@else {{$item->finish_date->formatJalali()}} @endif</small>
               <div class="tools">
                 <script>
                   $(document).ready(function(){
@@ -170,7 +170,7 @@
                 <label for="todoCheck2{{ $item->id }}"></label>
               </div>
               <span class="text" style="cursor:pointer;" data-target="#modal-info{{ $item->id }}" data-toggle="modal">{{ $item->title }}</span>
-              <small class="badge badge-info"><i class="far fa-clock"></i>{{$item->finish_date->formatJalali()}} @if(!empty($item->start_time)) ({{ $item->start_time->format('H:i') }} - {{ $item->finish_time->format('H:i') }})@endif</small>
+              <small class="badge badge-info"><i class="far fa-clock"></i>@if(!empty($item->start_time)){{ $item->start_time->format('H:i') }} - {{ $item->finish_time->format('H:i') }}@else {{$item->finish_date->formatJalali()}} @endif</small>
               <div class="tools">
                 <script>
                   $(document).ready(function(){
@@ -280,7 +280,7 @@
                     <label for="todoCheck2{{ $item->id }}"></label>
                   </div>
                   <span class="text" style="cursor:pointer;" data-target="#modal-info{{ $item->id }}" data-toggle="modal">{{ $item->title }}</span>
-                  <small class="badge badge-info"><i class="far fa-clock"></i>{{$item->finish_date->formatJalali()}} @if(!empty($item->start_time)) ({{ $item->start_time->format('H:i') }} - {{ $item->finish_time->format('H:i') }})@endif</small>
+                  <small class="badge badge-info"><i class="far fa-clock"></i>@if(!empty($item->start_time)){{ $item->start_time->format('H:i') }} - {{ $item->finish_time->format('H:i') }}@else {{$item->finish_date->formatJalali()}} @endif</small>
                   <div class="tools">
                     <script>
                       $(document).ready(function(){
