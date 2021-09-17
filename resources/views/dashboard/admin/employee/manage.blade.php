@@ -5,10 +5,11 @@
 @section('hierarchy')
     <x-breadcrumb-item title="داشبورد" route="dashboard.admin.index" />
     <x-breadcrumb-item title="مدیریت پروژه ها" route="dashboard.admin.project.manage" />
-    <x-breadcrumb-item title="اضافه کردن کاربر به پروژه" route="dashboard.admin.employee.manage" />
+    <x-breadcrumb-item title="مدیریت کاربران پروژه" route="dashboard.admin.employee.manage" />
 @endsection
 @section('content')
-    @if(Session::has('info'))
+@include('dashboard.admin.employee.updateemployee', ['posts' => $posts])
+@if(Session::has('info'))
     <div class="row">
         <div class="col-md-12">
             <p class="alert alert-info">{{ Session::get('info') }}</p>
@@ -17,7 +18,7 @@
 @endif
     <div class="col-md-12">
         <x-card type="info">
-            <x-card-header>اضافه کردن کاربر به پروژه {{$project->title}}</x-card-header>
+            <x-card-header>مدیریت کاربران پروژه {{$project->title}}</x-card-header>
                 <x-card-body>
                     <div class="box-body">
                         در اینجا می توانید کاربران پروژه را مدیریت کنید
@@ -57,7 +58,7 @@
                                         @endif
                                 </td>
                                     <td><a href="{{route('dashboard.admin.users.profile',['id'=>$item->id])}}" class="btn btn-block btn-outline-primary btn-sm">مشاهده پروفایل</a></td>
-                                    <td><a href="{{route('dashboard.admin.employee.updateemployee',['id'=>$item->id])}}"  class="btn btn-block bg-gradient-warning btn-sm">ویرایش</a></td>
+                                    <td><button type="button" data-toggle="modal" data-target="#modal-edit-employee-{{ $item->id }}" class="btn btn-block bg-gradient-warning btn-sm">ویرایش</button></td>
                                     <td>
                                     <a href="{{route('dashboard.admin.employee.deleteemployee',['id'=>$item->id,'project_id'=>$item->project->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>
                                     </td>

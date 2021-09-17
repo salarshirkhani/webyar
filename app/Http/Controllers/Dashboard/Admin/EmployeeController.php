@@ -36,7 +36,7 @@ class EmployeeController extends Controller
         if ($post->finish_date->lt($post->start_date))
             return redirect()->back()->withErrors(['finish_date' => 'تاریخ پایان نباید از تاریخ شروع کوچک‌تر باشد.']);
         $post->save();
-        return redirect()->route('dashboard.admin.employee.manage', ['id' => $id])->with('info', 'کاربر جدید اضافه شد ' );
+        return redirect()->back()->with('info', 'کاربر جدید اضافه شد ' );
     }
     public function GetManagePost($id,Request $request)
     {
@@ -49,13 +49,7 @@ class EmployeeController extends Controller
     public function DeletePost($id,$project_id){
         $post = EmployeeProject::find($id);
         $post->delete();
-        return redirect()->route('dashboard.admin.employee.manage', ['id' => $project_id])->with('info', 'کاربر از پروژه پاک شد');
-    }
-
-    public function GetEditPost($id)
-    {
-        $post = EmployeeProject::find($id);
-        return view('dashboard.admin.employee.updateemployee', ['post' => $post, 'id' => $id]);
+        return redirect()->back()->with('info', 'کاربر از پروژه پاک شد');
     }
 
     public function UpdatePost($id,Request $request)
@@ -71,7 +65,7 @@ class EmployeeController extends Controller
                 return redirect()->back()->withErrors(['finish_date' => 'تاریخ پایان نباید از تاریخ شروع کوچک‌تر باشد.']);
             $post->save();
         }
-        return redirect()->route('dashboard.admin.employee.manage',$post->project_id)->with('info', 'کاربر پروژه ویرایش شد');
+        return redirect()->back()->with('info', 'کاربر پروژه ویرایش شد');
     }
 
 }

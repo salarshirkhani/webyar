@@ -1,52 +1,54 @@
-@extends('layouts.dashboard')
-@section('sidebar')
-    @include('dashboard.admin.sidebar')
-@endsection
-@section('hierarchy')
-    <x-breadcrumb-item title="داشبورد" route="dashboard.admin.index" />
-    <x-breadcrumb-item title="ویرایش فاز پروژه" route="dashboard.admin.phase.updatephase" />
-@endsection
-@section('content')
-    @if(Session::has('info'))
-    <div class="row">
-        <div class="col-md-12">
-            <p class="alert alert-info">{{ Session::get('info') }}</p>
-        </div>
-    </div>
-@endif
-    <div class="col-md-12">
-        <x-card type="info">
-            <x-card-header>ویرایش فاز پروژه</x-card-header>
-        <form style="padding:10px;" action="{{ route('dashboard.admin.phase.updatephase', $post->id) }}" method="post" role="form" class="form-horizontal " enctype="multipart/form-data">
-            <input type="hidden" style="margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control"  name="id" value="{{ $post->id }}" >
-            <input type="hidden" style="margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control"  name="project_id" value="{{ $post->for->id }}" >
-            <input type="text" style="padding:10px; margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control" required  name="title" value="{{ $post->title }}" placeholder="عنوان">
-            <div class="form-group">
-                <label>تاریخ شروع:</label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+@foreach ($posts as $post)
+    <form action="{{ route('dashboard.admin.phase.updatephase', $post->id) }}" method="post" role="form" class="form-horizontal " enctype="multipart/form-data">
+        {{ csrf_field() }}
+        <div class="modal fade show" id="modal-edit-phase-{{ $post->id }}" aria-modal="true" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">ویرایش فاز پروژه</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
                     </div>
-                    <input name="start_date" type="text" id="date" value="{{ $post->start_date->formatJalali() }}" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy-mm-dd" data-mask="">
-                </div>
-                <!-- /.input group -->
-            </div>
+                    <div class="modal-body">
+                        <x-card type="info">
+                            <x-card-header>ویرایش فاز پروژه</x-card-header>
+                            <x-card-body>
+                                <input type="hidden" style="margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control"  name="id" value="{{ $post->id }}" >
+                                <input type="hidden" style="margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control"  name="project_id" value="{{ $post->for->id }}" >
+                                <input type="text" style="padding:10px; margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control" required  name="title" value="{{ $post->title }}" placeholder="عنوان">
+                                <div class="form-group">
+                                    <label>تاریخ شروع:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                        </div>
+                                        <input name="start_date" type="text" id="date" value="{{ $post->start_date->formatJalali() }}" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy-mm-dd" data-mask="">
+                                    </div>
+                                    <!-- /.input group -->
+                                </div>
 
-            <div class="form-group">
-                <label>تاریخ پایان:</label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
-                    </div>
-                    <input name="finish_date" value="{{ $post->finish_date->formatJalali() }}" type="text" id="date1" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy-mm-dd" data-mask="">
+                                <div class="form-group">
+                                    <label>تاریخ پایان:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                        </div>
+                                        <input name="finish_date" value="{{ $post->finish_date->formatJalali() }}" type="text" id="date1" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy-mm-dd" data-mask="">
+                                    </div>
+                                    <!-- /.input group -->
+                                </div>
+                            </x-card-body>
+                    </x-card>
                 </div>
-                <!-- /.input group -->
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">بستن</button>
+                    <button type="submit"  class="btn btn-primary toastrDefaultInfo">ثبت</button>
+                </div>
             </div>
-             {{ csrf_field() }}
-             <x-card-footer>
-                <button type="submit" style=" margin: 20px 0px; height: 42px;width: 100%;font-size: 20px;"  class="btn btn-primary">ارسال</button>
-             </x-card-footer>
-            </form>
-    </x-card>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
     </div>
-    @endsection
+</form>
+@endforeach

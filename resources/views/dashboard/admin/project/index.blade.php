@@ -2,13 +2,27 @@
 @section('sidebar')
     @include('dashboard.admin.sidebar')
 @endsection
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('assets/dashboard/plugins/MDTimePicker/mdtimepicker.min.css') }}">
+    <style>
+        .mdtimepicker {
+            direction: ltr;
+            text-align: left;
+        }
+    </style>
+@endsection
 @section('hierarchy')
     <x-breadcrumb-item title="داشبورد" route="dashboard.admin.index" />
     <x-breadcrumb-item title="مدیریت پروژه ها" route="dashboard.admin.project.manage" />
     <x-breadcrumb-item title="{{ $post->title }}" route="dashboard.admin.project.index" />
 @endsection
 @section('content')
-    @if(Session::has('info'))
+@include('dashboard.admin.phase.create', ['id' => $post->id])
+@include('dashboard.admin.phase.updatepost', ['posts' => $phase, 'id' => $post->id])
+@include('dashboard.admin.task.create', ['id' => $post->id, 'phase' => $phase, 'posts' => $users])
+@include('dashboard.admin.task.updatetask', ['id' => $post->id, 'phase' => $phase, 'users' => $users, 'posts' => $tasks])
+@include('dashboard.admin.employee.updateemployee', ['posts' => $users])
+@if(Session::has('info'))
     <div class="row">
         <div class="col-md-12">
             <p class="alert alert-info">{{ Session::get('info') }}</p>
@@ -49,7 +63,7 @@
                                     <a href="{{route('dashboard.admin.phase.deletephase',['id'=>$item->id,'project_id'=>$item->for->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>
                                     </td>
                                     <td>
-                                    <a href="{{route('dashboard.admin.phase.updatephase',['id'=>$item->id])}}" class="edit_post" target="_blank"><i class="fas fa-edit"></i></a>
+                                    <button type="button" data-toggle="modal" data-target="#modal-edit-phase-{{ $item->id }}" style="padding: 0;color:#dc3545" class="btn edit_post"><i class="fas fa-edit"></i></button>
                                     </td>
                                 </tr>
                              @endforeach
@@ -68,7 +82,7 @@
                         <div class="card-footer">
                             <div class="row">
                                 <div class="col-12 col-md-4 col-lg-3">
-                                    <a href="{{route('dashboard.admin.phase.create',['id'=>$id])}}" class="btn btn-success">ثبت فاز جدید برای پروژه</a>
+                                    <button type="button" data-toggle="modal" data-target="#modal-create-phase" class="btn btn-success">ثبت فاز جدید برای پروژه</button>
                                 </div>
                             </div>
                         </div>
@@ -103,7 +117,7 @@
                                         <td>{!! $item->finish_date->formatJalali() !!}</td>
                                         <td>{{ $item->cost }}</td>
                                         <td><a href="{{route('dashboard.admin.users.profile',['id'=>$item->id])}}" class="btn btn-block btn-outline-primary btn-sm">مشاهده پروفایل</a></td>
-                                        <td><a href="{{route('dashboard.admin.employee.updateemployee',['id'=>$item->id])}}"  class="btn btn-block bg-gradient-warning btn-sm">ویرایش</a></td>
+                                        <td><button type="button" data-toggle="modal" data-target="#modal-edit-employee-{{ $item->id }}" class="btn btn-block bg-gradient-warning btn-sm">ویرایش</button></td>
                                         <td>
                                         <a href="{{route('dashboard.admin.employee.deleteemployee',['id'=>$item->id,'project_id'=>$item->project->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>
                                         </td>
@@ -169,7 +183,7 @@
                                         <a href="{{route('dashboard.admin.task.deletetask',['id'=>$item->id,'project_id'=>$item->for->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>
                                         </td>
                                         <td>
-                                        <a href="{{route('dashboard.admin.task.updatetask',['id'=>$item->id])}}" class="edit_post" target="_blank"><i class="fas fa-edit"></i></a>
+                                        <button type="button" data-toggle="modal" data-target="#modal-edit-task-{{ $item->id }}" style="padding: 0;color:#dc3545" class="btn edit_post"><i class="fas fa-edit"></i></button>
                                         </td>
                                     </tr>
                                  @endforeach
@@ -191,7 +205,7 @@
                          <div class="card-footer">
                              <div class="row">
                                  <div class="col-12 col-md-4 col-lg-3">
-                                     <a href="{{route('dashboard.admin.task.manage',['id'=>$id])}}" class="btn btn-success">مدیریت مسئولیت ها </a>
+                                     <button type="button" data-toggle="modal" data-target="#modal-create-task" class="btn btn-success">افزودن مسئولیت</button>
                                  </div>
                              </div>
                          </div>
@@ -216,3 +230,12 @@
         </x-card>
     </div>
     @endsection
+
+@section('scripts')
+    <script src="{{ asset('assets/dashboard/plugins/MDTimePicker/mdtimepicker.min.js') }}"></script>
+    <script>
+        mdtimepicker('.mdtimepicker-input', {
+            is24hour: true,
+        });
+    </script>
+@endsection

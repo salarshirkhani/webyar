@@ -14,11 +14,6 @@ use App\Models\EmployeeProject;
 
 class TaskController extends Controller
 {
-    public function GetCreatePost($id)
-    {
-        return view('dashboard.admin.task.create', ['id' => $id]);
-    }
-
     public function CreatePost($id,TaskCreateRequest $request)
     {
         $data = array_merge($request->validated(), [
@@ -27,30 +22,13 @@ class TaskController extends Controller
 
         $post = new Task($data);
         $post->save();
-        return redirect()->route('dashboard.admin.task.manage', ['id' => $id])->with('info', 'مسئولیت جدید اضافه شد ' );
-    }
-    public function GetManagePost($id,Request $request)
-    {
-        $task=Task::where('project_id',$id)->orderBy('created_at', 'desc')->get();
-        $project=Project::find($id);
-        $phase= Phase::where('project_id',$id)->orderBy('created_at', 'desc')->get();
-        $posts = EmployeeProject::where('project_id',$id)->orderBy('created_at', 'desc')->get();
-        return view('dashboard.admin.task.manage', ['posts' => $posts,'id' => $id,'phase' => $phase,'project' => $project,'task' => $task]);
+        return redirect()->back()->with('info', 'مسئولیت جدید اضافه شد ' );
     }
 
     public function DeletePost($id,$project_id){
         $post = Task::find($id);
         $post->delete();
-        return redirect()->route('dashboard.admin.task.manage', ['id' => $project_id])->with('info', 'مسئولیت پاک شد');
-    }
-
-    public function GetEditPost($id)
-    {
-        $post = Task::find($id);
-        $project=Project::find($id);
-        $phase= Phase::where('project_id',$post->project_id)->orderBy('created_at', 'desc')->get();
-        $posts = EmployeeProject::where('project_id',$id)->orderBy('created_at', 'desc')->get();
-        return view('dashboard.admin.task.updatetask', ['posts' => $posts,'id' => $id,'phase' => $phase,'project' => $project,'post' => $post]);
+        return redirect()->back()->with('info', 'مسئولیت پاک شد');
     }
 
     public function UpdatePost($id,TaskUpdateRequest $request)
@@ -60,7 +38,7 @@ class TaskController extends Controller
             $post->fill($request->validated());
             $post->save();
         }
-        return redirect()->route('dashboard.admin.task.manage',$post->project_id)->with('info', 'مسئولیت ویرایش شد');
+        return redirect()->back()->with('info', 'مسئولیت ویرایش شد');
     }
 
 }

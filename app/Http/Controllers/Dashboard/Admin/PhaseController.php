@@ -19,11 +19,6 @@ use Illuminate\Support\Facades\Storage;
 
 class PhaseController extends Controller
 {
-    public function GetCreatePost($id)
-    {
-        return view('dashboard.admin.phase.create', ['id' => $id]);
-    }
-
     public function CreatePost($id,Request $request)
     {
         $post = new Phase([
@@ -35,14 +30,8 @@ class PhaseController extends Controller
         if ($post->finish_date->lt($post->start_date))
             return redirect()->back()->withErrors(['finish_date' => 'تاریخ پایان نباید از تاریخ شروع کوچک‌تر باشد.']);
         $post->save();
-        return redirect()->route('dashboard.admin.phase.manage', ['id' => $id])->with('info', '  فاز جدید ذخیره شد و نام آن' .' ' . $request->input('title'));
+        return redirect()->back()->with('info', '  فاز جدید ذخیره شد و نام آن' .' ' . $request->input('title'));
     }
-    public function GetManagePost($id,Request $request)
-    {
-        $posts = Phase::where('project_id',$id)->orderBy('created_at', 'desc')->get();
-        return view('dashboard.admin.phase.manage', ['posts' => $posts,'id' => $id]);
-    }
-
     public function DeletePost($id,$project_id){
 
         $task= Task::where('phase_id',$id)->orderBy('created_at', 'desc')->get();
@@ -52,13 +41,7 @@ class PhaseController extends Controller
 
         $post = Phase::find($id);
         $post->delete();
-        return redirect()->route('dashboard.admin.phase.manage', ['id' => $project_id])->with('info', 'فاز پاک شد');
-    }
-
-    public function GetEditPost($id)
-    {
-        $post = Phase::find($id);
-        return view('dashboard.admin.phase.updatepost', ['post' => $post, 'id' => $id]);
+        return redirect()->back()->with('info', 'فاز پاک شد');
     }
 
     public function UpdatePost($id,Request $request)
@@ -73,7 +56,7 @@ class PhaseController extends Controller
                 return redirect()->back()->withErrors(['finish_date' => 'تاریخ پایان نباید از تاریخ شروع کوچک‌تر باشد.']);
             $post->save();
         }
-        return redirect()->route('dashboard.admin.phase.manage',$post->project_id)->with('info', 'فاز ویرایش شد');
+        return redirect()->back()->with('info', 'فاز ویرایش شد');
     }
 
        //TASK CONTROLLER
