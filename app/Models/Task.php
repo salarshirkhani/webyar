@@ -36,7 +36,12 @@ public function project() {
         if (empty($this->continuity))
             return $this->status == 'done';
         else {
-            return $this->status == 'done' && (empty($this->done_at) || $this->done_at->isSameDay(now()));
+            return $this->status == 'done' && (
+                empty($this->done_at) ||
+                (
+                    now()->lte($this->finish_date) &&
+                    $this->done_at->isSameDay(now()))
+                );
         }
     }
 
@@ -51,7 +56,7 @@ public function project() {
                 $finish_date->gte($now) &&
                 (
                     $this->continuity == '1d' ||
-                    ($this->continuity == '2d' && $now->dayOfYear % 2 == 0)
+                    ($this->continuity == '2d' && ($now->diffInDays($start_date) % 2) == 0)
                 )
             )
         );
@@ -68,23 +73,24 @@ public function project() {
 
     public function getIsForTomorrowAttribute() {
         $now = now()->startOfDay();
+        $tomorrow = now()->startOfDay()->addDay();
         $finish_date = $this->finish_date;
         $start_date = $this->start_date;
         return (
             !$this->is_done &&
             (
                 ($now->diffInDays($finish_date, false) <= 1 && $now->diffInDays($finish_date, false)>0) ||
-                ($start_date->lte($now) && $finish_date->gte($now) && (
+                ($start_date->lte($now) && $finish_date->gte($tomorrow) && (
                         ($this->continuity == '1d') ||
-                        ($this->continuity == '2d' && $now->dayOfYear % 2 == 1)
+                        ($this->continuity == '2d' && ($now->diffInDays($start_date) % 2) == 1)
                     )
                 )
             )
         ) || (
             $this->status == 'done' &&
-            !empty($this->continuity) &&
+            $this->continuity == '1d' &&
             !empty($this->done_at) &&
-            $this->done_at->isSameDay(now())
+            $this->done_at->isSameDay($now)
         );
     }
 
