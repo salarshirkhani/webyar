@@ -1,5 +1,5 @@
 <div class="modal fade show" id="modal-create-employee" aria-modal="true" role="dialog">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">ساخت فاز جدید</h4>
