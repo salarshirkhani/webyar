@@ -64,8 +64,6 @@ Route::prefix('dashboard')
 
                //EMPLOYEE PAGE
                Route::post('employee/create/{id}', ['uses' => 'EmployeeController@CreatePost','as' => 'employee.create']);
-               Route::get('employee/create/{id}', ['uses' => 'EmployeeController@GetCreatePost','as' => 'employee.create']);
-               Route::get('employee/manage/{id}', 'EmployeeController@GetManagePost')->name('employee.manage');
                Route::get('deleteemployee/{id}/{project_id}','EmployeeController@DeletePost')->name('employee.deleteemployee');
                Route::post('updateemployee/{id}','EmployeeController@UpdatePost')->name('employee.updateemployee');
 

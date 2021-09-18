@@ -19,11 +19,6 @@ use Illuminate\Support\Facades\Storage;
 
 class EmployeeController extends Controller
 {
-    public function GetCreatePost($id)
-    {
-        return view('dashboard.admin.employee.create', ['id' => $id]);
-    }
-
     public function CreatePost($id,Request $request)
     {
         $post = new EmployeeProject([
@@ -37,13 +32,6 @@ class EmployeeController extends Controller
             return redirect()->back()->withErrors(['finish_date' => 'تاریخ پایان نباید از تاریخ شروع کوچک‌تر باشد.']);
         $post->save();
         return redirect()->back()->with('info', 'کاربر جدید اضافه شد ' );
-    }
-    public function GetManagePost($id,Request $request)
-    {
-        $project=Project::find($id);
-        $posts = EmployeeProject::where('project_id',$id)->orderBy('created_at', 'desc')->get();
-        $users = User::orderBy('created_at', 'desc')->get();
-        return view('dashboard.admin.employee.manage', ['posts' => $posts,'id' => $id,'users' => $users,'project' => $project]);
     }
 
     public function DeletePost($id,$project_id){

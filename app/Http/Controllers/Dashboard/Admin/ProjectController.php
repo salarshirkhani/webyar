@@ -30,8 +30,9 @@ class ProjectController extends Controller
         $post = Project::find($id);
         $phase= Phase::where('project_id',$id)->orderBy('created_at', 'desc')->get();
         $users = EmployeeProject::where('project_id',$id)->orderBy('created_at', 'desc')->get();
+        $all_users = User::orderBy('created_at', 'desc')->get();
         $tasks= Task::where('project_id',$id)->orderBy('created_at', 'desc')->get();
-        return view('dashboard.admin.project.index', ['post' => $post, 'id' => $id ,'phase' => $phase,'users' => $users , 'tasks' =>$tasks ]);
+        return view('dashboard.admin.project.index', ['post' => $post, 'id' => $id ,'phase' => $phase,'users' => $users , 'all_users' => $all_users, 'tasks' =>$tasks ]);
     }
 
     public function CreatePost(Request $request)

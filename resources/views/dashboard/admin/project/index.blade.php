@@ -21,6 +21,7 @@
 @include('dashboard.admin.phase.updatepost', ['posts' => $phase, 'id' => $post->id])
 @include('dashboard.admin.task.create', ['id' => $post->id, 'phase' => $phase, 'posts' => $users])
 @include('dashboard.admin.task.updatetask', ['id' => $post->id, 'phase' => $phase, 'users' => $users, 'posts' => $tasks])
+@include('dashboard.admin.employee.create', ['users' => $all_users, 'project' => $post])
 @include('dashboard.admin.employee.updateemployee', ['posts' => $users])
 @if(Session::has('info'))
     <div class="row">
@@ -143,7 +144,7 @@
                        <div class="card-footer">
                            <div class="row">
                                <div class="col-12 col-md-4 col-lg-3">
-                                    <a href="{{route('dashboard.admin.employee.manage',['id'=>$id])}}" class="btn btn-success">مدیریت کاربران </a>
+                                   <button type="button" data-toggle="modal" data-target="#modal-create-employee" class="btn btn-success">افزودن کاربر </button>
                                </div>
                            </div>
                        </div>
