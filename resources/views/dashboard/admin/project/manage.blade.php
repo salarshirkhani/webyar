@@ -25,7 +25,6 @@
                                 <th>عنوان</th>
                                 <th>تاریخ شروع</th>
                                 <th>تاریخ پایان</th>
-                                <th>فاز بندی</th>
                                 <th>نمایش پروژه</th>
                                 <th>حذف</th>
                                 <th>ویرایش</th>
@@ -37,9 +36,6 @@
                                     <td>{{ $item->title }}</td>
                                     <td>{!! $item->start_date->formatJalali() !!}</td>
                                     <td>{!! $item->finish_date->formatJalali() !!}</td>
-                                    <td>
-                                    <a href="{{route('dashboard.admin.phase.manage',['id'=>$item->id])}}" class="edit_post" ><i class="fas fa-project-diagram"></i></a>
-                                    </td>
                                     <td><a href="{{route('dashboard.admin.project.index',['id'=>$item->id])}}" class="btn btn-block bg-gradient-primary btn-sm">نمایش پروژه</a></td>
                                     <td>
                                     <a href="{{route('dashboard.admin.project.deletepost',['id'=>$item->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>
@@ -55,7 +51,6 @@
                                     <th>عنوان</th>
                                     <th>تاریخ شروع</th>
                                     <th>تاریخ پایان</th>
-                                    <th>فاز بندی</th>
                                     <th>نمایش پروژه</th>
                                     <th>حذف</th>
                                     <th>ویرایش</th>
