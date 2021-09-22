@@ -24,7 +24,7 @@
                                       <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                       </div>
-                                      <input id="date" name="start_date" type="text" value="{{ $post->start_date->formatJalali() }}" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy-mm-dd" data-mask="">
+                                      <input id="date" name="start_date" type="text" value="{{ $post->start_date->formatJalali() }}" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy-mm-dd" data-mask="" required>
                                     </div>
                                     <!-- /.input group -->
                                 </div>
@@ -34,7 +34,7 @@
                                       <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                       </div>
-                                      <input id="date1" name="finish_date" value="{{ $post->finish_date->formatJalali() }}" type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy-mm-dd" data-mask="">
+                                      <input id="date1" name="finish_date" value="{{ $post->finish_date->formatJalali() }}" type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy-mm-dd" data-mask="" required>
                                     </div>
                                     <!-- /.input group -->
                                 </div>
