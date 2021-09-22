@@ -177,7 +177,7 @@
                                         <td>{{ $item->title }}</td>
                                         <td>{!! $item->start_date->formatJalali() !!}</td>
                                         <td>{!! $item->finish_date->formatJalali() !!}</td>
-                                        <td>{{ $item->phase->title }}</td>
+                                        <td>{{ !empty($item->phase) ? $item->phase->title : '' }}</td>
                                         <td>{{ $item->for->first_name }} {{ $item->for->last_name }}</td>
                                         <td>{{ __('app.status.' . $item->status) }}</td>
                                         <td>
