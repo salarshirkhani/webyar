@@ -15,7 +15,8 @@
         "laravel/ui": "^3.3",
         "morilog/jalali": "^3.2",
         "nesbot/carbon": "^2.51",
-        "rinvex/laravel-subscriptions": "^5.0"
+        "rinvex/laravel-subscriptions": "^5.0",
+        "shetabit/payment": "^4.0"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.10",

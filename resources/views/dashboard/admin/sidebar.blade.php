@@ -6,4 +6,4 @@
 <x-sidebar-item title="مدیریت پیام ها" icon="fas fa-envelope-open-text" route="dashboard.admin.message.manage" />
 <x-sidebar-item title="مدیریت دستمزد ها" icon="fas fa-list" route="dashboard.admin.salary.index" />
 <x-sidebar-item title="حضورغیاب" icon="fas fa-users" route="dashboard.admin.absence.manage" />
-
+<x-sidebar-item title="مدیریت فاکتور‌ها" icon="fas fa-money-check-alt" route="dashboard.admin.invoice.index" />

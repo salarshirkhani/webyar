@@ -31,12 +31,18 @@ Route::prefix('dashboard')
         Route::get('',  'IndexController@get')->name('index');
         Route::get('profile',  'ProfileController@edit')->name('profile.edit');
         Route::put('profile',  'ProfileController@update')->name('profile.update');
+        Route::get('invoice/{invoice}', 'InvoiceController@get')->name('invoice.get');
+        Route::post('invoice/{invoice}/pay', 'InvoiceController@pay')->name('invoice.pay');
+        Route::any('invoice/{invoice}/callback', 'InvoiceController@callback')->name('invoice.callback');
+
         Route::prefix('admin')
             ->name('admin.')
             ->middleware(['user_type:admin'])
             ->namespace('Admin')
             ->group(function() {
                 Route::get('',  'IndexController@get')->name('index');
+
+                Route::resource('invoice', 'InvoiceController');
 
                 //Project PAGE
                 Route::get('project/index/{id}', 'ProjectController@GetProject')->name('project.index');
