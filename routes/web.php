@@ -43,6 +43,7 @@ Route::prefix('dashboard')
                 Route::get('',  'IndexController@get')->name('index');
 
                 Route::resource('invoice', 'InvoiceController');
+                Route::resource('ticket', 'TicketController');
 
                 //Project PAGE
                 Route::get('project/index/{id}', 'ProjectController@GetProject')->name('project.index');
@@ -118,6 +119,8 @@ Route::prefix('dashboard')
             ->namespace('Customer')
             ->group(function() {
                 Route::get('',  'IndexController@get')->name('index');
+
+                Route::resource('ticket', 'TicketController');
 
             });
 
