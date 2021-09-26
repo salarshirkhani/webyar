@@ -7,4 +7,5 @@
 <x-sidebar-item title="مدیریت دستمزد ها" icon="fas fa-list" route="dashboard.admin.salary.index" />
 <x-sidebar-item title="حضورغیاب" icon="fas fa-users" route="dashboard.admin.absence.manage" />
 <x-sidebar-item title="مدیریت فاکتور‌ها" icon="fas fa-money-check-alt" route="dashboard.admin.invoice.index" />
+<x-sidebar-item title="مدیریت دسته‌بندی ها" icon="fas fa-stream" route="dashboard.admin.category.index" />
 <x-sidebar-item title="پشتیبانی" icon="fas fa-headset" route="dashboard.admin.ticket.index" />
