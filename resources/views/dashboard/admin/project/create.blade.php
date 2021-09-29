@@ -49,7 +49,7 @@
             </x-select-group>
               {{ csrf_field() }}
              <x-card-footer>
-                <button type="submit" style=" margin: 20px 0px; height: 42px;width: 100%;font-size: 20px;"  class="btn btn-primary">ارسال</button>
+                <button type="submit" style=" margin: 20px 0px; height: 42px;width: 100%;font-size: 20px;"  class="btn btn-primary">ایجاد</button>
              </x-card-footer>
             </form>
     </x-card>
