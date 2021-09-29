@@ -45,6 +45,8 @@ Route::prefix('dashboard')
                 Route::resource('invoice', 'InvoiceController');
                 Route::resource('ticket', 'TicketController');
                 Route::resource('category', 'CategoryController');
+                Route::resource('product', 'ProductController');
+                Route::resource('order', 'OrderController');
 
                 //Project PAGE
                 Route::get('project/index/{id}', 'ProjectController@GetProject')->name('project.index');
