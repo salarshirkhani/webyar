@@ -21,6 +21,9 @@ class EmployeeController extends Controller
 {
     public function CreatePost($id,Request $request)
     {
+        if (EmployeeProject::where('employee_id', $request->input('employee_id'))->where('project_id', $id)->exists())
+            return redirect()->back()->with('error', 'این کاربر قبلا به پروژه اضافه شده‌است!' );
+
         $post = new EmployeeProject([
             'cost' => $request->input('cost'),
             'employee_id' => $request->input('employee_id'),

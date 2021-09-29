@@ -30,7 +30,13 @@
         </div>
     </div>
 @endif
-
+@if(Session::has('error'))
+    <div class="row">
+        <div class="col-md-12">
+            <p class="alert alert-danger">{{ Session::get('error') }}</p>
+        </div>
+    </div>
+@endif
     <div class="col-md-12">
         <x-card type="info">
             <x-card-header>{{ $post->title }}</x-card-header>
