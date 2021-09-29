@@ -22,7 +22,7 @@
 @include('dashboard.admin.task.create', ['id' => $post->id, 'phase' => $phase, 'posts' => $users])
 @include('dashboard.admin.task.updatetask', ['id' => $post->id, 'phase' => $phase, 'users' => $users, 'posts' => $tasks])
 @include('dashboard.admin.employee.create', ['users' => $all_users, 'project' => $post])
-@include('dashboard.admin.employee.updateemployee', ['posts' => $users])
+@include('dashboard.admin.employee.updateemployee', ['posts' => $users, 'salaries' => $salaries])
 @if(Session::has('info'))
     <div class="row">
         <div class="col-md-12">

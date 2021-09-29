@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Salary;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -32,7 +33,8 @@ class ProjectController extends Controller
         $users = EmployeeProject::where('project_id',$id)->orderBy('created_at', 'desc')->get();
         $all_users = User::orderBy('created_at', 'desc')->get();
         $tasks= Task::where('project_id',$id)->orderBy('created_at', 'desc')->get();
-        return view('dashboard.admin.project.index', ['post' => $post, 'id' => $id ,'phase' => $phase,'users' => $users , 'all_users' => $all_users, 'tasks' =>$tasks ]);
+        $salaries = Salary::all();
+        return view('dashboard.admin.project.index', ['post' => $post, 'id' => $id ,'phase' => $phase,'users' => $users , 'all_users' => $all_users, 'tasks' =>$tasks, 'salaries' => $salaries ]);
     }
 
     public function CreatePost(Request $request)

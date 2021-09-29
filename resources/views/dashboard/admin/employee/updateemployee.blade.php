@@ -17,7 +17,12 @@
                             <input type="hidden" style="margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control"  name="id" value="{{ $post->id }}" >
                             <input type="hidden" style="margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control"  name="project_id" value="{{ $post->project->id }}" >
                             <input type="hidden" style="margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control"  name="employee_id" value="{{ $post->for->id }}" >
-                            <input type="text" style="padding:10px; margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control" required  name="cost" value="{{ $post->cost }}" placeholder="هزینه">
+                            <x-select-group name="salary_id" label="دستمزد" :model="$post">
+                                <x-select-item value=""></x-select-item>
+                                @foreach($salaries as $item)
+                                    <x-select-item :value="$item->id">{{ $item->title }} ({{ $item->amount }})</x-select-item>
+                                @endforeach
+                            </x-select-group>
                             <div class="form-group">
                                 <label>تاریخ شروع:</label>
                                 <div class="input-group">
