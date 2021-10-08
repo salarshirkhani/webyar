@@ -35,8 +35,11 @@ class TaskController extends Controller
     {
         $post = Task::find($request->input('id'));
         if (!is_null($post)) {
+            $old_status = $post->status;
             $post->fill($request->validated());
             $post->save();
+            if (!empty($post->for) && $post->status == 'done' && $old_status != $post->status)
+                $post->applyEmployeeScore($post->for);
         }
         return redirect()->back()->with('info', 'مسئولیت ویرایش شد');
     }

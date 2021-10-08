@@ -25,4 +25,17 @@ class Project extends Model
     {
         return $this->belongsToMany(Employee::class);
     }
+
+    public function applyEmployeesScore() {
+        $delay_in_days = $this->finish_date->startOfDay()->diffInDays(now()->startOfDay(), false);
+        if ($this->status == 'done' && $delay_in_days > 0) {
+            foreach ($this->employees as $user) {
+                Score::create([
+                    'user_id' => $user->id,
+                    'value' => Score::PROJECT_DELAY[0] * $delay_in_days,
+                    'description' => sprintf(Score::PROJECT_DELAY[1], $delay_in_days),
+                ]);
+            }
+        }
+    }
 }

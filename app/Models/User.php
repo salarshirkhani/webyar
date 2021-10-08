@@ -99,4 +99,12 @@ class User extends Authenticatable
     public function routeNotificationForSms() {
         return $this->mobile;
     }
+
+    public function scores() {
+        return $this->hasMany('App\Models\Score');
+    }
+
+    public function getScoreAttribute() {
+        return $this->scores()->sum('value');
+    }
 }

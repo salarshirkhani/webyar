@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\Employee\TaskCreateRequest;
 use App\Http\Requests\Dashboard\Employee\TaskStatusUpdateRequest;
 use App\Http\Requests\Dashboard\Employee\TaskUpdateRequest;
+use App\Models\Score;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Session\Store;
@@ -79,10 +80,12 @@ class TaskController extends Controller
 
     public function UpdatePost($id, TaskStatusUpdateRequest $request)
     {
-        $task=Task::where('employee_id',Auth::user()->id)->orderBy('finish_date', 'ASC')->get();
         $post = Task::find($request->input('id'));
         if (!is_null($post)) {
+            $old_status = $post->status;
             $post->update($request->validated());
+            if ($post->status == 'done' && $old_status != $post->status)
+                $post->applyEmployeeScore(Auth::user());
         }
         return redirect()->route('dashboard.employee.task.manage')->with('info', 'مسئولیت انجام شد');
     }
@@ -94,7 +97,10 @@ class TaskController extends Controller
         $data['employee_id'] = Auth::user()->id;
         $post = Task::find($id);
         if (!is_null($post)) {
+            $old_status = $post->status;
             $post->update($data);
+            if ($post->status == 'done' && $old_status != $post->status)
+                $post->applyEmployeeScore(Auth::user());
         }
         return redirect()->route('dashboard.employee.task.manage')->with('info', 'مسئولیت ویرایش شد');
     }

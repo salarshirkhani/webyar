@@ -108,5 +108,15 @@ public function project() {
         });
     }
 
+    public function applyEmployeeScore($user) {
+        $delay_in_days = $this->finish_date->startOfDay()->diffInDays(now()->startOfDay(), false);
+        if ($this->status == 'done' && $delay_in_days > 0) {
+            Score::create([
+                'user_id' => $user->id,
+                'value' => Score::TASK_DELAY[0] * $delay_in_days,
+                'description' => sprintf(Score::TASK_DELAY[1], $delay_in_days),
+            ]);
+        }
+    }
 
 }

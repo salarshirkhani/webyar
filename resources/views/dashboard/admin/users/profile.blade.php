@@ -40,7 +40,7 @@ foreach ($task as $item) {
                     <b>مسئولیت های انجام شده</b> <a class="float-right"><?php echo $tasks ;  ?></a>
                   </li>
                   <li class="list-group-item">
-                    <b>امتیاز</b> <a class="float-right">{{ $post->rate }}</a>
+                    <b>امتیاز</b> <a class="float-right">{{ $post->score }}</a>
                   </li>
                   <li class="list-group-item">
                     <b>تاریخ تولد</b> <a class="float-right">{{ $post->birthdate }}</a>

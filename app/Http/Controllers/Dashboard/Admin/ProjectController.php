@@ -88,6 +88,7 @@ class ProjectController extends Controller
     {
         $post = Project::find($request->input('id'));
         if (!is_null($post)) {
+            $old_status = $post->status;
             $post->title = $request->input('title');
             $post->description = $request->input('description');
             $post->start_date = Carbon::fromJalali($request->input('start_date'));
@@ -96,6 +97,8 @@ class ProjectController extends Controller
                 return redirect()->back()->withErrors(['finish_date' => 'تاریخ پایان نباید از تاریخ شروع کوچک‌تر باشد.']);
             $post->status = $request->input('status');
             $post->save();
+            if ($post->status == 'done' && $old_status != $post->status)
+                $post->applyEmployeesScore();
         }
         return redirect()->route('dashboard.admin.project.manage',$post->id)->with('info', 'پروژه ویرایش شد');
     }
@@ -104,8 +107,11 @@ class ProjectController extends Controller
     {
         $post = Project::find($id);
         if (!is_null($post)) {
+            $old_status = $post->status;
             $post->status = $status;
             $post->save();
+            if ($post->status == 'done' && $old_status != $post->status)
+                $post->applyEmployeesScore();
         }
         return redirect()->back()->with('info', 'وضعیت پروژه تغییر کرد به "' . __('app.status.' . $status) . '"');
     }
