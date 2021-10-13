@@ -38,6 +38,8 @@ Route::prefix('dashboard')
             ->group(function() {
                 Route::get('',  'IndexController@get')->name('index');
 
+                Route::resource('score', 'ScoreController');
+
                 //Project PAGE
                 Route::get('project/index/{id}', 'ProjectController@GetProject')->name('project.index');
                 Route::post('project/create', ['uses' => 'ProjectController@CreatePost','as' => 'project.create']);

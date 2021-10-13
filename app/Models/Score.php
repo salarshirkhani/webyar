@@ -18,4 +18,8 @@ class Score extends Model
     public const TASK_DELAY = [-1, 'تاخیر در انجام مسئولیت (%d روز)'];
     public const PROJECT_DELAY = [-5, 'تاخیر در اتمام پروژه (%d روز)'];
 
+    public function user() {
+        return $this->belongsTo('App\Models\User');
+    }
+
 }
