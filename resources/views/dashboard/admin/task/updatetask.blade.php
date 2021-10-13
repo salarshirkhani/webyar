@@ -15,7 +15,7 @@
                             <x-card-header>ویرایش مسئولیت پروژه</x-card-header>
                             <x-card-body>
                                 <input type="text" style="padding:10px; margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control" required  name="title" value="{{ $post->title }}" placeholder="عنوان">
-                                <textarea type="text" style="padding:10px; margin: 10px 0px 16px 0px; height: 140px; border-radius: 7px; font-size: 16px;"class="form-control" value="" name="description"  placeholder="توضیحات">{{ $post->description }}</textarea>
+                                <textarea id="task-description-{{ $post->id }}" type="text" style="padding:10px; margin: 10px 0px 16px 0px; height: 140px; border-radius: 7px; font-size: 16px;"class="form-control" required name="description"  placeholder="توضیحات مسئولیت">{{ $post->description }}</textarea>
                                 <input type="hidden" style="margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control"  name="id" value="{{ $post->id }}" >
                                 <input type="hidden" style="margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control"  name="project_id" value="{{ !empty($post->project->id) ? $post->project->id : '' }}" >
                                 <div class="form-group">
@@ -96,4 +96,12 @@
             <!-- /.modal-dialog -->
         </div>
     </form>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            CKEDITOR.replace('task-description-{{ $post->id }}', {
+                // Load the Farsi interface.
+                language: 'fa'
+            });
+        });
+    </script>
 @endforeach
