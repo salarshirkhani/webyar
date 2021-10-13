@@ -123,7 +123,7 @@
                                         <td>{!! $item->start_date->formatJalali() !!}</td>
                                         <td>{!! $item->finish_date->formatJalali() !!}</td>
                                         <td>{{ $item->cost }}</td>
-                                        <td><a href="{{route('dashboard.admin.users.profile',['id'=>$item->id])}}" class="btn btn-block btn-outline-primary btn-sm">مشاهده پروفایل</a></td>
+                                        <td><a href="{{route('dashboard.admin.users.profile',['id'=>$item->for->id])}}" class="btn btn-block btn-outline-primary btn-sm">مشاهده پروفایل</a></td>
                                         <td><button type="button" data-toggle="modal" data-target="#modal-edit-employee-{{ $item->id }}" class="btn btn-block bg-gradient-warning btn-sm">ویرایش</button></td>
                                         <td>
                                         <a href="{{route('dashboard.admin.employee.deleteemployee',['id'=>$item->id,'project_id'=>$item->project->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>
