@@ -29,9 +29,9 @@
                                     <td>{{ $item->email }}</td>
                                     <td>{{ $item->mobile }}</td>
                                     <td>
-                                        <button type="button" class="btn btn-block btn-outline-primary btn-sm">
+                                        <a target="_blank" href="{{ route('dashboard.admin.users.profile',['id'=>$item->id]) }}" class="btn btn-block btn-outline-primary btn-sm">
                                             مشاهده پروفایل
-                                        </button>
+                                        </a>
                                     </td>
                                     <td>
                                         <form style="padding:10px;"
