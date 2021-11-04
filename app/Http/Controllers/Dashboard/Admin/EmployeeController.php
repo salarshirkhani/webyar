@@ -34,7 +34,7 @@ class EmployeeController extends Controller
         if ($post->finish_date->lt($post->start_date))
             return redirect()->back()->withErrors(['finish_date' => 'تاریخ پایان نباید از تاریخ شروع کوچک‌تر باشد.']);
         $post->save();
-        return redirect()->back()->with('info', 'کاربر جدید اضافه شد ' );
+        return redirect()->back()->with('info', 'کاربر جدید اضافه شد ' )->with('show-create-employee', '');
     }
 
     public function DeletePost($id,$project_id){

@@ -244,5 +244,10 @@
         mdtimepicker('.mdtimepicker-input', {
             is24hour: true,
         });
+        @if(Session::has('show-create-employee'))
+            $(window).on('load', function() {
+                $('#modal-create-employee').modal('show');
+            });
+        @endif
     </script>
 @endsection
