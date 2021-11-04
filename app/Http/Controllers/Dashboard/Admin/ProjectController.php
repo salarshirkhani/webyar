@@ -49,7 +49,7 @@ class ProjectController extends Controller
         if ($post->finish_date->lt($post->start_date))
             return redirect()->back()->withErrors(['finish_date' => 'تاریخ پایان نباید از تاریخ شروع کوچک‌تر باشد.']);
         $post->save();
-        return redirect()->route('dashboard.admin.project.manage')->with('info', '  پروژه جدید ذخیره شد و نام آن' .' ' . $request->input('title'));
+        return redirect()->route('dashboard.admin.project.index', ['id' => $post->id])->with('info', '  پروژه جدید ذخیره شد و نام آن' .' ' . $request->input('title'));
     }
     public function GetManagePost(Request $request)
     {
