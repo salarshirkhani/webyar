@@ -19,7 +19,7 @@ foreach ($users as $key) {
 ?>
     <div class="container">
         <div class="row">
-        @if(!empty($finishing_projects) || !empty($finishing_phases))
+        @if(!empty($finishing_projects) || !empty($finishing_phases) || !empty($overdue_projects))
             <div class="col-12">
                 @foreach($finishing_projects as $project)
                     <div class="alert alert-danger no-dismiss">
@@ -31,6 +31,12 @@ foreach ($users as $key) {
                     <div class="alert alert-danger no-dismiss">
                         فاز {{ $phase->title }} از پروژه {{ $phase->for->title }} در
                         تاریخ {{ $phase->finish_date->formatJalali() }} به پایان خواهد رسید!
+                    </div>
+                @endforeach
+                @foreach($overdue_projects as $project)
+                    <div class="alert alert-danger no-dismiss">
+                        مهلت پروژه {{ $project->title }} در {{ $project->finish_date->formatJalali() }} به پایان
+                        رسیده‌است اما هنوز به اتمام نرسیده!
                     </div>
                 @endforeach
             </div>

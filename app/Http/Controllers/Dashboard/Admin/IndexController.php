@@ -33,12 +33,17 @@ class IndexController extends Controller
             ::where('finish_date', '>=', $from_date_finishing)
             ->where('finish_date', '<=', $to_date_finishing)
             ->get();
+        $overdue_projects = Project
+            ::where('finish_date', '<=', now())
+            ->where('status', '!=', 'done')
+            ->get();
 
         return view('dashboard.admin.index', [
             'posts' => $posts,
             'users' => $users,
             'finishing_projects' => $finishing_projects,
             'finishing_phases' => $finishing_phases,
+            'overdue_projects' => $overdue_projects,
         ]);
     }
 }
