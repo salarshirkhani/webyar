@@ -24,8 +24,7 @@ class UserController extends Controller
     public function GetUsers()
     {
         $users=User::withTrashed()->where('type','employee')->orderBy('created_at', 'desc')->get();
-        $employee=EmployeeProject::orderBy('created_at', 'desc')->get();
-        return view('dashboard.admin.users.employee', ['users' => $users,'employee' => $employee]);
+        return view('dashboard.admin.users.employee', ['users' => $users]);
     }
 
     public function GetProfile($id) {
