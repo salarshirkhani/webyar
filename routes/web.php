@@ -77,6 +77,7 @@ Route::prefix('dashboard')
                //Users PAGE
                Route::get('users/employee', 'UserController@GetUsers')->name('users.employee');
                Route::get('users/profile/{id}', 'UserController@GetProfile')->name('users.profile');
+               Route::get('users/restore/{id}','UserController@restore')->name('users.restore');
                Route::get('deleteuser/{id}','UserController@DeletePost')->name('users.deleteuser');
                Route::get('updateuser/{id}','UserController@GetEditPost')->name('users.updateuser');
                Route::post('updateuser/{id}','UserController@UpdatePost')->name('users.updateuser');

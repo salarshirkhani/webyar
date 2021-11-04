@@ -94,10 +94,14 @@
                                     <td>{{ $item->mobile }}</td>
                                     <td><a href="{{route('dashboard.admin.users.profile',['id'=>$item->id])}}" class="btn btn-block btn-outline-primary btn-sm">مشاهده پروفایل</a></td>
                                     <td>
-                                        <a href="{{route('dashboard.admin.users.updateuser',['id'=>$item->id])}}" class="edit_post" target="_blank"><i class="fas fa-edit"></i></a>
+                                        @if($item->trashed())
+                                            <a href="{{route('dashboard.admin.users.restore',['id'=>$item->id])}}" class="edit_post"><i class="fas fa-undo"></i> بازگردانی</a>
+                                        @else
+                                            <a href="{{route('dashboard.admin.users.updateuser',['id'=>$item->id])}}" class="edit_post" target="_blank"><i class="fas fa-edit"></i></a>
+                                        @endif
                                     </td>
                                     <td>
-                                        <a href="{{route('dashboard.admin.users.deleteuser',['id'=>$item->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>                 
+                                        <a href="{{route('dashboard.admin.users.deleteuser',['id'=>$item->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>
                                     </td>
                                 </tr>
                              @endforeach
@@ -109,7 +113,7 @@
                                     <th>شماره تماس</th>
                                     <th>پروفایل</th>
                                     <th>ویرایش</th>
-                                    <th>حذف</th>                                   
+                                    <th>حذف</th>
                                 </tr>
                                 </tfoot>
                         </table>
