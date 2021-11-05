@@ -70,11 +70,19 @@
                                 <x-select-item value="1d">نمایش در هر روز</x-select-item>
                                 <x-select-item value="2d">نمایش یک روز در میان</x-select-item>
                             </x-select-group>
-                            <x-select-group name="employee_id" label="کاربر" :model="$model ?? null">
+                            <div class="form-group">
+                                <label>کاربر</label><br>
                                 @foreach($posts as $item)
-                                    <x-select-item :value="$item->employee_id">{{ $item->for->first_name }} {{ $item->for->last_name }}</x-select-item>
+                                    @if(!empty($item->for))
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" value="{{ $item->employee_id }}" id="check_{{ $item->employee_id }}">
+                                            <label class="form-check-label" for="check_{{ $item->employee_id }}">
+                                                {{ $item->for->first_name }} {{ $item->for->last_name }}
+                                            </label>
+                                        </div>
+                                    @endif
                                 @endforeach
-                            </x-select-group>
+                            </div>
                             <x-select-group name="phase_id" label="فاز بندی" :model="$model ?? null">
                                 @foreach($phase as $item)
                                     <x-select-item :value="$item->id">{{ $item->title }}</x-select-item>
