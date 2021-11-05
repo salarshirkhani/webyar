@@ -22,7 +22,7 @@
                 @method('PUT')
                 @csrf
                 <x-card-body>
-                    <x-text-group name="user" label="توضیحات" :default="$score->user->first_name . ' ' . $score->user->last_name" disabled />
+                    <x-text-group name="user" label="توضیحات" :default="empty($score->user) ? 'کاربر حذف شده' : ($score->user->first_name . ' ' . $score->user->last_name)" disabled />
                     <x-text-group name="description_no_textarea" label="توضیحات" :default="$score->description" />
                     <x-text-group name="value" label="مقدار" type="number" step="any" :model="$score" />
                 </x-card-body>
