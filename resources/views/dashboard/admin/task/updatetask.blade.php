@@ -82,7 +82,10 @@
                                         <x-select-item :value="$item->id">{{ $item->title }}</x-select-item>
                                     @endforeach
                                 </x-select-group>
-                                <input type="text" style="margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control"  name="status" value="{{ $post->status }}" >
+                                <x-select-group name="status" label="وضعیت" :model="$model ?? null">
+                                    <x-select-item value="notwork">انجام نشده</x-select-item>
+                                    <x-select-item value="done">انجام شده</x-select-item>
+                                </x-select-group>
                             </x-card-body>
                         </x-card>
                     </div>
