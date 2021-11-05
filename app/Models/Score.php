@@ -15,8 +15,8 @@ class Score extends Model
         'description',
     ];
 
-    public const TASK_DELAY = [-0.25, 'تاخیر در انجام مسئولیت (%d روز)'];
-    public const PROJECT_DELAY = [-0.25, 'تاخیر در اتمام پروژه (%d روز)'];
+    public const TASK_DELAY = [-0.25, 'تاخیر در انجام مسئولیت (%d روز - پروژه %s - مسئولیت %s)'];
+    public const PROJECT_DELAY = [-0.25, 'تاخیر در اتمام پروژه (%d روز - پروژه %s)'];
 
     public function user() {
         return $this->belongsTo('App\Models\User');

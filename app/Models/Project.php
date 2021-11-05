@@ -33,7 +33,7 @@ class Project extends Model
                 Score::create([
                     'user_id' => $user->id,
                     'value' => Score::PROJECT_DELAY[0] * $delay_in_days,
-                    'description' => sprintf(Score::PROJECT_DELAY[1], $delay_in_days),
+                    'description' => sprintf(Score::PROJECT_DELAY[1], $delay_in_days, $this->title),
                 ]);
             }
         }
