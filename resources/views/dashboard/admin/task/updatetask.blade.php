@@ -66,7 +66,7 @@
                                         </label>
                                     </div>
                                 </div>
-                                <x-select-group label="نوع زمان‌بندی" name="continuity" :model="$model ?? null">
+                                <x-select-group label="نوع زمان‌بندی" name="continuity" :model="$post ?? null">
                                     <x-select-item value="">پیش‌فرض</x-select-item>
                                     <x-select-item value="1d">نمایش در هر روز</x-select-item>
                                     <x-select-item value="2d">نمایش یک روز در میان</x-select-item>
@@ -76,7 +76,7 @@
                                     @foreach($users as $item)
                                         @if(!empty($item->for))
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" value="{{ $item->employee_id }}" id="check_{{ $item->employee_id }}" @if($model->employee_id == $item->employee_id) checked @endif>
+                                                <input class="form-check-input" type="radio" value="{{ $item->employee_id }}" id="check_{{ $item->employee_id }}" @if($post->employee_id == $item->employee_id) checked @endif>
                                                 <label class="form-check-label" for="check_{{ $item->employee_id }}">
                                                     {{ $item->for->first_name }} {{ $item->for->last_name }}
                                                 </label>
@@ -84,12 +84,12 @@
                                         @endif
                                     @endforeach
                                 </div>
-                                <x-select-group name="phase_id" label="فاز بندی" :model="$model ?? null">
+                                <x-select-group name="phase_id" label="فاز بندی" :model="$post ?? null">
                                     @foreach($phase as $item)
                                         <x-select-item :value="$item->id">{{ $item->title }}</x-select-item>
                                     @endforeach
                                 </x-select-group>
-                                <x-select-group name="status" label="وضعیت" :model="$model ?? null">
+                                <x-select-group name="status" label="وضعیت" :model="$post ?? null">
                                     <x-select-item value="notwork">انجام نشده</x-select-item>
                                     <x-select-item value="done">انجام شده</x-select-item>
                                 </x-select-group>

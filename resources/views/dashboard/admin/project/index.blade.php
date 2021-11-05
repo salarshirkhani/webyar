@@ -184,7 +184,7 @@
                                         <td>{!! $item->start_date->formatJalali() !!}</td>
                                         <td>{!! $item->finish_date->formatJalali() !!}</td>
                                         <td>{{ !empty($item->phase) ? $item->phase->title : '' }}</td>
-                                        <td>{{ $item->for->first_name }} {{ $item->for->last_name }}</td>
+                                        <td>@if(!empty($item->for)){{ $item->for->first_name }} {{ $item->for->last_name }}@endif</td>
                                         <td>{{ __('app.status.' . $item->status) }}</td>
                                         <td>
                                         <a href="{{route('dashboard.admin.task.deletetask',['id'=>$item->id,'project_id'=>$item->for->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>
