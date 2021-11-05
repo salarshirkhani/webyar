@@ -187,7 +187,7 @@
                                         <td>@if(!empty($item->for)){{ $item->for->first_name }} {{ $item->for->last_name }}@endif</td>
                                         <td>{{ __('app.status.' . $item->status) }}</td>
                                         <td>
-                                        <a href="{{route('dashboard.admin.task.deletetask',['id'=>$item->id,'project_id'=>$item->for->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>
+                                        <a href="{{route('dashboard.admin.task.deletetask',['id'=>$item->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>
                                         </td>
                                         <td>
                                         <button type="button" data-toggle="modal" data-target="#modal-edit-task-{{ $item->id }}" style="padding: 0;color:#dc3545" class="btn edit_post"><i class="fas fa-edit"></i></button>

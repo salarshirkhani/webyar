@@ -71,7 +71,7 @@ Route::prefix('dashboard')
 
                //TASK PAGE
                Route::post('task/create/{id}', ['uses' => 'TaskController@CreatePost','as' => 'task.create']);
-               Route::get('deletetask/{id}/{project_id}','TaskController@DeletePost')->name('task.deletetask');
+               Route::get('deletetask/{id}','TaskController@DeletePost')->name('task.deletetask');
                Route::post('updatetask/{id}','TaskController@UpdatePost')->name('task.updatetask');
 
                //Users PAGE

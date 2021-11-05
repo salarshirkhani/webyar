@@ -25,7 +25,7 @@ class TaskController extends Controller
         return redirect()->back()->with('info', 'مسئولیت جدید اضافه شد ' );
     }
 
-    public function DeletePost($id,$project_id){
+    public function DeletePost($id){
         $post = Task::find($id);
         $post->delete();
         return redirect()->back()->with('info', 'مسئولیت پاک شد');
