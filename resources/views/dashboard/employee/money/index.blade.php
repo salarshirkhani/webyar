@@ -8,12 +8,22 @@
     <x-breadcrumb-item title="داشبورد" route="dashboard.employee.index" />
     <x-breadcrumb-item title="مدیریت مالی" route="dashboard.employee.money.index" />
 @endsection
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('assets/dashboard/plugins/MDTimePicker/mdtimepicker.min.css') }}">
+    <style>
+        .mdtimepicker {
+            direction: ltr;
+            text-align: left;
+        }
+    </style>
+@endsection
 @section('content')
+@include('dashboard.employee.task.edit')
 <?php
 $tasks=0;
 $income=0;
-foreach ($employee as $item) {
-  $income=$item->cost+$income;
+foreach ($employee as $key) {
+    $income += empty($key->salary) ? 0 : $key->salary->amount;
 }
 foreach ($task as $item) {
   if($item->status=='done')
@@ -72,7 +82,7 @@ foreach ($task as $item) {
                                                 <td>{{ $item->project->title }}</td>
                                                 <td>{!! $item->project->start_date->formatJalali() !!}</td>
                                                 <td>{!! $item->project->finish_date->formatJalali() !!}</td>
-                                                <td>{{$item->cost}} تومان</td>
+                                                <td>{{empty($item->salary) ? 'نامعلوم' : $item->salary->amount . ' تومان'}}</td>
                                             </tr>
                                          @endforeach
                                             </tbody>
@@ -119,7 +129,7 @@ foreach ($task as $item) {
                                                   @endif
                                                 </td>
                                                 <td>
-                                                <a href="{{route('dashboard.admin.task.updatetask',['id'=>$item->id])}}" class="edit_post" target="_blank"><i class="fas fa-edit"></i></a>
+                                                <button class="btn btn-warning" type="submit" data-target="#modal-lf{{ $item->id }}" data-toggle="modal"><i class="fas fa-edit"></i> ویرایش</button>
                                                 </td>
                                             </tr>
                                          @endforeach
@@ -144,4 +154,13 @@ foreach ($task as $item) {
           </div>
       </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('assets/dashboard/plugins/MDTimePicker/mdtimepicker.min.js') }}"></script>
+    <script>
+        mdtimepicker('.mdtimepicker-input', {
+            is24hour: true,
+        });
+    </script>
 @endsection
