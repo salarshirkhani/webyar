@@ -39,22 +39,6 @@ class UserController extends Controller
         $post = User::withTrashed()->find($id);
         if (!$post->trashed()) {
             $post->delete();
-
-            $task = Task::where('employee_id', $id)->orderBy('created_at', 'desc')->get();
-            foreach ($task as $tasks) {
-                $tasks->employee_id = NULL;
-                $tasks->save();
-            }
-
-            $employee = EmployeeProject::where('employee_id', $id)->orderBy('created_at', 'desc')->get();
-            foreach ($employee as $employees) {
-                $employees->delete();
-            }
-
-            $Absence = Absence::where('employee_id', $id)->orderBy('created_at', 'desc')->get();
-            foreach ($Absence as $Absences) {
-                $Absences->delete();
-            }
         }
         else {
             $post->forceDelete();

@@ -33,12 +33,6 @@ class PhaseController extends Controller
         return redirect()->back()->with('info', '  فاز جدید ذخیره شد و نام آن' .' ' . $request->input('title'));
     }
     public function DeletePost($id,$project_id){
-
-        $task= Task::where('phase_id',$id)->orderBy('created_at', 'desc')->get();
-        foreach($task as $tasks){
-        $tasks->delete();
-        }
-
         $post = Phase::find($id);
         $post->delete();
         return redirect()->back()->with('info', 'فاز پاک شد');

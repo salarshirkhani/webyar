@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Awobaz\Compoships\Compoships;
+use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -14,6 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class User extends Authenticatable
 {
     use SoftDeletes;
+    use CascadeSoftDeletes;
     use HasSubscriptions;
     use Notifiable;
 
@@ -40,6 +42,8 @@ class User extends Authenticatable
         'referral',
         'picture',
     ];
+
+    protected $cascadeDeletes = ['Absence', 'Payment', 'messages', 'messagesend', 'scores', 'employeeProjects', 'tasks'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -77,15 +81,11 @@ class User extends Authenticatable
     }
 
     public function messages() {
-        return $this->hasMany('App\Models\messages', 'user_id');
+        return $this->hasMany('App\Models\message', 'user_id');
     }
 
     public function messagesend() {
-        return $this->hasMany('App\Models\messages', 'sender_id');
-    }
-
-    public function enquiries() {
-        return $this->hasMany('App\Enquiry', 'employee_id');
+        return $this->hasMany('App\Models\message', 'sender_id');
     }
 
     public function defaultSubscription() {
@@ -102,6 +102,14 @@ class User extends Authenticatable
 
     public function scores() {
         return $this->hasMany('App\Models\Score');
+    }
+
+    public function employeeProjects() {
+        return $this->hasMany('App\Models\EmployeeProject', 'employee_id');
+    }
+
+    public function tasks() {
+        return $this->hasMany('App\Models\Task', 'employee_id');
     }
 
     public function getScoreAttribute() {
