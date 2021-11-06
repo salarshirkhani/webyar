@@ -18,51 +18,38 @@
         <x-card type="info">
             <x-card-header>مدیریت حضور غیاب ها</x-card-header>
                 <x-card-body>
-                    <div class="box-body">
-                        <div style="margin-bottom: 50px;"></div>
-                        <div class="card">
-                            <div class="card-header">
-                              <h3 class="card-title">حضوری های کاربران</h3>
-                            </div>
-                        <div class="card-body p-0">
-                        <table id="example1" class="table table-bordered table-hover">
-                            <thead>
+                    <table id="example1" class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th>کاربر</th>
+                            <th>تاریخ</th>
+                            <th>ساعت ورود</th>
+                            <th>ساعت خروج</th>
+                            <th>مقدار ساعت</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($absence as $item)
                             <tr>
-                                <th>کاربر</th>
-                                <th>تاریخ</th>
-                                <th>ساعت ورود</th>
-                                <th>ساعت خروج</th>
-                                <th>مقدار ساعت</th>
+                                <td>{{ $item->for->first_name }} {{ $item->for->last_name }}</td>
+                                <td>{!! Facades\Verta::instance($item->date)->formatDate() !!}</td>
+                                <td>{{ $item->enter }}</td>
+                                <td>{{ $item->exit }}</td>
+                                <td>{{ \Carbon\CarbonInterval::seconds((int)$item->hours)->cascade()->forHumans(['join' => true]) }}</td>
                             </tr>
-                            </thead>
-                                <tbody>
-                             @foreach($absence as $item)
-                                <tr>
-                                    <td>{{ $item->for->first_name }} {{ $item->for->last_name }}</td>
-                                    <td>{!! Facades\Verta::instance($item->date)->formatDate() !!}</td>
-                                    <td>{{ $item->enter }}</td>
-                                    <td>{{ $item->exit }}</td>
-                                    <td>{{ round($item->hours / 3600, 1) }}</td>
-                                </tr>
-                             @endforeach
-                                </tbody>
-                                <tfoot>
-                                <tr>
-                                    <th>کاربر</th>
-                                    <th>تاریخ</th>
-                                    <th>ساعت ورود</th>
-                                    <th>ساعت خروج</th>
-                                    <th>مقدار ساعت</th>
-                                </tr>
-                                </tfoot>
-                        </table>
-                       </div>
-                    </div>
-
-                    </div>
-                    </x-card-body>
-                <x-card-footer>
-                </x-card-footer>
+                        @endforeach
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th>کاربر</th>
+                            <th>تاریخ</th>
+                            <th>ساعت ورود</th>
+                            <th>ساعت خروج</th>
+                            <th>مقدار ساعت</th>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </x-card-body>
         </x-card>
     </div>
 
