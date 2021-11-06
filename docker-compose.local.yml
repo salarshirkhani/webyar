@@ -14,11 +14,8 @@ services:
       - 80
     networks:
       - sail
-      - traefik_proxy
     depends_on:
       - mysql
-    labels:
-      - "traefik.http.routers.webyar.rule=Host(`webyar.test`)"
   mysql:
     image: 'mysql:8.0'
     ports:
@@ -41,8 +38,6 @@ networks:
   sail:
     driver: bridge
     name: webyar_sail
-  traefik_proxy:
-    external: true
 
 volumes:
   sailmysql:
