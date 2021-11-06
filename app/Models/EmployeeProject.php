@@ -24,4 +24,8 @@ class EmployeeProject extends Model
         return $this->belongsTo('App\Models\Project', 'project_id');
     }
 
+    public function salary() {
+        return $this->belongsTo('App\Models\Salary', 'salary_id');
+    }
+
 }

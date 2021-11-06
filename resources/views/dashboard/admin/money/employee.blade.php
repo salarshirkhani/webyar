@@ -15,10 +15,12 @@
         </div>
     </div>
 @endif
-<?php
+@include('dashboard.admin.employee.updateemployee', ['posts' => $employee, 'salaries' => $salaries])
+
+    <?php
 $spend=0;
 foreach ($employee as $key) {
-    $spend=$key->cost+$spend;
+    $spend += empty($key->salary) ? 0 : $key->salary->amount;
 }
 ?>
     <div class="col-md-12">
@@ -75,9 +77,9 @@ foreach ($employee as $key) {
                             <td>{{ $item->project->title }}</td>
                             <td>{!! $item->start_date->formatJalali() !!}</td>
                             <td>{!! $item->finish_date->formatJalali() !!}</td>
-                            <td>{{ $item->cost }}</td>
-                            <td><a href="{{route('dashboard.admin.users.profile',['id'=>$item->id])}}" class="btn btn-block btn-outline-primary btn-sm">مشاهده پروفایل</a></td>
-                            <td><a href="{{route('dashboard.admin.employee.updateemployee',['id'=>$item->id])}}"  class="btn btn-block bg-gradient-warning btn-sm">ویرایش</a></td>
+                            <td>{{ empty($item->salary) ? '' : $item->salary->amount }}</td>
+                            <td><a href="{{route('dashboard.admin.users.profile',['id'=>$item->for->id])}}" class="btn btn-block btn-outline-primary btn-sm">مشاهده پروفایل</a></td>
+                            <td><button type="button" data-toggle="modal" data-target="#modal-edit-employee-{{ $item->id }}" class="btn btn-block bg-gradient-warning btn-sm">ویرایش</button></td>
                             <td>
                             <a href="{{route('dashboard.admin.employee.deleteemployee',['id'=>$item->id,'project_id'=>$item->project->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>
                             </td>
