@@ -21,6 +21,7 @@ class PhaseController extends Controller
 {
     public function CreatePost($id,Request $request)
     {
+        $project = Project::findOrFail($id);
         $post = new Phase([
             'title' => $request->input('title'),
             'project_id' => $id,
@@ -29,6 +30,10 @@ class PhaseController extends Controller
         ]);
         if ($post->finish_date->lt($post->start_date))
             return redirect()->back()->withErrors(['finish_date' => 'تاریخ پایان نباید از تاریخ شروع کوچک‌تر باشد.']);
+        if ($post->start_date->lt($project->start_date))
+            return redirect()->back()->withErrors(['start_date' => 'تاریخ آغاز این فاز نباید از تاریخ آغاز پروژه زود‌تر باشد.']);
+        if ($post->finish_date->gt($project->finish_date))
+            return redirect()->back()->withErrors(['finish_date' => 'تاریخ پایان این فاز نباید از تاریخ پایان پروژه دیرتر باشد.']);
         $post->save();
         return redirect()->back()->with('info', '  فاز جدید ذخیره شد و نام آن' .' ' . $request->input('title'));
     }
@@ -40,6 +45,7 @@ class PhaseController extends Controller
 
     public function UpdatePost($id,Request $request)
     {
+        $project = Project::findOrFail($request->input('project_id'));
         $post = Phase::find($request->input('id'));
         if (!is_null($post)) {
             $post->title = $request->input('title');
@@ -48,6 +54,10 @@ class PhaseController extends Controller
             $post->finish_date = Carbon::fromJalali($request->input('finish_date'));
             if ($post->finish_date->lt($post->start_date))
                 return redirect()->back()->withErrors(['finish_date' => 'تاریخ پایان نباید از تاریخ شروع کوچک‌تر باشد.']);
+            if ($post->start_date->lt($project->start_date))
+                return redirect()->back()->withErrors(['start_date' => 'تاریخ آغاز این فاز نباید از تاریخ آغاز پروژه زود‌تر باشد.']);
+            if ($post->finish_date->gt($project->finish_date))
+                return redirect()->back()->withErrors(['finish_date' => 'تاریخ پایان این فاز نباید از تاریخ پایان پروژه دیرتر باشد.']);
             $post->save();
         }
         return redirect()->back()->with('info', 'فاز ویرایش شد');
