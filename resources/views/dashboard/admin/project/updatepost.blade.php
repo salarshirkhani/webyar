@@ -27,7 +27,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                   </div>
-                  <input name="start_date" type="text" id="date" value="{{ $post->start_date->formatJalali() }}" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy-mm-dd" data-mask="">
+                  <input required name="start_date" type="text" id="date" value="{{ $post->start_date->formatJalali() }}" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy-mm-dd" data-mask="">
                 </div>
                 <!-- /.input group -->
             </div>
@@ -38,12 +38,12 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                     </div>
-                    <input name="finish_date" value="{{ $post->finish_date->formatJalali() }}" type="text" id="date1" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy-mm-dd" data-mask="">
+                    <input required name="finish_date" value="{{ $post->finish_date->formatJalali() }}" type="text" id="date1" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy-mm-dd" data-mask="">
                 </div>
                 <!-- /.input group -->
             </div>
 
-            <x-select-group label="وضعیت" name="status" :model="$post">
+            <x-select-group required="" label="وضعیت" name="status" :model="$post">
                 <x-select-item value="not_done">{{ __('app.status.not_done') }}</x-select-item>
                 <x-select-item value="delayed">{{ __('app.status.delayed') }}</x-select-item>
                 <x-select-item value="in_progress">{{ __('app.status.in_progress') }}</x-select-item>
