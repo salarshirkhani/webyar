@@ -1,4 +1,4 @@
-@foreach ($task as $item)
+          @foreach ($task as $item)
                <!-- SHOW EDIT modal -->
                 <div class="modal fade show" id="modal-lf{{ $item->id }}" aria-modal="true" role="dialog">
                     <div class="modal-dialog modal-lg">

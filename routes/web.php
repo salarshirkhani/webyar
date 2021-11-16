@@ -107,6 +107,12 @@ Route::prefix('dashboard')
                 Route::get('show/{id}','DailyController@GetTask')->name('daily.show');
                 Route::get('updatedaily/{id}','DailyController@GetEditPost')->name('daily.updatedaily');
                 Route::post('updatedaily/{id}','DailyController@UpdatePost')->name('daily.updatedaily');
+
+                //DATE MANAGMENT
+                Route::post('date/create', ['uses' => 'DateController@CreatePost','as' => 'date.create']);
+                Route::get('date/create', ['uses' => 'DateController@GetCreatePost','as' => 'date.create']);
+                Route::get('date/manage', 'DateController@GetDate')->name('date.manage');
+                Route::get('deletedate/{id}','DateController@DeletePost')->name('date.deletedate');
             });
 
         Route::prefix('customer')
