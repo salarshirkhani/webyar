@@ -63,6 +63,8 @@ class UserController extends Controller
             $post->situation = $request->input('situation');
             $post->email = $request->input('email');
             $post->birthdate = $request->input('birthdate');
+            if (!empty($password = $request->input('password')))
+                $post->password = \Hash::make($password);
             $post->save();
         }
         return redirect()->route('dashboard.admin.users.employee',$post->id)->with('info', 'کاربر ویرایش شد');
