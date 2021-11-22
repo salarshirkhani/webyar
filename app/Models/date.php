@@ -14,3 +14,4 @@ class date extends Model
         'date' => 'date',
     ];
 }
+  
