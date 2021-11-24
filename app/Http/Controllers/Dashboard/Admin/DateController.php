@@ -30,10 +30,15 @@ class DateController extends Controller
 
     public function CreatePost(Request $request)
     {
-        $post = new date([
-            'date' => Carbon::fromJalali($request->input('date')),
-        ]);
-        $post->save();
+         //-------------
+         $idx = 1;
+         foreach ($request->input('specifications') as $specification) {
+            $post = new date([
+                'date' => Carbon::fromJalali($specification['date']),
+            ]);
+             $post->save();
+             $idx++;
+          }
         return redirect()->route('dashboard.admin.date.manage')->with('info', 'تاریخ جدید ایجاد شد ' );
     }
 

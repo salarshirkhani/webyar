@@ -18,26 +18,8 @@
                                 <input type="text" style="padding:10px; margin: 10px 0px 16px 0px; height: 40px; border-radius: 7px; font-size: 16px;"class="form-control" required  name="title" value="{{ $item->title }}" placeholder="عنوان">
                                 <textarea type="text" id="ckeditor{{ $item->id }}" style="padding:10px; margin: 10px 0px 16px 0px; height: 140px; border-radius: 7px; font-size: 16px;"class="form-control" name="description"  placeholder="توضیحات">{{ $item->description }}</textarea>
                                 <input type="hidden" name="employee_id" value="{{ Auth::user()->id }}" >
-                                <div class="form-group">
-                                    <label>تاریخ شروع:</label>
-                                    <div class="input-group">
-                                      <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
-                                      </div>
-                                      <input id="date" name="start_date" type="text" value="{{ $item->start_date->formatJalali() }}" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy-mm-dd" data-mask="">
-                                    </div>
-                                    <!-- /.input group -->
-                                </div>
-                                <div class="form-group">
-                                    <label>تاریخ پایان:</label>
-                                    <div class="input-group">
-                                      <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
-                                      </div>
-                                      <input id="date1" name="finish_date" value="{{ $item->finish_date->formatJalali() }}" type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="yyyy-mm-dd" data-mask="">
-                                    </div>
-                                    <!-- /.input group -->
-                                </div>
+                                <input name="start_date" type="hidden" value="{{ $item->start_date->formatJalali() }}">
+                                <input name="finish_date" type="hidden" value="{{ $item->finish_date->formatJalali() }}" >
                                 <div class="form-group">
                                     <label>ساعت شروع کار:</label>
                                     <div class="input-group">
