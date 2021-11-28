@@ -76,7 +76,7 @@
                                     @foreach($users as $item)
                                         @if(!empty($item->for))
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" value="{{ $item->employee_id }}" id="check_{{ $item->employee_id }}" @if($post->employee_id == $item->employee_id) checked @endif>
+                                                <input name="employee_id" class="form-check-input" type="radio" value="{{ $item->employee_id }}" id="check_{{ $item->employee_id }}" @if($post->employee_id == $item->employee_id) checked @endif>
                                                 <label class="form-check-label" for="check_{{ $item->employee_id }}">
                                                     {{ $item->for->first_name }} {{ $item->for->last_name }}
                                                 </label>
