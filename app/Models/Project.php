@@ -26,7 +26,7 @@ class Project extends Model
 
     public function employees(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(Employee::class);
+        return $this->belongsToMany(User::class, 'employee_project', 'project_id', 'employee_id');
     }
 
     public function employeeProjects(): \Illuminate\Database\Eloquent\Relations\HasMany
