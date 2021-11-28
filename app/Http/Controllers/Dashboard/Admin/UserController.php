@@ -31,7 +31,13 @@ class UserController extends Controller
         $post = User::find($id);
         $task=Task::where('employee_id',$id)->orderBy('created_at', 'desc')->get();
         $employee=EmployeeProject::where('employee_id',$id)->orderBy('created_at', 'desc')->get();
-        return view('dashboard.admin.users.profile', ['id' => $id,'post' => $post,'employee' => $employee,'task' => $task]);
+        $phase=Phase::whereHas('for', function($q) {
+            $q->whereHas('employees', function($q) {
+                $q->where('users.id', Auth::id());
+            });
+        })->get();
+        $users = EmployeeProject::where('employee_id', Auth::id())->get();
+        return view('dashboard.admin.users.profile', ['id' => $id,'post' => $post,'phase' => $phase,'users' => $users,'employee' => $employee,'task' => $task]);
     }
 
     public function DeletePost($id)

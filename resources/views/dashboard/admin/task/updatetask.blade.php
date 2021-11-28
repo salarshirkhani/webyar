@@ -85,7 +85,7 @@
                                     @endforeach
                                 </div>
                                 <x-select-group name="phase_id" label="فاز بندی" :model="$post ?? null">
-                                    @foreach($phase as $item)
+                                    @foreach($phase->where('project_id', $item->project_id) as $item)
                                         <x-select-item :value="$item->id">{{ $item->title }}</x-select-item>
                                     @endforeach
                                 </x-select-group>

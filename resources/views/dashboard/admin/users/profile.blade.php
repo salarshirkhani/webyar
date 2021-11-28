@@ -8,6 +8,7 @@
     <x-breadcrumb-item title="پروفایل" route="dashboard.admin.users.profile" />
 @endsection
 @section('content')
+@include('dashboard.admin.task.updatetask', ['id' => $post->id, 'phase' => $phase, 'users' => $users, 'posts' => $task])
 <?php
 $tasks=0;
 $income=0;
@@ -107,7 +108,7 @@ foreach ($task as $item) {
                                                 <a href="{{route('dashboard.admin.task.deletetask',['id'=>$item->id,'project_id'=>$item->for->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>
                                                 </td>
                                                 <td>
-                                                <a href="{{route('dashboard.admin.task.updatetask',['id'=>$item->id])}}" class="edit_post" target="_blank"><i class="fas fa-edit"></i></a>
+                                                <button type="button" data-toggle="modal" data-target="#modal-edit-task-{{ $item->id }}" style="padding: 0;color:#dc3545" class="btn edit_post"><i class="fas fa-edit"></i></button>
                                                 </td>
                                             </tr>
                                          @endforeach
