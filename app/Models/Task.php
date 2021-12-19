@@ -114,7 +114,7 @@ public function project() {
             Score::create([
                 'user_id' => $user->id,
                 'value' => Score::TASK_DELAY[0] * $delay_in_days,
-                'description' => sprintf(Score::TASK_DELAY[1], $delay_in_days, $this->project->title, $this->title),
+                'description' => sprintf(Score::TASK_DELAY[1], $delay_in_days, empty($this->project) ? 'نامشخص' : $this->project->title, $this->title),
             ]);
         }
     }
