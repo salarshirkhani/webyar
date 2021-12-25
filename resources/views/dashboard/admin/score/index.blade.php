@@ -35,8 +35,13 @@
                             <td>@empty($item->user) کاربر حذف شده @else {{ $item->user->first_name }} {{ $item->user->last_name }}@endempty</td>
                             <td>{{ $item->description }}</td>
                             <td>
-                                <a href="{{route('dashboard.admin.score.edit',['score'=>$item])}}" class="edit_post"
-                                   target="_blank"><i class="fas fa-edit"></i></a>
+                                <form action="{{ route('dashboard.admin.score.destroy', ['score' => $item]) }}" method="post">
+                                    @method("DELETE")
+                                    @csrf
+                                    <a href="{{route('dashboard.admin.score.edit',['score'=>$item])}}" class="edit_post"
+                                        target="_blank"><i class="fas fa-edit"></i></a>
+                                    <button style="color: #dc3545; background: none; border: none; display: inline" type="submit" class="edit_post"><i class="fas fa-trash"></i></button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach
@@ -51,6 +56,9 @@
                     </tfoot>
                 </table>
             </x-card-body>
+            <x-card-footer>
+                <a href="{{ route('dashboard.admin.score.create') }}" class="btn btn-success"><i class="fa fa-plus"></i> افزودن/کسر امتیاز به کاربر</a>
+            </x-card-footer>
         </x-card>
     </div>
 @endsection
