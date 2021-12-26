@@ -43,7 +43,7 @@
                 <x-card-body>
                     <div class="box-body">
                         {!! $post->description !!}
-                        <div style="margin-bottom: 50px;"></div>
+                        <div style="margin-bottom: 50px; clear:both;"></div>
                         <div class="card">
                             <div class="card-header">
                               <h3 class="card-title">فاز بندی پروژه</h3>
@@ -123,7 +123,7 @@
                                         <td>{!! $item->start_date->formatJalali() !!}</td>
                                         <td>{!! $item->finish_date->formatJalali() !!}</td>
                                         <td>{{ $item->cost }}</td>
-                                        <td><a href="{{route('dashboard.admin.users.profile',['id'=>$item->id])}}" class="btn btn-block btn-outline-primary btn-sm">مشاهده پروفایل</a></td>
+                                        <td><a href="{{route('dashboard.admin.users.profile',['id'=>$item->for->id])}}" class="btn btn-block btn-outline-primary btn-sm">مشاهده پروفایل</a></td>
                                         <td><button type="button" data-toggle="modal" data-target="#modal-edit-employee-{{ $item->id }}" class="btn btn-block bg-gradient-warning btn-sm">ویرایش</button></td>
                                         <td>
                                         <a href="{{route('dashboard.admin.employee.deleteemployee',['id'=>$item->id,'project_id'=>$item->project->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>
@@ -184,10 +184,10 @@
                                         <td>{!! $item->start_date->formatJalali() !!}</td>
                                         <td>{!! $item->finish_date->formatJalali() !!}</td>
                                         <td>{{ !empty($item->phase) ? $item->phase->title : '' }}</td>
-                                        <td>{{ $item->for->first_name }} {{ $item->for->last_name }}</td>
+                                        <td>@if(!empty($item->for)){{ $item->for->first_name }} {{ $item->for->last_name }}@endif</td>
                                         <td>{{ __('app.status.' . $item->status) }}</td>
                                         <td>
-                                        <a href="{{route('dashboard.admin.task.deletetask',['id'=>$item->id,'project_id'=>$item->for->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>
+                                        <a href="{{route('dashboard.admin.task.deletetask',['id'=>$item->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>
                                         </td>
                                         <td>
                                         <button type="button" data-toggle="modal" data-target="#modal-edit-task-{{ $item->id }}" style="padding: 0;color:#dc3545" class="btn edit_post"><i class="fas fa-edit"></i></button>
@@ -244,5 +244,10 @@
         mdtimepicker('.mdtimepicker-input', {
             is24hour: true,
         });
+        @if(Session::has('show-create-employee'))
+            $(window).on('load', function() {
+                $('#modal-create-employee').modal('show');
+            });
+        @endif
     </script>
 @endsection
