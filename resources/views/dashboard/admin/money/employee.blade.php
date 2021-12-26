@@ -15,10 +15,12 @@
         </div>
     </div>
 @endif
-<?php
+@include('dashboard.admin.employee.updateemployee', ['posts' => $employee, 'salaries' => $salaries])
+
+    <?php
 $spend=0;
 foreach ($employee as $key) {
-    $spend=$key->cost+$spend;
+    $spend += empty($key->salary) ? 0 : $key->salary->amount;
 }
 ?>
     <div class="col-md-12">
@@ -27,7 +29,7 @@ foreach ($employee as $key) {
               <!-- small box -->
               <div class="small-box bg-success">
                 <div class="inner">
-                  <h3>250000<sup style="font-size: 20px">هزارتومان</sup></h3>
+                  <h3>250000<sup style="font-size: 13px; top:0px;">هزارتومان</sup></h3>
 
                   <p>درامد این ماه</p>
                 </div>
@@ -41,7 +43,7 @@ foreach ($employee as $key) {
               <!-- small box -->
               <div class="small-box bg-danger" >
                 <div class="inner">
-                    <h3><?php echo $spend; ?><sup style="font-size: 20px">هزارتومان</sup></h3>
+                    <h3><?php echo $spend; ?><sup style="font-size: 13px; top:0px;">هزارتومان</sup></h3>
 
                   <p>هزینه های انجام شده</p>
                 </div>
@@ -54,66 +56,50 @@ foreach ($employee as $key) {
           </div>
         <x-card type="info">
             <x-card-header>مدیریت هزینه کاربران</x-card-header>
-                <x-card-body>
-                    <div class="box-body">
-                        <div style="margin-bottom: 50px;"></div>
-                        <div class="card">
-                            <div class="card-header">
-                              <h3 class="card-title">کاربران در پروژه</h3>
-                            </div>
-                        <div class="card-body p-0">
-                        <table id="example" class="table table-bordered table-hover">
-                            <thead>
-                            <tr>
-                                <th>نام و نام خانوادگی </th>
-                                <th>ایمیل</th>
-                                <th>شماره تماس</th>
-                                <th>تاریخ شروع</th>
-                                <th>تاریخ پایان</th>
-                                <th>هزینه</th>
-                                <th>پروفایل</th>
-                                <th>ویرایش</th>
-                                <th>حذف</th>
-                            </tr>
-                            </thead>
-                                <tbody>
-                             @foreach($employee as $item)
-                                <tr>
-                                    <td>{{ $item->for->first_name }} {{ $item->for->last_name }}</td>
-                                    <td>{{ $item->for->email }}</td>
-                                    <td>{{ $item->for->mobile }}</td>
-                                    <td>{!! $item->start_date->formatJalali() !!}</td>
-                                    <td>{!! $item->finish_date->formatJalali() !!}</td>
-                                    <td>{{ $item->cost }}</td>
-                                    <td><a href="{{route('dashboard.admin.users.profile',['id'=>$item->id])}}" class="btn btn-block btn-outline-primary btn-sm">مشاهده پروفایل</a></td>
-                                    <td><a href="{{route('dashboard.admin.employee.updateemployee',['id'=>$item->id])}}"  class="btn btn-block bg-gradient-warning btn-sm">ویرایش</a></td>
-                                    <td>
-                                    <a href="{{route('dashboard.admin.employee.deleteemployee',['id'=>$item->id,'project_id'=>$item->project->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>
-                                    </td>
-                                </tr>
-                             @endforeach
-                                </tbody>
-                                <tfoot>
-                                <tr>
-                                    <th>نام و نام خانوادگی </th>
-                                    <th>ایمیل</th>
-                                    <th>شماره تماس</th>
-                                    <th>تاریخ شروع</th>
-                                    <th>تاریخ پایان</th>
-                                    <th>هزینه</th>
-                                    <th>پروفایل</th>
-                                    <th>ویرایش</th>
-                                    <th>حذف</th>
-                                </tr>
-                                </tfoot>
-                        </table>
-                       </div>
-                    </div>
-                       <div style="margin-bottom: 50px;"></div>
-                    </div>
-                    </x-card-body>
-                <x-card-footer>
-                </x-card-footer>
+            <x-card-body>
+                <table id="example" class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>نام و نام خانوادگی </th>
+                        <th>پروژه</th>
+                        <th>تاریخ شروع</th>
+                        <th>تاریخ پایان</th>
+                        <th>هزینه</th>
+                        <th>پروفایل</th>
+                        <th>ویرایش</th>
+                        <th>حذف</th>
+                    </tr>
+                    </thead>
+                        <tbody>
+                     @foreach($employee as $item)
+                        <tr>
+                            <td>{{ $item->for->first_name }} {{ $item->for->last_name }}</td>
+                            <td>{{ $item->project->title }}</td>
+                            <td>{!! $item->start_date->formatJalali() !!}</td>
+                            <td>{!! $item->finish_date->formatJalali() !!}</td>
+                            <td>{{ empty($item->salary) ? '' : $item->salary->amount }}</td>
+                            <td><a href="{{route('dashboard.admin.users.profile',['id'=>$item->for->id])}}" class="btn btn-block btn-outline-primary btn-sm">مشاهده پروفایل</a></td>
+                            <td><button type="button" data-toggle="modal" data-target="#modal-edit-employee-{{ $item->id }}" class="btn btn-block bg-gradient-warning btn-sm">ویرایش</button></td>
+                            <td>
+                            <a href="{{route('dashboard.admin.employee.deleteemployee',['id'=>$item->id,'project_id'=>$item->project->id])}}" class="delete_post" ><i class="fa fa-fw fa-eraser"></i></a>
+                            </td>
+                        </tr>
+                     @endforeach
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th>نام و نام خانوادگی </th>
+                            <th>پروژه</th>
+                            <th>تاریخ شروع</th>
+                            <th>تاریخ پایان</th>
+                            <th>هزینه</th>
+                            <th>پروفایل</th>
+                            <th>ویرایش</th>
+                            <th>حذف</th>
+                        </tr>
+                        </tfoot>
+                </table>
+            </x-card-body>
         </x-card>
     </div>
 
